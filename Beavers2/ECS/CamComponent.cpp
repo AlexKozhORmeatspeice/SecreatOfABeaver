@@ -1,4 +1,5 @@
 #include "CamComponent.h"
+#include "Render.h"
 
 void CamComponent::init()
 {

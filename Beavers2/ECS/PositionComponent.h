@@ -8,7 +8,6 @@ private:
 	glm::vec3 pos;
 
 public:
-	PostitionComponent();
 	PostitionComponent(glm::vec3 newPos);
 
 	glm::vec3 GetPos();

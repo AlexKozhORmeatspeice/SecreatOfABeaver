@@ -47,7 +47,7 @@ void SpriteComponent::init()
 void SpriteComponent::update() 
 {
 	glm::mat4 proj = activeCam->GetProj();
-	glm::mat4 view = glm::translate(glm::mat4(1.0f), activeCam->GetPos());
+	glm::mat4 view = glm::translate(glm::mat4(1.0f), -activeCam->GetPos());
 	glm::mat4 model = glm::translate(glm::mat4(1.0f), pos->GetPos());
 	m_MVP = proj * view * model;
 	
