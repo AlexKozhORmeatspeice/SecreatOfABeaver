@@ -62,8 +62,6 @@ public:
 	bool isActive() const { return active; }
 	void destroy();
 
-	
-
 	template <typename T, typename ... TArgs> 
 	T& AddComponent(TArgs&&...mArgs)
 	{

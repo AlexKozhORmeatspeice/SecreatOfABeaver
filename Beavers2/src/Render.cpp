@@ -14,7 +14,7 @@ bool RenderInit()
     if (!glfwInit())
         return false;
 
-    window = glfwCreateWindow(540, 540, "Hello World", NULL, NULL);
+    window = glfwCreateWindow(windowW, windowH, "Hello World", NULL, NULL);
     if (!window)
     {
         std::cout << "Can't set proparly GLFW";
@@ -97,4 +97,14 @@ void RenderStop()
 int GLFWGetKeyState(int code)
 {
     return glfwGetKey(window, code);
+}
+
+float GetHeight()
+{
+    return (float)windowH;
+}
+
+float GetWeidth()
+{
+    return (float)windowW;
 }

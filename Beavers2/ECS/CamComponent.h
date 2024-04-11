@@ -2,6 +2,8 @@
 #include "ECS.h"
 #include "PositionComponent.h"
 #include "Renderer.h"
+#include "Render.h"
+
 
 class CamComponent : public Component
 {
