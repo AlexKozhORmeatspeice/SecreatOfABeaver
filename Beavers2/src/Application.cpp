@@ -19,6 +19,7 @@ std::unique_ptr<Manager> ECSInit()
 		"res/Shaders/Basic.shader",
 		color,
 		cam.GetComponent<CamComponent>());
+	beaver.AddComponent<MovementComponent>();
 
 	return std::move(manager);
 }
@@ -30,6 +31,7 @@ void ECSStop(std::unique_ptr<Manager> manager)
 
 int main()
 {
+	
 	if (!GameInit() || !RenderInit())
 	{
 		return 0;

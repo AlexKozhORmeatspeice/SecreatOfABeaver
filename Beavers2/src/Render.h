@@ -10,3 +10,4 @@ bool RenderInit();
 bool Render(std::unique_ptr<Manager> & manager);
 
 void RenderStop();
+int GLFWGetKeyState(int code);

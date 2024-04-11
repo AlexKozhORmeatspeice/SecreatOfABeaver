@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="ECS\CamComponent.cpp" />
     <ClCompile Include="ECS\ECS.cpp" />
+    <ClCompile Include="ECS\MovementComponent.cpp" />
     <ClCompile Include="ECS\PositionComponent.cpp" />
     <ClCompile Include="ECS\SpriteComponent.cpp" />
     <ClCompile Include="res\GL\GLErrors.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="Depend\GLFW\include\GLFW\glfw3native.h" />
     <ClInclude Include="ECS\CamComponent.h" />
     <ClInclude Include="ECS\Components.h" />
+    <ClInclude Include="ECS\MovementComponent.h" />
     <ClInclude Include="ECS\PositionComponent.h" />
     <ClInclude Include="ECS\SpriteComponent.h" />
     <ClInclude Include="res\GL\GLErrors.h" />

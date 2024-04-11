@@ -2,7 +2,7 @@
 
 void CamComponent::init()
 {
-	proj = glm::ortho(0.0f, 540.0f, 0.0f, 540.0f, -1.0f, 1.0f);
+	proj = glm::ortho(-270.0f, 270.0f, -270.0f, 270.0f, -1.0f, 1.0f);
 	pos = entity->GetComponent<PostitionComponent>();
 }
 

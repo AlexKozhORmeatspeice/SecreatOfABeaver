@@ -1,6 +1,5 @@
 #include "Render.h"
 
-
 unsigned int windowW = 540;
 unsigned int windowH = 540;
 
@@ -8,7 +7,6 @@ const char* glsl_version = "#version 330";
 
 ImGuiIO* io;
 GLFWwindow* window;
-
 
 bool RenderInit()
 {
@@ -94,4 +92,9 @@ void RenderStop()
 
     glfwDestroyWindow(window);
     glfwTerminate();
+}
+
+int GLFWGetKeyState(int code)
+{
+    return glfwGetKey(window, code);
 }

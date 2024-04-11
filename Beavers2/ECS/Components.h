@@ -3,3 +3,4 @@
 #include "SpriteComponent.h"
 #include "CamComponent.h"
 #include "PositionComponent.h"
+#include "MovementComponent.h"
