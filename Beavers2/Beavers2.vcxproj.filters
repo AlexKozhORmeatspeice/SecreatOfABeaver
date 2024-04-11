@@ -57,9 +57,6 @@
     <ClCompile Include="res\vendor\glm\detail\glm.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="res\vendor\imgui\imgui.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="res\vendor\imgui\imgui_demo.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
@@ -78,7 +75,19 @@
     <ClCompile Include="res\vendor\imgui\imgui_impl_opengl3.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="src\ECSManager.cpp">
+    <ClCompile Include="res\vendor\imgui\imgui.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="ECS\ECS.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="ECS\CamComponent.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="ECS\PositionComponent.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="ECS\SpriteComponent.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1523,10 +1532,25 @@
     <ClInclude Include="ECS\Components.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="ECS\CameraComponent.h">
+    <ClInclude Include="ECS\CamComponent.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\ECSManager.h">
+    <ClInclude Include="Depend\GLEW\include\GL\eglew.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Depend\GLEW\include\GL\glew.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Depend\GLEW\include\GL\glxew.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Depend\GLEW\include\GL\wglew.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Depend\GLFW\include\GLFW\glfw3.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Depend\GLFW\include\GLFW\glfw3native.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
@@ -2318,6 +2342,16 @@
     <None Include="res\vendor\glm\gtx\wrap.inl">
       <Filter>Файлы заголовков</Filter>
     </None>
+    <None Include="Depend\GLEW\doc\advanced.html" />
+    <None Include="Depend\GLEW\doc\basic.html" />
+    <None Include="Depend\GLEW\doc\build.html" />
+    <None Include="Depend\GLEW\doc\credits.html" />
+    <None Include="Depend\GLEW\doc\glew.html" />
+    <None Include="Depend\GLEW\doc\glxew.html" />
+    <None Include="Depend\GLEW\doc\index.html" />
+    <None Include="Depend\GLEW\doc\install.html" />
+    <None Include="Depend\GLEW\doc\log.html" />
+    <None Include="Depend\GLEW\doc\wglew.html" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\Textures\Beaver1.jpg">

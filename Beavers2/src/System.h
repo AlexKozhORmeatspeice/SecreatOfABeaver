@@ -1,8 +1,8 @@
 #pragma once
 #include "Components.h"
-#include "ECSManager.h"
+
 
 
 bool GameInit();
-bool GameIter();
+bool GameIter(std::unique_ptr<Manager> & manager);
 void GameStop();

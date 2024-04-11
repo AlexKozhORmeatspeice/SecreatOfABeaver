@@ -139,6 +139,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ECS\CamComponent.cpp" />
+    <ClCompile Include="ECS\ECS.cpp" />
+    <ClCompile Include="ECS\PositionComponent.cpp" />
+    <ClCompile Include="ECS\SpriteComponent.cpp" />
     <ClCompile Include="res\GL\GLErrors.cpp" />
     <ClCompile Include="res\GL\IndexBuffer.cpp" />
     <ClCompile Include="res\GL\VertexArray.cpp" />
@@ -156,13 +160,18 @@
     <ClCompile Include="res\vendor\imgui\imgui_widgets.cpp" />
     <ClCompile Include="res\vendor\stb_image\stb_image.cpp" />
     <ClCompile Include="src\Application.cpp" />
-    <ClCompile Include="src\ECSManager.cpp" />
     <ClCompile Include="src\Render.cpp" />
     <ClCompile Include="res\Renderer\Renderer.cpp" />
     <ClCompile Include="src\System.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ECS\CameraComponent.h" />
+    <ClInclude Include="Depend\GLEW\include\GL\eglew.h" />
+    <ClInclude Include="Depend\GLEW\include\GL\glew.h" />
+    <ClInclude Include="Depend\GLEW\include\GL\glxew.h" />
+    <ClInclude Include="Depend\GLEW\include\GL\wglew.h" />
+    <ClInclude Include="Depend\GLFW\include\GLFW\glfw3.h" />
+    <ClInclude Include="Depend\GLFW\include\GLFW\glfw3native.h" />
+    <ClInclude Include="ECS\CamComponent.h" />
     <ClInclude Include="ECS\Components.h" />
     <ClInclude Include="ECS\PositionComponent.h" />
     <ClInclude Include="ECS\SpriteComponent.h" />
@@ -423,12 +432,21 @@
     <ClInclude Include="res\vendor\imgui\imstb_truetype.h" />
     <ClInclude Include="res\vendor\stb_image\stb_image.h" />
     <ClInclude Include="ECS\ECS.h" />
-    <ClInclude Include="src\ECSManager.h" />
     <ClInclude Include="src\Render.h" />
     <ClInclude Include="res\Renderer\Renderer.h" />
     <ClInclude Include="src\System.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Depend\GLEW\doc\advanced.html" />
+    <None Include="Depend\GLEW\doc\basic.html" />
+    <None Include="Depend\GLEW\doc\build.html" />
+    <None Include="Depend\GLEW\doc\credits.html" />
+    <None Include="Depend\GLEW\doc\glew.html" />
+    <None Include="Depend\GLEW\doc\glxew.html" />
+    <None Include="Depend\GLEW\doc\index.html" />
+    <None Include="Depend\GLEW\doc\install.html" />
+    <None Include="Depend\GLEW\doc\log.html" />
+    <None Include="Depend\GLEW\doc\wglew.html" />
     <None Include="res\Shaders\Basic.shader" />
     <None Include="res\vendor\glm\detail\func_common.inl" />
     <None Include="res\vendor\glm\detail\func_common_simd.inl" />

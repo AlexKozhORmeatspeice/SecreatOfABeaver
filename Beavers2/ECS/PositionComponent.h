@@ -1,5 +1,5 @@
 #pragma once
-#include "Components.h"
+#include "ECS.h"
 #include "glm/glm.hpp"
 
 class PostitionComponent : public Component
@@ -8,31 +8,13 @@ private:
 	glm::vec3 pos;
 
 public:
-	PostitionComponent()
-	{
-		pos = glm::vec3(0, 0, 0);
-	}
-	PostitionComponent(glm::vec3 newPos)
-	{
-		pos = newPos;
-	}
+	PostitionComponent();
+	PostitionComponent(glm::vec3 newPos);
 
-	glm::vec3 GetPos()
-	{
-		return pos;
-	}
+	glm::vec3 GetPos();
 
-	void init() override
-	{
-		pos = glm::vec3(0, 0, 0);
-	}
+	void init() override;
 
-	void update() override
-	{
-		//pos += glm::vec3(1, 1, 0);
-	}
-	void SetPos(glm::vec3 newPos)
-	{
-		pos = newPos;
-	}
+	void update() override;
+	void SetPos(glm::vec3 newPos);
 };

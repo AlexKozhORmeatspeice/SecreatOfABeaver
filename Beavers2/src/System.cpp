@@ -5,9 +5,9 @@ bool GameInit()
 	return true;
 }
 
-bool GameIter()
+bool GameIter(std::unique_ptr<Manager> & manager)
 {
-	manager.update();
+	manager->update();
 
 	return true;
 }

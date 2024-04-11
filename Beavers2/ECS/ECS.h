@@ -6,6 +6,8 @@
 #include <bitset>
 #include <array>
 
+#include "iostream"
+
 class Component;
 class Entity;
 
@@ -18,7 +20,8 @@ inline ComponentID GetComponentTypeID()
 	return lastID++;
 }
 
-template <typename T> inline ComponentID GetComponentTypeID() noexcept
+template <typename T> 
+inline ComponentID GetComponentTypeID() noexcept
 {
 	static ComponentID typeID = GetComponentTypeID();
 	return typeID;
@@ -27,7 +30,7 @@ template <typename T> inline ComponentID GetComponentTypeID() noexcept
 constexpr std::size_t maxComp = 32;
 
 using ComponentBitSet = std::bitset<maxComp>;
-using ComponentArray = std::array<Component*, maxComp>;
+using ComponentArray = std::array<std::shared_ptr<Component>, maxComp>;
 
 class Component
 {
@@ -53,50 +56,45 @@ private:
 	ComponentBitSet componentBitSet;
 
 public:
-	void update()
-	{
-		for (auto& c : components) c->update();
-	}
+	void update();
 
-	void draw() 
-	{
-		for (auto& c : components) c->draw();
-	};
+	void draw();
 	bool isActive() const { return active; }
-	void destroy() { active = false; }
+	void destroy();
 
-	template <typename T> bool HasComponent() const
+	
+
+	template <typename T, typename ... TArgs> 
+	T& AddComponent(TArgs&&...mArgs)
 	{
-		return componentBitSet[GetComponentTypeID<T>()];
-	}
+		std::shared_ptr<T> c = std::make_shared<T>(std::forward<TArgs>(mArgs)...);
+		c.get()->entity = this;
 
-	template <typename T, typename ... TArgs> T& AddComponent(TArgs&&...mArgs)
-	{
-		T* c(new T(std::forward<TArgs>(mArgs)...));
-		c->entity = this;
-
-		std::unique_ptr<Component> uPtr{ c };
+		std::unique_ptr<Component> uPtr{ c.get() };
 		components.emplace_back(std::move(uPtr));
 
 		componentArray[GetComponentTypeID<T>()] = c;
 		componentBitSet[GetComponentTypeID<T>()] = true;
 
-		c->init();
+		c.get()->init();
 
-		return *c;
+		return *c.get();
 	}
 
-	template <typename T> T& GetComponent() const
+	template <typename T> 
+	bool HasComponent() const
+	{
+		return componentBitSet[GetComponentTypeID<T>()];
+	}
+
+	template <typename T> 
+	std::shared_ptr<T> GetComponent()
 	{
 		auto ptr(componentArray[GetComponentTypeID<T>()]);
-
-		return *static_cast<T*>(ptr);
+		return std::static_pointer_cast<T>(ptr);
 	}
 
-	~Entity()
-	{
-		for (auto& c : components) delete c.get();
-	}
+	~Entity();
 };
 
 class Manager
@@ -105,38 +103,13 @@ private:
 	std::vector<std::unique_ptr<Entity>> entities;
 
 public:
-	void update()
-	{
-		for (auto& e : entities) e->update();
-	}
+	void update();
 
-	void draw()
-	{
-		for (auto& e : entities) e->draw();
-	}
+	void draw();
 
-	void refresh()
-	{
-		entities.erase(
-			std::remove_if(std::begin(entities), 
-						   std::end(entities), 
-						   [](const std::unique_ptr<Entity>& mEntity) { return !mEntity->isActive(); }),
-						   std::end(entities)
-		              );
-	}
+	void refresh();
 
-	Entity& addEntity()
-	{
-		Entity* e = new Entity();
-		std::unique_ptr<Entity> uPtr{ e };
+	Entity& addEntity();
 
-		entities.emplace_back(std::move(uPtr));
-
-		return *e;
-	}
-
-	~Manager()
-	{
-		for (auto& e : entities) delete e.get();
-	}
+	~Manager();
 };

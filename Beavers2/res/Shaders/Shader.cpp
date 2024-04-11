@@ -73,11 +73,11 @@ unsigned int Shader::CompileShader(const std::string& source, unsigned int type)
 {
     unsigned int id = glCreateShader(type);
     const char* src = source.c_str();
-    glShaderSource(id, 1, &src, nullptr);
-    glCompileShader(id);
+    GLCall(glShaderSource(id, 1, &src, nullptr));
+    GLCall(glCompileShader(id));
 
     int res;
-    glGetShaderiv(id, GL_COMPILE_STATUS, &res);
+    GLCall(glGetShaderiv(id, GL_COMPILE_STATUS, &res));
 
     if (res == GL_FALSE)
     {
@@ -101,13 +101,13 @@ int Shader::CreateShader(const std::string& vertShader, const std::string& fragS
     unsigned int vs = CompileShader(vertShader, GL_VERTEX_SHADER);
     unsigned int fs = CompileShader(fragShader, GL_FRAGMENT_SHADER);
 
-    glAttachShader(prog, vs);
-    glAttachShader(prog, fs);
-    glLinkProgram(prog);
-    glValidateProgram(prog);
+    GLCall(glAttachShader(prog, vs));
+    GLCall(glAttachShader(prog, fs));
+    GLCall(glLinkProgram(prog));
+    GLCall(glValidateProgram(prog));
 
-    glDeleteShader(vs);
-    glDeleteShader(fs);
+    GLCall(glDeleteShader(vs));
+    GLCall(glDeleteShader(fs));
 
     return prog;
 }
@@ -117,21 +117,21 @@ int Shader::CreateShader(const std::string& vertShader, const std::string& fragS
 void Shader::SetUniform1i(const std::string& name, int v0)
 {
     int loc = GetUniformLocation(name);
-    glUniform1i(loc, v0);
+    GLCall(glUniform1i(loc, v0));
 }
 
 void Shader::SetUniform1f(const std::string& name, float v0)
 {
     int loc = GetUniformLocation(name);
-    glUniform1f(loc, v0);
+    GLCall(glUniform1f(loc, v0));
 }
-void Shader::SetUniform4f(const std::string& name, float v0, float v1, float v2, float v3)
+void Shader::SetUniform4f(const std::string& name, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3)
 {
     int loc = GetUniformLocation(name);
-    glUniform4f(loc, v0, v1, v2, v3);
+    GLCall(glUniform4f(loc, v0, v1, v2, v3));
 }
 void Shader::SetUniformMat4f(const std::string& name, glm::mat4 matrix)
 {
     int loc = GetUniformLocation(name);
-    glUniformMatrix4fv(loc, 1, GL_FALSE, &matrix[0][0]);
+    GLCall(glUniformMatrix4fv(loc, 1, GL_FALSE, &matrix[0][0]));
 }

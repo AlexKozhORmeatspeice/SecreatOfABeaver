@@ -1,15 +1,13 @@
 #include "Render.h"
-#include "Components.h"
-#include "ECSManager.h"
+
+
+unsigned int windowW = 540;
+unsigned int windowH = 540;
 
 const char* glsl_version = "#version 330";
 
 ImGuiIO* io;
 GLFWwindow* window;
-
-//ECS Fles//
-
-//ECS Fles//
 
 
 bool RenderInit()
@@ -18,7 +16,7 @@ bool RenderInit()
     if (!glfwInit())
         return false;
 
-    window = glfwCreateWindow(960, 540, "Hello World", NULL, NULL);
+    window = glfwCreateWindow(540, 540, "Hello World", NULL, NULL);
     if (!window)
     {
         std::cout << "Can't set proparly GLFW";
@@ -29,7 +27,6 @@ bool RenderInit()
     glfwMakeContextCurrent(window);
     glfwSwapInterval(1);
 
-   
     if (glewInit() != GLEW_OK)
     {
         std::cout << "Can't set proparly GLEW";
@@ -53,10 +50,8 @@ bool RenderInit()
 float r = 0.0f;
 float inc = 0.05f;
 
-bool show_another_window = false;
-ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
-bool Render()
+bool Render(std::unique_ptr<Manager> & manager)
 {
     if (glfwWindowShouldClose(window))
         return false;
@@ -65,14 +60,14 @@ bool Render()
     glClear(GL_COLOR_BUFFER_BIT);
     
     ////////////////////actual prog//////////////////////////
-    manager.draw();
+    manager->draw();
     ////////////////////actual prog//////////////////////////
 
      
     ///////////////////// some ImGUI//////////////////////
-    ImGui_ImplOpenGL3_NewFrame();
+    /*ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplGlfw_NewFrame();
-    ImGui::NewFrame();
+    ImGui::NewFrame();*/
 
     /*{
         ImGui::SliderFloat3("Translation", &transA.x, 0.0f, 960.0f);
@@ -81,11 +76,11 @@ bool Render()
     ///////////////////// some ImGUI//////////////////////
 
 
-    ImGui::Render();
-    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+    /*ImGui::Render();
+    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());*/
 
     glfwSwapBuffers(window);
-    
+    glfwPollEvents();
 
     return true;
 }
