@@ -18,4 +18,6 @@ public:
 	MovementComponent(float nowSpeed);
 	void init() override;
 	void update() override;
+
+	~MovementComponent();
 };

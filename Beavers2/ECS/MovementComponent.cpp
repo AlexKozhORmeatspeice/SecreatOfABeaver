@@ -89,3 +89,8 @@ void MovementComponent::update()
 			break;
 	}
 }
+
+MovementComponent::~MovementComponent()
+{
+	
+}

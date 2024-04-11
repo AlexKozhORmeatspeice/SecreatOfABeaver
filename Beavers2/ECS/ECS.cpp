@@ -49,7 +49,6 @@ Entity& Manager::addEntity()
 }
 
 Manager::~Manager()
-{
-	//
+{		
 		
 }

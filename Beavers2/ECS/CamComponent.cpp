@@ -15,3 +15,9 @@ glm::mat4 CamComponent::GetProj()
 {
 	return proj;
 }
+
+
+CamComponent::~CamComponent()
+{
+	
+}

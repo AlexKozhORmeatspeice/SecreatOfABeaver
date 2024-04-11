@@ -23,3 +23,8 @@ void PostitionComponent::SetPos(glm::vec3 newPos)
 {
 	pos = newPos;
 }
+
+PostitionComponent::~PostitionComponent()
+{
+	
+}

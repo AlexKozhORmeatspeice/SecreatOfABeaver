@@ -15,4 +15,6 @@ public:
 
 	glm::vec3 GetPos();
 	glm::mat4 GetProj();
+
+	~CamComponent();
 };

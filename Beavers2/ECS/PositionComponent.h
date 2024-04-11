@@ -16,4 +16,6 @@ public:
 
 	void update() override;
 	void SetPos(glm::vec3 newPos);
+
+	~PostitionComponent();
 };

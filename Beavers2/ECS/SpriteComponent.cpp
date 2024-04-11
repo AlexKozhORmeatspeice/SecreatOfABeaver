@@ -69,5 +69,6 @@ SpriteComponent::~SpriteComponent()
 	delete va;
 	delete shader_basic;
 	delete texture;
+
 }
 

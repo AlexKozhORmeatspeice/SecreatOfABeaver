@@ -50,7 +50,7 @@ class Entity
 {
 private:
 	bool active = true;
-	std::vector<std::unique_ptr<Component>> components;
+	std::vector<Component*> components;
 
 	ComponentArray componentArray;
 	ComponentBitSet componentBitSet;
@@ -68,7 +68,7 @@ public:
 		std::shared_ptr<T> c = std::make_shared<T>(std::forward<TArgs>(mArgs)...);
 		c.get()->entity = this;
 
-		std::unique_ptr<Component> uPtr{ c.get() };
+		auto* uPtr{ c.get() };
 		components.emplace_back(std::move(uPtr));
 
 		componentArray[GetComponentTypeID<T>()] = c;
