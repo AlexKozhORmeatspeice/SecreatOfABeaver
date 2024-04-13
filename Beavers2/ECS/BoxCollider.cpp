@@ -24,6 +24,8 @@ BoxCollider::BoxCollider(float nowWidth, float nowHeigt, bool nowIsTrigger)
 
 void BoxCollider::init()
 {
+	checkDist = sqrt(width * width + height * height);
+
 	vertices[0] = -width;
 	vertices[1] = -height;
 
@@ -95,8 +97,6 @@ void BoxCollider::draw()
 
 bool BoxCollider::CheckCollision() //it's an SAT algorithm or something like that
 {
-	float checkDist = sqrt(width * width + height * height);
-	
 	for (auto& collider : AllColliders)
 	{
 		if (collider == this)
@@ -106,10 +106,12 @@ bool BoxCollider::CheckCollision() //it's an SAT algorithm or something like tha
 		std::vector<glm::vec3> verticesA = flatVectors;
 		std::vector<glm::vec3> verticesB = collider->flatVectors;
 
+		float checkDistNow = checkDist + collider->GetCheckDist();
+
 		glm::vec3 posA = pos->GetPos();
 		glm::vec3 posB = (verticesB[0] + verticesB[1] + verticesB[2] + verticesB[3]) / 4.0f; //avarage of pos_vertices sum is a center of the figure éîó
-
-		if (glm::distance(posA, posB) > checkDist)
+		std::cout << posB.x << " " << posB.y << std::endl;
+		if (glm::distance(posA, posB) > checkDistNow)
 		{
 			continue;
 		}
@@ -200,6 +202,11 @@ void BoxCollider::initVecPositions()
 		glm::vec3(x + width, y + height, 0),
 		glm::vec3(x - width, y + height, 0),
 	};
+}
+
+float BoxCollider::GetCheckDist()
+{
+	return checkDist;
 }
 
 BoxCollider::~BoxCollider()

@@ -1,11 +1,12 @@
 #pragma once
 #include "Components.h"
+#include "cmath"
 
 class BoxCollider : public Component
 {
 private:
 	static std::vector<BoxCollider*> AllColliders;
-
+	float checkDist;
 
 	std::shared_ptr<PositionComponent> pos;
 	bool drawingColliders = true;
@@ -42,7 +43,7 @@ public:
 	void update() override;
 	void draw() override;
 
-
+	float GetCheckDist();
 	~BoxCollider();
 private:
 	bool CheckCollision();

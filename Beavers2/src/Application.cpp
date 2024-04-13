@@ -45,7 +45,7 @@ std::unique_ptr<Manager> ECSInit()
 
 	cam.AddComponent<PositionComponent>(glm::vec3(0, 0, 0));
 	cam.AddComponent<CamComponent>();
-	cam.AddComponent<MovementComponent>(5.0f);
+	//cam.AddComponent<MovementComponent>(5.0f);
 
 	glm::vec4 color = glm::vec4(0.5f, 0.5f, 0.5f, 1.0f);
 	beaver1.AddComponent<PositionComponent>(glm::vec3(0.0f, 0.0f, 0.0f));
@@ -53,6 +53,7 @@ std::unique_ptr<Manager> ECSInit()
 		"res/Shaders/Basic.shader",
 		color);
 	beaver1.AddComponent<BoxCollider>(50, 50, true);
+	beaver1.AddComponent<MovementComponent>(5.0f);
 
 	beaver2.AddComponent<PositionComponent>(glm::vec3(-50.0f, 50.0f, 0.0f));
 	beaver2.AddComponent<SpriteComponent>("res/Textures/Beaver1.jpg",
