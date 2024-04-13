@@ -8,13 +8,19 @@
 class CamComponent : public Component
 {
 private:
-	std::shared_ptr<PostitionComponent> pos;
-	glm::mat4 proj;
+	static std::shared_ptr<PostitionComponent> pos;
+	static glm::mat4 proj;
 public:
 	void init() override;
 
-	glm::vec3 GetPos();
-	glm::mat4 GetProj();
+	static glm::vec3 GetPos() 
+	{
+		return pos->GetPos();
+	}
+	static glm::mat4 GetProj()
+	{
+		return proj;
+	}
 
 	~CamComponent();
 };

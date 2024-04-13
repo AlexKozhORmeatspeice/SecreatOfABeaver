@@ -90,7 +90,13 @@
     <ClCompile Include="ECS\SpriteComponent.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="ECS\MovementComponent.cpp">
+    <ClCompile Include="ECS\MovementSystem\MovementComponent.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="ECS\MovementSystem\HeroMovementComponent.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="ECS\BoxCollider.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1556,7 +1562,13 @@
     <ClInclude Include="Depend\GLFW\include\GLFW\glfw3native.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="ECS\MovementComponent.h">
+    <ClInclude Include="ECS\MovementSystem\MovementComponent.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="ECS\MovementSystem\HeroMovementComponent.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="ECS\BoxCollider.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

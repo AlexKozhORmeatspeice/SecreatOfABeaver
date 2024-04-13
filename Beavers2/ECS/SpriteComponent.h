@@ -33,7 +33,7 @@ private:
 	};
 public:
 
-	SpriteComponent(const char* pathTexture, const char* pathShader, glm::vec4 nowColor, std::shared_ptr<CamComponent> nowCam);
+	SpriteComponent(const char* pathTexture, const char* pathShader, glm::vec4 nowColor);
 
 	void SetNewColor(glm::vec4 newColor);
 

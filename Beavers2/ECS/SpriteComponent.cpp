@@ -1,7 +1,7 @@
 #include "SpriteComponent.h"
 
 
-SpriteComponent::SpriteComponent(const char* pathTexture, const char* pathShader, glm::vec4 nowColor, std::shared_ptr<CamComponent> nowCam)
+SpriteComponent::SpriteComponent(const char* pathTexture, const char* pathShader, glm::vec4 nowColor)
 {
 	vb = new VertexBuffer(postitions, 4 * 2 * 2 * sizeof(float));
 	ib = new IndexBuffer(indices, 6);
@@ -22,14 +22,12 @@ SpriteComponent::SpriteComponent(const char* pathTexture, const char* pathShader
 	color = nowColor;
 	shader_basic->SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
 
-
 	shader_basic->Unbind();
 	vb->Unbind();
 	ib->Unbind();
 	va->Unbind();
 	texture->Unbind();
 	
-	activeCam = nowCam;
 	m_MVP = glm::mat4(1.0f);
 }
 
@@ -46,8 +44,8 @@ void SpriteComponent::init()
 
 void SpriteComponent::update() 
 {
-	glm::mat4 proj = activeCam->GetProj();
-	glm::mat4 view = glm::translate(glm::mat4(1.0f), -activeCam->GetPos());
+	glm::mat4 proj = CamComponent::GetProj();
+	glm::mat4 view = glm::translate(glm::mat4(1.0f), -CamComponent::GetPos());
 	glm::mat4 model = glm::translate(glm::mat4(1.0f), pos->GetPos());
 	m_MVP = proj * view * model;
 	
@@ -58,8 +56,7 @@ void SpriteComponent::update()
 void SpriteComponent::draw()
 {
 	texture->Bind();
-	shader_basic->Bind();
-	renderer.Draw(*va, *ib, *shader_basic);
+	//renderer.Draw(*va, *ib, *shader_basic);
 }
 
 SpriteComponent::~SpriteComponent()
@@ -69,6 +66,5 @@ SpriteComponent::~SpriteComponent()
 	delete va;
 	delete shader_basic;
 	delete texture;
-
 }
 

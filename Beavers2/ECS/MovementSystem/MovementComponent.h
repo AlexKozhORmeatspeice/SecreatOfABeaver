@@ -4,11 +4,11 @@
 class MovementComponent : public Component
 {
 private:
-	bool changedHor;
-	bool changedVer;
+	bool changedHor = false;
+	bool changedVer = false;
 
-	int lastActiveHor;
-	int lastActiveVer;
+	int lastActiveHor = 0;
+	int lastActiveVer = 0;
 
 	float speed;
 	std::shared_ptr<PostitionComponent> pos;
