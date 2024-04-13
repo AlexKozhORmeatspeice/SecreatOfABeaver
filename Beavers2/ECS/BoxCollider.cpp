@@ -37,6 +37,7 @@ void BoxCollider::init()
 	vertices[7] = height;
 
 	pos = entity->GetComponent<PostitionComponent>();
+	
 	vb = new VertexBuffer(vertices, 4 * 2 * sizeof(float));
 	ib = new IndexBuffer(indices, 6);
 	
@@ -82,7 +83,7 @@ void BoxCollider::draw()
 
 	glm::mat4 proj = CamComponent::GetProj();
 	glm::mat4 view = glm::translate(glm::mat4(1.0f), -CamComponent::GetPos());
-	glm::mat4 model = glm::translate(glm::mat4(1.0f), pos->GetPos());
+	glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(pos->GetPos().x, pos->GetPos().y, pos->GetPos().z + 1.0f));
 	m_MVP = proj * view * model;
 
 	shader->Bind();

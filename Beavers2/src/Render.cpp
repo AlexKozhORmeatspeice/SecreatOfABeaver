@@ -31,6 +31,9 @@ bool RenderInit()
         return false;
     }
 
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LESS);
+
     ImGui::CreateContext();
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init(glsl_version);
@@ -55,7 +58,7 @@ bool Render(std::unique_ptr<Manager> & manager)
         return false;
 
     
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     ////////////////////actual prog//////////////////////////
     manager->draw();

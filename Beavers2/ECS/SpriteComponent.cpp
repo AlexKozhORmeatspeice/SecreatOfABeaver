@@ -56,7 +56,7 @@ void SpriteComponent::update()
 void SpriteComponent::draw()
 {
 	texture->Bind();
-	//renderer.Draw(*va, *ib, *shader_basic);
+	renderer.Draw(*va, *ib, *shader_basic);
 }
 
 SpriteComponent::~SpriteComponent()
