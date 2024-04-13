@@ -7,7 +7,7 @@
 class SpriteComponent : public Component
 {
 private:
-	std::shared_ptr<PostitionComponent> pos;
+	std::shared_ptr<PositionComponent> pos;
 	std::shared_ptr<CamComponent> activeCam;
 	glm::mat4 m_MVP;
 

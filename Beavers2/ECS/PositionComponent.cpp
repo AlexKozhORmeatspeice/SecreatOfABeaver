@@ -1,30 +1,30 @@
 #include "PositionComponent.h"
 
-PostitionComponent::PostitionComponent(glm::vec3 newPos)
+PositionComponent::PositionComponent(glm::vec3 newPos)
 {
 	pos = newPos;
 }
 
-glm::vec3 PostitionComponent::GetPos()
+glm::vec3 PositionComponent::GetPos()
 {
 	return pos;
 }
 
-void PostitionComponent::init()
+void PositionComponent::init()
 {
 
 }
 
-void PostitionComponent::update()
+void PositionComponent::update()
 {
 	//pos += glm::vec3(1, 1, 0);
 }
-void PostitionComponent::SetPos(glm::vec3 newPos)
+void PositionComponent::SetPos(glm::vec3 newPos)
 {
 	pos = newPos;
 }
 
-PostitionComponent::~PostitionComponent()
+PositionComponent::~PositionComponent()
 {
 	
 }

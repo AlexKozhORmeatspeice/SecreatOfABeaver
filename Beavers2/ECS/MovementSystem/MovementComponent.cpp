@@ -12,7 +12,7 @@ MovementComponent::MovementComponent(float nowSpeed)
 
 void MovementComponent::init()
 {
-	pos = entity->GetComponent<PostitionComponent>();
+	pos = entity->GetComponent<PositionComponent>();
 }
 
 void MovementComponent::update()
@@ -68,10 +68,10 @@ void MovementComponent::update()
 	switch (lastActiveHor)
 	{
 		case GLFW_KEY_LEFT:
-			pos->SetPos(pos->GetPos() + glm::vec3(-1, 0, 0));
+			pos->SetPos(pos->GetPos() + glm::vec3(-speed, 0, 0));
 			break;
 		case GLFW_KEY_RIGHT:
-			pos->SetPos(pos->GetPos() + glm::vec3(1, 0, 0));
+			pos->SetPos(pos->GetPos() + glm::vec3(speed, 0, 0));
 			break;
 		default:
 			break;
@@ -80,10 +80,10 @@ void MovementComponent::update()
 	switch (lastActiveVer)
 	{
 		case GLFW_KEY_UP:
-			pos->SetPos(pos->GetPos() + glm::vec3(0, 1, 0));
+			pos->SetPos(pos->GetPos() + glm::vec3(0, speed, 0));
 			break;
 		case GLFW_KEY_DOWN:
-			pos->SetPos(pos->GetPos() + glm::vec3(0, -1, 0));
+			pos->SetPos(pos->GetPos() + glm::vec3(0, -speed, 0));
 			break;
 		default:
 			break;

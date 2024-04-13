@@ -1,6 +1,6 @@
 #include "Render.h"
 
-unsigned int windowW = 540;
+unsigned int windowW = 800;
 unsigned int windowH = 540;
 
 const char* glsl_version = "#version 330";

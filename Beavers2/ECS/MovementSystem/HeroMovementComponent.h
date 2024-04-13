@@ -4,7 +4,7 @@
 class HeroMovementComponent : public Component
 {
 private:
-	std::shared_ptr<PostitionComponent> pos;
+	std::shared_ptr<PositionComponent> pos;
 	bool canMove = false;
 public:
 

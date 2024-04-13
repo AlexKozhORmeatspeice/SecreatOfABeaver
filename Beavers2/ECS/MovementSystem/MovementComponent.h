@@ -11,7 +11,7 @@ private:
 	int lastActiveVer = 0;
 
 	float speed;
-	std::shared_ptr<PostitionComponent> pos;
+	std::shared_ptr<PositionComponent> pos;
 public:
 
 	MovementComponent();

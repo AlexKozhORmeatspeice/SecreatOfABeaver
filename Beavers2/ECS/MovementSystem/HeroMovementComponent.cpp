@@ -4,7 +4,7 @@
 
 HeroMovementComponent::HeroMovementComponent()
 {
-	pos = entity->GetComponent<PostitionComponent>();
+	pos = entity->GetComponent<PositionComponent>();
 }
 
 void HeroMovementComponent::update()

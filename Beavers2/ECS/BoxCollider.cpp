@@ -36,7 +36,7 @@ void BoxCollider::init()
 	vertices[6] = -width;
 	vertices[7] = height;
 
-	pos = entity->GetComponent<PostitionComponent>();
+	pos = entity->GetComponent<PositionComponent>();
 	
 	vb = new VertexBuffer(vertices, 4 * 2 * sizeof(float));
 	ib = new IndexBuffer(indices, 6);
@@ -95,15 +95,25 @@ void BoxCollider::draw()
 
 bool BoxCollider::CheckCollision() //it's an SAT algorithm or something like that
 {
+	float checkDist = sqrt(width * width + height * height);
+	
 	for (auto& collider : AllColliders)
 	{
 		if (collider == this)
 			continue;
-		
 		bool gotGap = false;
 
 		std::vector<glm::vec3> verticesA = flatVectors;
 		std::vector<glm::vec3> verticesB = collider->flatVectors;
+
+		glm::vec3 posA = pos->GetPos();
+		glm::vec3 posB = (verticesB[0] + verticesB[1] + verticesB[2] + verticesB[3]) / 4.0f; //avarage of pos_vertices sum is a center of the figure éîó
+
+		if (glm::distance(posA, posB) > checkDist)
+		{
+			continue;
+		}
+
 		for (int i = 0; i < verticesA.size(); i++)
 		{
 			glm::vec3 vertA1 = verticesA[i];
@@ -127,6 +137,7 @@ bool BoxCollider::CheckCollision() //it's an SAT algorithm or something like tha
 
 		if (gotGap)
 			continue;
+
 		for (int i = 0; i < verticesB.size(); i++)
 		{
 			if (gotGap)

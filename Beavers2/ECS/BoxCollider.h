@@ -7,7 +7,7 @@ private:
 	static std::vector<BoxCollider*> AllColliders;
 
 
-	std::shared_ptr<PostitionComponent> pos;
+	std::shared_ptr<PositionComponent> pos;
 	bool drawingColliders = true;
 	bool isTrigger; //means that it can resolve collision
 

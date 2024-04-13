@@ -39,7 +39,7 @@ void SpriteComponent::SetNewColor(glm::vec4 newColor)
 
 void SpriteComponent::init() 
 {
-	pos = entity->GetComponent<PostitionComponent>();
+	pos = entity->GetComponent<PositionComponent>();
 }
 
 void SpriteComponent::update() 
