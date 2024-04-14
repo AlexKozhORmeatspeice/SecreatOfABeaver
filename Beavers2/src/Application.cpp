@@ -52,20 +52,20 @@ std::unique_ptr<Manager> ECSInit()
 	beaver1.AddComponent<SpriteComponent>("res/Textures/Beaver1.jpg",
 		"res/Shaders/Basic.shader",
 		color);
-	beaver1.AddComponent<BoxCollider>(50, 50, true);
+	beaver1.AddComponent<BoxCollider>(50, 50, true, false);
 	beaver1.AddComponent<MovementComponent>(5.0f);
 
 	beaver2.AddComponent<PositionComponent>(glm::vec3(-50.0f, 50.0f, 0.0f));
 	beaver2.AddComponent<SpriteComponent>("res/Textures/Beaver1.jpg",
 		"res/Shaders/Basic.shader",
 		color);
-	beaver2.AddComponent<BoxCollider>(50, 50, true);
+	beaver2.AddComponent<BoxCollider>(50, 50, true, true);
 
 	beaver3.AddComponent<PositionComponent>(glm::vec3(50.0f, 80.0f, 0.0f));
 	beaver3.AddComponent<SpriteComponent>("res/Textures/Beaver1.jpg",
 		"res/Shaders/Basic.shader",
 		color);
-	beaver3.AddComponent<BoxCollider>(20, 20, true);
+	beaver3.AddComponent<BoxCollider>(20, 20, true, false);
 
 	beaver4.AddComponent<PositionComponent>(glm::vec3(0.0f, 50.0f, 0.0f));
 	beaver4.AddComponent<SpriteComponent>("res/Textures/Beaver1.jpg",

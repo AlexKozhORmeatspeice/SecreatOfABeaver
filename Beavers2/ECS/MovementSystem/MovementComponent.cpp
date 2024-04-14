@@ -17,7 +17,10 @@ void MovementComponent::init()
 
 void MovementComponent::update()
 {
-	glm::vec3 resVec;
+	if (!canMove)
+		return;
+	
+	glm::vec3 resVec = glm::vec3(0, 0, 0);
 	int stateDown = GLFWGetKeyState(GLFW_KEY_DOWN);
 	int stateLeft = GLFWGetKeyState(GLFW_KEY_LEFT);
 	int stateRight = GLFWGetKeyState(GLFW_KEY_RIGHT);
@@ -68,10 +71,10 @@ void MovementComponent::update()
 	switch (lastActiveHor)
 	{
 		case GLFW_KEY_LEFT:
-			pos->SetPos(pos->GetPos() + glm::vec3(-speed, 0, 0));
+			resVec += glm::vec3(-speed, 0, 0);
 			break;
 		case GLFW_KEY_RIGHT:
-			pos->SetPos(pos->GetPos() + glm::vec3(speed, 0, 0));
+			resVec += glm::vec3(speed, 0, 0);
 			break;
 		default:
 			break;
@@ -80,17 +83,28 @@ void MovementComponent::update()
 	switch (lastActiveVer)
 	{
 		case GLFW_KEY_UP:
-			pos->SetPos(pos->GetPos() + glm::vec3(0, speed, 0));
+			resVec += glm::vec3(0, speed, 0);
 			break;
 		case GLFW_KEY_DOWN:
-			pos->SetPos(pos->GetPos() + glm::vec3(0, -speed, 0));
+			resVec += glm::vec3(0, -speed, 0);
 			break;
 		default:
 			break;
 	}
+	pos->SetPos(pos->GetPos() + resVec);
 }
 
 MovementComponent::~MovementComponent()
 {
 	
+}
+
+void MovementComponent::StartMove()
+{
+	canMove = true;
+}
+
+void MovementComponent::StopMove()
+{
+	canMove = false;
 }

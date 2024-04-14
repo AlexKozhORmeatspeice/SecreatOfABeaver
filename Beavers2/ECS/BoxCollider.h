@@ -8,9 +8,12 @@ private:
 	static std::vector<BoxCollider*> AllColliders;
 	float checkDist;
 
+	BoxCollider* collisionObj;
 	std::shared_ptr<PositionComponent> pos;
+	
 	bool drawingColliders = true;
 	bool isTrigger; //means that it can resolve collision
+	bool isStatic; //means that you can move this object
 
 	float width;
 	float height;
@@ -37,7 +40,7 @@ public:
 	std::vector<glm::vec3> flatVectors;
 
 	BoxCollider();
-	BoxCollider(float nowWidth, float nowHeigt, bool nowIsTrigger);
+	BoxCollider(float nowWidth, float nowHeigt, bool nowIsTrigger, bool nowIsStatic);
 
 	void init() override;
 	void update() override;
