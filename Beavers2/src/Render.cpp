@@ -101,13 +101,22 @@ int GLFWGetKeyState(int code)
 {
     return glfwGetKey(window, code);
 }
-
-float GetHeight()
+int GLFWGetKeyMouseState(int state)
+{
+    return glfwGetMouseButton(window, state);
+}
+float GLFWGetHeight()
 {
     return (float)windowH;
 }
 
-float GetWeidth()
+float GLFWGetWeidth()
 {
     return (float)windowW;
 }
+
+void GLFWSetMousePos(double &xpos, double& ypos)
+{
+    glfwGetCursorPos(window, &xpos, &ypos);
+}
+

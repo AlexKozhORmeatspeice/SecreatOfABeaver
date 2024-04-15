@@ -82,7 +82,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)Depend\GLFW\include;$(ProjectDir)Depend\GLEW\include;$(ProjectDir)res\Shaders;$(ProjectDir)res\GL;$(ProjectDir)res\Renderer;$(ProjectDir)src;$(ProjectDir)res\Textures;$(ProjectDir)res\vendor\stb_image;$(ProjectDir)res\vendor;$(ProjectDir)res\vendor\imgui;$(ProjectDir)ECS;$(ProjectDir)ECS\MovementSystem</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Depend\GLFW\include;$(ProjectDir)Depend\GLEW\include;$(ProjectDir)res\Shaders;$(ProjectDir)res\GL;$(ProjectDir)res\Renderer;$(ProjectDir)src;$(ProjectDir)res\Textures;$(ProjectDir)res\vendor\stb_image;$(ProjectDir)res\vendor;$(ProjectDir)res\vendor\imgui;$(ProjectDir)ECS;$(ProjectDir)ECS\MovementSystem;$(ProjectDir)ECS\Managers</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -99,7 +99,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)Depend\GLFW\include;$(ProjectDir)Depend\GLEW\include;$(ProjectDir)res\Shaders;$(ProjectDir)res\GL;$(ProjectDir)res\Renderer;$(ProjectDir)src;$(ProjectDir)res\Textures;$(ProjectDir)res\vendor\stb_image;$(ProjectDir)res\vendor;$(ProjectDir)res\vendor\imgui;$(ProjectDir)ECS;$(ProjectDir)ECS\MovementSystem</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Depend\GLFW\include;$(ProjectDir)Depend\GLEW\include;$(ProjectDir)res\Shaders;$(ProjectDir)res\GL;$(ProjectDir)res\Renderer;$(ProjectDir)src;$(ProjectDir)res\Textures;$(ProjectDir)res\vendor\stb_image;$(ProjectDir)res\vendor;$(ProjectDir)res\vendor\imgui;$(ProjectDir)ECS;$(ProjectDir)ECS\MovementSystem;$(ProjectDir)ECS\Managers</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -142,6 +142,7 @@
     <ClCompile Include="ECS\BoxCollider.cpp" />
     <ClCompile Include="ECS\CamComponent.cpp" />
     <ClCompile Include="ECS\ECS.cpp" />
+    <ClCompile Include="ECS\Managers\Coursor.cpp" />
     <ClCompile Include="ECS\MovementSystem\HeroMovementComponent.cpp" />
     <ClCompile Include="ECS\MovementSystem\MovementComponent.cpp" />
     <ClCompile Include="ECS\PositionComponent.cpp" />
@@ -163,6 +164,7 @@
     <ClCompile Include="res\vendor\imgui\imgui_widgets.cpp" />
     <ClCompile Include="res\vendor\stb_image\stb_image.cpp" />
     <ClCompile Include="src\Application.cpp" />
+    <ClCompile Include="src\ECSFunc.cpp" />
     <ClCompile Include="src\Render.cpp" />
     <ClCompile Include="res\Renderer\Renderer.cpp" />
     <ClCompile Include="src\System.cpp" />
@@ -177,6 +179,7 @@
     <ClInclude Include="ECS\BoxCollider.h" />
     <ClInclude Include="ECS\CamComponent.h" />
     <ClInclude Include="ECS\Components.h" />
+    <ClInclude Include="ECS\Managers\Coursor.h" />
     <ClInclude Include="ECS\MovementSystem\HeroMovementComponent.h" />
     <ClInclude Include="ECS\MovementSystem\MovementComponent.h" />
     <ClInclude Include="ECS\PositionComponent.h" />
@@ -438,6 +441,7 @@
     <ClInclude Include="res\vendor\imgui\imstb_truetype.h" />
     <ClInclude Include="res\vendor\stb_image\stb_image.h" />
     <ClInclude Include="ECS\ECS.h" />
+    <ClInclude Include="src\ECSFunc.h" />
     <ClInclude Include="src\Render.h" />
     <ClInclude Include="res\Renderer\Renderer.h" />
     <ClInclude Include="src\System.h" />

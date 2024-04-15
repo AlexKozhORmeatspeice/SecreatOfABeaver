@@ -1,5 +1,11 @@
 #include "PositionComponent.h"
 
+PositionComponent::PositionComponent()
+{
+	pos = glm::vec3(0.0f, 0.0f, 0.0f);
+}
+
+
 PositionComponent::PositionComponent(glm::vec3 newPos)
 {
 	pos = newPos;

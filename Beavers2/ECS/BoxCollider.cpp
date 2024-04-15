@@ -9,18 +9,18 @@ BoxCollider::BoxCollider()
 	width = 10.0f;
 	height = 10.0f;
 	
-	isStatic = true;
+	isMoveble = false;
 	isTrigger = true;
 }
 
-BoxCollider::BoxCollider(float nowWidth, float nowHeigt, bool nowIsTrigger, bool nowIsStatic)
+BoxCollider::BoxCollider(float nowWidth, float nowHeigt, bool nowIsTrigger, bool moveable)
 {
 	AllColliders.push_back(this);
 
 	width = nowWidth;
 	height = nowHeigt;
 
-	isStatic = nowIsStatic;
+	isMoveble = moveable;
 	isTrigger = nowIsTrigger;
 }
 
@@ -45,7 +45,6 @@ void BoxCollider::init()
 	vb = new VertexBuffer(vertices, 4 * 2 * sizeof(float));
 	ib = new IndexBuffer(indices, 6);
 	
-	
 	va = new VertexArray;
 	VertexBufferLayout layout;
 	layout.Push<float>(2);
@@ -68,10 +67,10 @@ void BoxCollider::update()
 	bool getCol = CheckCollision();
 
 	shader->Bind();
-	if (isTrigger && getCol)
+	if (getCol)
 	{
 		shader->SetUniform4f("u_Color", 1.0f, 0.0f, 0.0f, 1.0f);
-		if(!isStatic)
+		if(isTrigger && (collisionObj != nullptr && collisionObj->GetIsTrigger()))
 			ResolveColision();
 	}
 	else 
@@ -104,7 +103,7 @@ bool BoxCollider::CheckCollision() //it's an SAT algorithm or something like tha
 	glm::vec3 nowNear = glm::vec3(1000.0f, 1000.0f, 1000.0f);
 	for (auto& collider : AllColliders)
 	{
-		if (collider == this)
+		if (collider  == this)
 			continue;
 		bool gotGap = false;
 
@@ -180,7 +179,7 @@ bool BoxCollider::CheckCollision() //it's an SAT algorithm or something like tha
 
 void BoxCollider::ResolveColision()
 {
-	if (collisionObj == nullptr)
+	if (!isMoveble)
 		return;
 
 	std::vector<glm::vec3> verticesB = collisionObj->flatVectors;
@@ -191,18 +190,7 @@ void BoxCollider::ResolveColision()
 	glm::vec3 resVec = posA - posB;
 	resVec /= glm::length(resVec);
 
-	std::shared_ptr<MovementComponent> mov = entity->GetComponent<MovementComponent>();
-	if (mov)
-	{
-		mov->StopMove();
-		pos->SetPos(pos->GetPos() + resVec * 5.0f);
-		mov->StartMove();
-	}
-	else
-	{
-		pos->SetPos(pos->GetPos() + resVec * 5.0f);
-	}
-		
+	pos->SetPos(pos->GetPos() + resVec * 5.0f);
 }
 
 void BoxCollider::GetMinMaxDotProduct(std::vector<glm::vec3> vertices, glm::vec3 normal, float& min, float& max)
@@ -247,4 +235,14 @@ BoxCollider::~BoxCollider()
 	auto it = std::find(AllColliders.begin(), AllColliders.end(), this);
 	if(it != AllColliders.end())
 		AllColliders.erase(it);
+}
+
+bool BoxCollider::GetIsTrigger()
+{
+	return isTrigger;
+}
+
+BoxCollider* BoxCollider::GetColllidObj()
+{
+	return collisionObj;
 }

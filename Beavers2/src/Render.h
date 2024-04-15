@@ -8,8 +8,10 @@
 
 bool RenderInit();
 bool Render(std::unique_ptr<Manager> & manager);
-
 void RenderStop();
+
 int GLFWGetKeyState(int code);
-float GetHeight();
-float GetWeidth();
+float GLFWGetHeight();
+float GLFWGetWeidth();
+void GLFWSetMousePos(double& xpos, double& ypos);
+int GLFWGetKeyMouseState(int state);

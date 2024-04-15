@@ -12,9 +12,8 @@ private:
 	std::shared_ptr<PositionComponent> pos;
 	
 	bool drawingColliders = true;
-	bool isTrigger; //means that it can resolve collision
-	bool isStatic; //means that you can move this object
-
+	bool isTrigger; //true - can react with others, false - cant
+	bool isMoveble; //can be moved
 	float width;
 	float height;
 
@@ -40,12 +39,15 @@ public:
 	std::vector<glm::vec3> flatVectors;
 
 	BoxCollider();
-	BoxCollider(float nowWidth, float nowHeigt, bool nowIsTrigger, bool nowIsStatic);
+	BoxCollider(float nowWidth, float nowHeigt, bool nowIsTrigger, bool moveable);
 
 	void init() override;
 	void update() override;
 	void draw() override;
 
+
+	BoxCollider* GetColllidObj();
+	bool GetIsTrigger();
 	float GetCheckDist();
 	~BoxCollider();
 private:

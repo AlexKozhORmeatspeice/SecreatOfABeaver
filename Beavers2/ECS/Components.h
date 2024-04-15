@@ -5,3 +5,5 @@
 #include "PositionComponent.h"
 #include "MovementComponent.h"
 #include "BoxCollider.h"
+#include "HeroMovementComponent.h"
+#include "Coursor.h"

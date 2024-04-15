@@ -34,7 +34,9 @@ SpriteComponent::SpriteComponent(const char* pathTexture, const char* pathShader
 void SpriteComponent::SetNewColor(glm::vec4 newColor)
 {
 	color = newColor;
+	shader_basic->Bind();
 	shader_basic->SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
+	shader_basic->Unbind();
 }
 
 void SpriteComponent::init() 
