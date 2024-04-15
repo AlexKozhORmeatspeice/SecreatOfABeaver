@@ -3,6 +3,8 @@
 
 std::shared_ptr<PositionComponent> Coursor::posBox;
 Entity* Coursor::checkBox;
+glm::vec3 Coursor::mousePos;
+
 void Coursor::init()
 {
 	checkBox = &CreatObj();
@@ -20,7 +22,10 @@ void Coursor::update()
 
 	GLFWSetMousePos(xpos, ypos);
 
-	posBox->SetPos(glm::vec3(xpos - GLFWGetWeidth() / 2, GLFWGetHeight() / 2 - ypos, 0.0f)); //need to translate coords from glfw to opengl
+	mousePos.x = xpos - GLFWGetWeidth() / 2; //need to translate coords from glfw to opengl
+	mousePos.y = GLFWGetHeight() / 2 - ypos;
+
+	posBox->SetPos(glm::vec3(mousePos.x, mousePos.y, 0.0f)); 
 
 }
 

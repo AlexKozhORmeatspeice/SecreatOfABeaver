@@ -64,12 +64,6 @@ void HeroMovementComponent::Move()
 
 void HeroMovementComponent::SetTarget()
 {
-	glm::vec4 mousePos4 = glm::vec4(Coursor::GetMousePos().x, Coursor::GetMousePos().y, Coursor::GetMousePos().z, 1);
-	glm::mat4 view = glm::translate(glm::mat4(1.0f), -CamComponent::GetPos());
-	glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(mousePos4.x, mousePos4.y, mousePos4.z));
-	glm::mat4 m_VP = view * model;
-
-	mousePos4 = m_VP * mousePos4;
-	targetPoint = glm::vec3(mousePos4.x, mousePos4.y, mousePos4.w);
+	targetPoint = Coursor::GetMousePos();
 
 }

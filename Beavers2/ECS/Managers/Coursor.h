@@ -7,7 +7,7 @@ private:
 	static Entity* checkBox;
 	static std::shared_ptr<PositionComponent> posBox;
 
-	glm::vec3 mousePos;
+	static glm::vec3 mousePos;
 public:
 	void update() override;
 	void init() override;
@@ -15,6 +15,6 @@ public:
 	static bool GetCollision(Entity* collider);
 	static inline glm::vec3 GetMousePos()
 	{
-		return posBox->GetPos();
+		return mousePos;
 	}
 };
