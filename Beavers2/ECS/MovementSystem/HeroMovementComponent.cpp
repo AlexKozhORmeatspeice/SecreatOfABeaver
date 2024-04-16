@@ -55,7 +55,6 @@ void HeroMovementComponent::Move()
 	if (glm::distance(targetPoint, pos->GetPos()) < 0.05f)
 		return;
 
-	
 	glm::vec3 dir = targetPoint - pos->GetPos();
 	dir /= glm::length(dir);
 
