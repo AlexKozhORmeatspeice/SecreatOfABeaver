@@ -25,7 +25,7 @@ void Coursor::update()
 	mousePos.x = xpos - GLFWGetWeidth() / 2; //need to translate coords from glfw to opengl
 	mousePos.y = GLFWGetHeight() / 2 - ypos;
 
-	posBox->SetPos(glm::vec3(mousePos.x, mousePos.y, 0.0f)); 
+	posBox->SetPos(CamComponent::GetPos() + mousePos);
 
 }
 

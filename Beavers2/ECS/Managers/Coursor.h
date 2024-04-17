@@ -1,6 +1,6 @@
 #pragma once
 #include "Components.h"
-
+#include "Renderer.h"
 class Coursor : public Component
 {
 private:
