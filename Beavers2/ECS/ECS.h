@@ -1,5 +1,4 @@
 #pragma once
-
 #include <vector>
 #include <memory>
 #include <algorithm>
@@ -70,9 +69,10 @@ public:
 
 		auto* uPtr{ c.get() };
 		components.emplace_back(std::move(uPtr));
-
+		
 		componentArray[GetComponentTypeID<T>()] = c;
 		componentBitSet[GetComponentTypeID<T>()] = true;
+		
 
 		c.get()->init();
 

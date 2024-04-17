@@ -5,11 +5,10 @@
 
 #include <GLErrors.h>
 
-#include "VertexBuffer.h"
 #include "IndexBuffer.h"
 #include "VertexArray.h"
-
 #include "Texture.h"
+
 
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
@@ -20,6 +19,8 @@ private:
 
 public:
 	void Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& shader);
+
 	void DrawLines(const VertexArray& va, const IndexBuffer& ib, const Shader& shader);
+
 	void Clear();
 };

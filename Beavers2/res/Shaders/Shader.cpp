@@ -113,7 +113,7 @@ int Shader::CreateShader(const std::string& vertShader, const std::string& fragS
     return prog;
 }
 
-///a lot of shader functions could be here (but mayabe just a few im not soure for now)
+///a lot of shader functions could be here (but maybe just a few im not soure for now)
 
 void Shader::SetUniform1i(const std::string& name, int v0)
 {

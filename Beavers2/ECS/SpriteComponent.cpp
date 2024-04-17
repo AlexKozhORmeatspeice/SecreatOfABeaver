@@ -59,6 +59,7 @@ void SpriteComponent::draw()
 {
 	texture->Bind();
 	renderer.Draw(*va, *ib, *shader_basic);
+	texture->Unbind();
 }
 
 SpriteComponent::~SpriteComponent()

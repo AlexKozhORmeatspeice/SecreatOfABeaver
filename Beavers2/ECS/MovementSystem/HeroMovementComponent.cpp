@@ -19,19 +19,22 @@ void HeroMovementComponent::update()
 	int mouseLeftState = GLFWGetKeyMouseState(GLFW_MOUSE_BUTTON_LEFT);
 	int mouseRightState = GLFWGetKeyMouseState(GLFW_MOUSE_BUTTON_RIGHT);
 	
-	if (mouseLeftState == GLFW_PRESS && Coursor::GetCollision(entity))
+	
+	if (mouseLeftState == GLFW_PRESS && Coursor::GetCollision<BoxCollider>(entity))
 	{
 		canMove = true;
+		//TODO: erase sprites here. it's just for tests
 		std::shared_ptr<SpriteComponent> spr = entity->GetComponent<SpriteComponent>();
 		if (spr)
 		{
 			spr->SetNewColor(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
 		}
 	}
-	//TODO: erase sprites here. it's just for test
+
 	if (mouseRightState == GLFW_PRESS)
 	{
 		canMove = false;
+		//TODO: erase sprites here. it's just for tests
 		std::shared_ptr<SpriteComponent> spr = entity->GetComponent<SpriteComponent>();
 		if (spr)
 		{

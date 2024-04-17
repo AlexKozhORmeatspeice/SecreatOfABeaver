@@ -1,24 +1,23 @@
 #include "BoxCollider.h"
 
-std::vector<BoxCollider*> BoxCollider::AllColliders;
 
 BoxCollider::BoxCollider()
 {
-	AllColliders.push_back(this);
-
 	width = 10.0f;
 	height = 10.0f;
 	
+	checkDist = sqrt(width * width + height * height);
+
 	isMoveble = false;
 	isTrigger = true;
 }
 
 BoxCollider::BoxCollider(float nowWidth, float nowHeigt, bool nowIsTrigger, bool moveable)
 {
-	AllColliders.push_back(this);
-
 	width = nowWidth;
 	height = nowHeigt;
+	
+	checkDist = sqrt(width * width + height * height);
 
 	isMoveble = moveable;
 	isTrigger = nowIsTrigger;
@@ -26,8 +25,8 @@ BoxCollider::BoxCollider(float nowWidth, float nowHeigt, bool nowIsTrigger, bool
 
 void BoxCollider::init()
 {
-	checkDist = sqrt(width * width + height * height);
-
+	pos = entity->GetComponent<PositionComponent>();
+	
 	vertices[0] = -width;
 	vertices[1] = -height;
 
@@ -40,8 +39,6 @@ void BoxCollider::init()
 	vertices[6] = -width;
 	vertices[7] = height;
 
-	pos = entity->GetComponent<PositionComponent>();
-	
 	vb = new VertexBuffer(vertices, 4 * 2 * sizeof(float));
 	ib = new IndexBuffer(indices, 6);
 	
@@ -50,7 +47,7 @@ void BoxCollider::init()
 	layout.Push<float>(2);
 	va->AddBuffer(*vb, layout);
 
-	shader = new Shader("res/Shaders/Basic.shader");
+	shader = new Shader("res/Shaders/WithoutTexBasic.shader");
 	shader->SetUniform4f("u_Color", 1.0f, 1.0f, 1.0f, 1.0f);
 
 	vb->Unbind();
@@ -61,29 +58,21 @@ void BoxCollider::init()
 	initVecPositions();
 }
 
-void BoxCollider::update()
+void BoxCollider::draw()
 {
-	initVecPositions();
-	bool getCol = CheckCollision();
+	if (!drawingColliders)
+		return;
 
 	shader->Bind();
 	if (getCol)
 	{
 		shader->SetUniform4f("u_Color", 1.0f, 0.0f, 0.0f, 1.0f);
-		if(isTrigger && (collisionObj != nullptr && collisionObj->GetIsTrigger()))
-			ResolveColision();
 	}
-	else 
+	else
 	{
 		shader->SetUniform4f("u_Color", 0.0f, 1.0f, 0.0f, 1.0f);
 	}
 	shader->Unbind();
-}
-
-void BoxCollider::draw()
-{
-	if (!drawingColliders)
-		return;
 
 	glm::mat4 proj = CamComponent::GetProj();
 	glm::mat4 view = glm::translate(glm::mat4(1.0f), -CamComponent::GetPos());
@@ -99,8 +88,6 @@ void BoxCollider::draw()
 
 bool BoxCollider::CheckCollision() //it's an SAT algorithm or something like that
 {
-
-	glm::vec3 nowNear = glm::vec3(1000.0f, 1000.0f, 1000.0f);
 	for (auto& collider : AllColliders)
 	{
 		if (collider  == this)
@@ -173,6 +160,9 @@ bool BoxCollider::CheckCollision() //it's an SAT algorithm or something like tha
 		collisionObj = collider;
 		return true;
 	}
+
+	collisionObj = this;
+
 	return false;
 }
 
@@ -193,19 +183,6 @@ void BoxCollider::ResolveColision()
 	pos->SetPos(pos->GetPos() + resVec * 5.0f);
 }
 
-void BoxCollider::GetMinMaxDotProduct(std::vector<glm::vec3> vertices, glm::vec3 normal, float& min, float& max)
-{
-	max = 0;
-	min = 1 << 30;
-	for (glm::vec3& vertex : vertices)
-	{
-		float prod = glm::dot(vertex, normal);
-
-		min = std::min(min, prod);
-		max = std::max(max, prod);
-	}
-}
-
 void BoxCollider::initVecPositions()
 {
 	float x = pos->GetPos().x;
@@ -220,29 +197,10 @@ void BoxCollider::initVecPositions()
 	};
 }
 
-float BoxCollider::GetCheckDist()
-{
-	return checkDist;
-}
-
 BoxCollider::~BoxCollider()
 {
 	delete ib;
 	delete va;
 	delete vb;
 	delete shader;
-
-	auto it = std::find(AllColliders.begin(), AllColliders.end(), this);
-	if(it != AllColliders.end())
-		AllColliders.erase(it);
-}
-
-bool BoxCollider::GetIsTrigger()
-{
-	return isTrigger;
-}
-
-BoxCollider* BoxCollider::GetColllidObj()
-{
-	return collisionObj;
 }

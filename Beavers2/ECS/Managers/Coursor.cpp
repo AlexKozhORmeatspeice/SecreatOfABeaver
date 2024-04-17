@@ -29,20 +29,4 @@ void Coursor::update()
 
 }
 
-bool Coursor::GetCollision(Entity* collider)
-{
-	BoxCollider* coll1 = collider->GetComponent<BoxCollider>().get();
-	BoxCollider* coll2 = checkBox->GetComponent<BoxCollider>()->GetColllidObj();
-
-	if (coll1 != nullptr && coll2 != nullptr)
-	{
-		return coll1 == coll2;
-	}
-
-	std::cout << "NULL POINTER" << std::endl;
-
-	return false;
-}
-
-
 

@@ -1,11 +1,5 @@
 #pragma once
-#include <Components.h>
-#include <iostream>
-#include <vector>
-#include <indexBuffer.h>
-#include <vertexBuffer.h>
-#include <vertexArray.h>
-#include <algorithm>
+#include "Components.h"
 class Tile: public Component {
 	private:
 		float side = 40.0f;

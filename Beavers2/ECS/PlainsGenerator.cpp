@@ -4,6 +4,7 @@ Tile::Tile(float now_height, float now_width, const char* pathShader, const char
 {
 	width = now_width;
 	height = now_height;
+
 	shader_basic = new Shader(pathShader);
 	shader_basic->Bind();
 	std::string mode = "REPEAT";
@@ -72,5 +73,7 @@ void Tile::update()
 
 void Tile::draw()
 {
+	texture->Bind();
 	renderer.Draw(*va, *ib, *shader_basic);
+	texture->Unbind();
 }

@@ -82,7 +82,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)Depend\GLFW\include;$(ProjectDir)Depend\GLEW\include;$(ProjectDir)res\Shaders;$(ProjectDir)res\GL;$(ProjectDir)res\Renderer;$(ProjectDir)src;$(ProjectDir)res\Textures;$(ProjectDir)res\vendor\stb_image;$(ProjectDir)res\vendor;$(ProjectDir)res\vendor\imgui;$(ProjectDir)ECS;$(ProjectDir)ECS\MovementSystem;$(ProjectDir)ECS\Managers</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Depend\GLFW\include;$(ProjectDir)Depend\GLEW\include;$(ProjectDir)res\Shaders;$(ProjectDir)res\GL;$(ProjectDir)res\Renderer;$(ProjectDir)src;$(ProjectDir)res\Textures;$(ProjectDir)res\vendor\stb_image;$(ProjectDir)res\vendor;$(ProjectDir)res\vendor\imgui;$(ProjectDir)ECS;$(ProjectDir)ECS\MovementSystem;$(ProjectDir)ECS\Managers;$(ProjectDir)ECS\Colliders</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -99,7 +99,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)Depend\GLFW\include;$(ProjectDir)Depend\GLEW\include;$(ProjectDir)res\Shaders;$(ProjectDir)res\GL;$(ProjectDir)res\Renderer;$(ProjectDir)src;$(ProjectDir)res\Textures;$(ProjectDir)res\vendor\stb_image;$(ProjectDir)res\vendor;$(ProjectDir)res\vendor\imgui;$(ProjectDir)ECS;$(ProjectDir)ECS\MovementSystem;$(ProjectDir)ECS\Managers</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Depend\GLFW\include;$(ProjectDir)Depend\GLEW\include;$(ProjectDir)res\Shaders;$(ProjectDir)res\GL;$(ProjectDir)res\Renderer;$(ProjectDir)src;$(ProjectDir)res\Textures;$(ProjectDir)res\vendor\stb_image;$(ProjectDir)res\vendor;$(ProjectDir)res\vendor\imgui;$(ProjectDir)ECS;$(ProjectDir)ECS\MovementSystem;$(ProjectDir)ECS\Managers;$(ProjectDir)ECS\Colliders</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -139,12 +139,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ECS\BoxCollider.cpp" />
     <ClCompile Include="ECS\CamComponent.cpp" />
+    <ClCompile Include="ECS\Colliders\BoxCollider.cpp" />
+    <ClCompile Include="ECS\Colliders\CircleCollider.cpp" />
+    <ClCompile Include="ECS\Colliders\Collider.cpp" />
     <ClCompile Include="ECS\ECS.cpp" />
     <ClCompile Include="ECS\Managers\Coursor.cpp" />
     <ClCompile Include="ECS\MovementSystem\HeroMovementComponent.cpp" />
     <ClCompile Include="ECS\MovementSystem\MovementComponent.cpp" />
+    <ClCompile Include="ECS\Pers\Enemy.cpp" />
     <ClCompile Include="ECS\PlainsGenerator.cpp" />
     <ClCompile Include="ECS\PositionComponent.cpp" />
     <ClCompile Include="ECS\SpriteComponent.cpp" />
@@ -179,10 +182,14 @@
     <ClInclude Include="Depend\GLFW\include\GLFW\glfw3native.h" />
     <ClInclude Include="ECS\BoxCollider.h" />
     <ClInclude Include="ECS\CamComponent.h" />
+    <ClInclude Include="ECS\Colliders\BoxCollider.h" />
+    <ClInclude Include="ECS\Colliders\CircleCollider.h" />
+    <ClInclude Include="ECS\Colliders\Collider.h" />
     <ClInclude Include="ECS\Components.h" />
     <ClInclude Include="ECS\Managers\Coursor.h" />
     <ClInclude Include="ECS\MovementSystem\HeroMovementComponent.h" />
     <ClInclude Include="ECS\MovementSystem\MovementComponent.h" />
+    <ClInclude Include="ECS\Pers\Enemy.h" />
     <ClInclude Include="ECS\PlainsGenerator.h" />
     <ClInclude Include="ECS\PositionComponent.h" />
     <ClInclude Include="ECS\SpriteComponent.h" />
@@ -449,10 +456,17 @@
     <ClInclude Include="src\System.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Depend\GLEW\bin\Release\Win32\glew32.dll" />
+    <None Include="Depend\GLEW\bin\Release\Win32\glewinfo.exe" />
+    <None Include="Depend\GLEW\bin\Release\Win32\visualinfo.exe" />
+    <None Include="Depend\GLEW\bin\Release\x64\glew32.dll" />
+    <None Include="Depend\GLEW\bin\Release\x64\glewinfo.exe" />
+    <None Include="Depend\GLEW\bin\Release\x64\visualinfo.exe" />
     <None Include="Depend\GLEW\doc\advanced.html" />
     <None Include="Depend\GLEW\doc\basic.html" />
     <None Include="Depend\GLEW\doc\build.html" />
     <None Include="Depend\GLEW\doc\credits.html" />
+    <None Include="Depend\GLEW\doc\glew.css" />
     <None Include="Depend\GLEW\doc\glew.html" />
     <None Include="Depend\GLEW\doc\glxew.html" />
     <None Include="Depend\GLEW\doc\index.html" />
@@ -460,6 +474,8 @@
     <None Include="Depend\GLEW\doc\log.html" />
     <None Include="Depend\GLEW\doc\wglew.html" />
     <None Include="res\Shaders\Basic.shader" />
+    <None Include="res\Shaders\Circle.shader" />
+    <None Include="res\Shaders\WithoutTexBasic.shader" />
     <None Include="res\vendor\glm\detail\func_common.inl" />
     <None Include="res\vendor\glm\detail\func_common_simd.inl" />
     <None Include="res\vendor\glm\detail\func_exponential.inl" />
@@ -593,11 +609,28 @@
     <None Include="res\vendor\glm\gtx\wrap.inl" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Depend\GLEW\doc\github.png" />
+    <Image Include="Depend\GLEW\doc\glew.png" />
+    <Image Include="Depend\GLEW\doc\new.png" />
+    <Image Include="Depend\GLEW\doc\ogl_sm.jpg" />
+    <Image Include="Depend\GLEW\doc\travis.png" />
     <Image Include="res\Textures\Beaver1.jpg" />
+    <Image Include="res\Textures\Man.jpeg" />
     <Image Include="res\Textures\Wood.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Depend\GLEW\doc\glew.txt" />
+    <Text Include="Depend\GLEW\doc\khronos.txt" />
+    <Text Include="Depend\GLEW\doc\mesa.txt" />
     <Text Include="res\vendor\glm\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Depend\GLEW\lib\Release\Win32\glew32.lib" />
+    <Library Include="Depend\GLEW\lib\Release\Win32\glew32s.lib" />
+    <Library Include="Depend\GLFW\lib-vc2022\glfw3.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="Debug\ECS.obj" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
