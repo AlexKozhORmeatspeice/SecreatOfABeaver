@@ -14,8 +14,8 @@ SpriteComponent::SpriteComponent(const char* pathTexture, const char* pathShader
 
 	shader_basic = new Shader(pathShader);
 	shader_basic->Bind();
-
-	texture = new Texture(pathTexture);
+	const std::string mode = "REPEAT";
+	texture = new Texture(pathTexture, mode);
 	texture->Bind();
 	shader_basic->SetUniform1i("u_Texture", 0);
 

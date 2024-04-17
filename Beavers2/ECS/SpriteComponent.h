@@ -32,7 +32,6 @@ private:
 		2, 3, 0
 	};
 public:
-
 	SpriteComponent(const char* pathTexture, const char* pathShader, glm::vec4 nowColor);
 
 	void SetNewColor(glm::vec4 newColor);

@@ -13,7 +13,6 @@ std::unique_ptr<Manager> ECSInit()
 	Entity& coursor(manager->addEntity());
 	coursor.AddComponent<Coursor>();
 
-
 	Entity& cam(manager->addEntity());
 	cam.AddComponent<PositionComponent>(glm::vec3(0, 0, 0));
 	cam.AddComponent<CamComponent>();
@@ -21,7 +20,7 @@ std::unique_ptr<Manager> ECSInit()
 
 	glm::vec4 color = glm::vec4(0.5f, 0.5f, 0.5f, 1.0f);
 	beaver1.AddComponent<PositionComponent>(glm::vec3(0.0f, 0.0f, 0.0f));
-	beaver1.AddComponent<SpriteComponent>("res/Textures/Beaver1.jpg",
+	beaver1.AddComponent<SpriteComponent>("res/Textures/Beaver1.jpg", 
 		"res/Shaders/Basic.shader",
 		color);
 	beaver1.AddComponent<BoxCollider>(50, 50, true, true);
@@ -29,13 +28,13 @@ std::unique_ptr<Manager> ECSInit()
 
 
 	beaver2.AddComponent<PositionComponent>(glm::vec3(-50.0f, 50.0f, 0.0f));
-	beaver2.AddComponent<SpriteComponent>("res/Textures/Beaver1.jpg",
+	beaver2.AddComponent<SpriteComponent>("res/Textures/Beaver1.jpg", 
 		"res/Shaders/Basic.shader",
 		color);
 	beaver2.AddComponent<BoxCollider>(50, 50, true, false);
 
 	beaver3.AddComponent<PositionComponent>(glm::vec3(50.0f, 80.0f, 0.0f));
-	beaver3.AddComponent<SpriteComponent>("res/Textures/Beaver1.jpg",
+	beaver3.AddComponent<SpriteComponent>("res/Textures/Beaver1.jpg", 
 		"res/Shaders/Basic.shader",
 		color);
 	beaver3.AddComponent<BoxCollider>(20, 20, true, true);
@@ -44,6 +43,10 @@ std::unique_ptr<Manager> ECSInit()
 	beaver4.AddComponent<SpriteComponent>("res/Textures/Beaver1.jpg",
 		"res/Shaders/Basic.shader",
 		color);
+
+	Entity& floor(manager->addEntity());
+	floor.AddComponent<PositionComponent>(glm::vec3(0, 0, 0));
+	floor.AddComponent<Tile>(1200.0f, 1200.0f, "res/Shaders/Basic.shader", "res/Textures/Wood.jpg");
 
 	return std::move(manager);
 }
