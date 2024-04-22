@@ -3,6 +3,7 @@ std::vector<Collider*> Collider::AllColliders;
 
 Collider::Collider()
 {
+	collisionObj = nullptr;
 	AllColliders.push_back(this);
 }
 

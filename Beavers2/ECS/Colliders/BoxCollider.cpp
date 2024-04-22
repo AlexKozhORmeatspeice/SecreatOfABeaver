@@ -72,18 +72,17 @@ void BoxCollider::draw()
 	{
 		shader->SetUniform4f("u_Color", 0.0f, 1.0f, 0.0f, 1.0f);
 	}
-	shader->Unbind();
+
 
 	glm::mat4 proj = CamComponent::GetProj();
 	glm::mat4 view = glm::translate(glm::mat4(1.0f), -CamComponent::GetPos());
 	glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(pos->GetPos().x, pos->GetPos().y, pos->GetPos().z + 1.0f));
 	m_MVP = proj * view * model;
 
-	shader->Bind();
 	shader->SetUniformMat4f("u_MVP", m_MVP);
-	shader->Unbind();
 
-	renderer.DrawLines(*va, *ib, *shader);
+	Renderer::DrawLines(*va, *ib, *shader);
+	shader->Unbind();
 }
 
 bool BoxCollider::CheckCollision() //it's an SAT algorithm or something like that
@@ -102,7 +101,10 @@ bool BoxCollider::CheckCollision() //it's an SAT algorithm or something like tha
 		glm::vec3 posA = pos->GetPos();
 		glm::vec3 posB = (verticesB[0] + verticesB[1] + verticesB[2] + verticesB[3]) / 4.0f; //avarage of pos_vertices sum is a center of the figure éîó
 		
-		if (glm::distance(posA, posB) > checkDistNow)
+		glm::vec2 posA2(posA);
+		glm::vec2 posB2(posB);
+
+		if (glm::distance(posA2, posB2) > checkDistNow)
 		{
 			continue;
 		}
@@ -161,7 +163,7 @@ bool BoxCollider::CheckCollision() //it's an SAT algorithm or something like tha
 		return true;
 	}
 
-	collisionObj = this;
+	collisionObj = nullptr;
 
 	return false;
 }

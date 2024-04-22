@@ -9,6 +9,7 @@
 #include "MovementComponent.h"
 
 #include "HeroMovementComponent.h"
+#include "Hero.h"
 
 #include "Collider.h"
 #include "BoxCollider.h"
@@ -17,3 +18,5 @@
 #include "PlainsGenerator.h"
 
 #include "Coursor.h"
+
+#include "EnemyMov.h"

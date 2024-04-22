@@ -7,6 +7,7 @@ Tile::Tile(float now_height, float now_width, const char* pathShader, const char
 
 	shader_basic = new Shader(pathShader);
 	shader_basic->Bind();
+
 	std::string mode = "REPEAT";
 	texture = new Texture(pathTexture, mode);
 	texture->Bind();
@@ -56,7 +57,6 @@ void Tile::init()
 	ib->Unbind();
 	va->Unbind();
 	texture->Unbind();
-
 }
 
 void Tile::update()
@@ -74,6 +74,6 @@ void Tile::update()
 void Tile::draw()
 {
 	texture->Bind();
-	renderer.Draw(*va, *ib, *shader_basic);
+	Renderer::Draw(*va, *ib, *shader_basic);
 	texture->Unbind();
 }

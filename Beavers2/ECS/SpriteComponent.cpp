@@ -3,7 +3,7 @@
 
 SpriteComponent::SpriteComponent(const char* pathTexture, const char* pathShader, glm::vec4 nowColor)
 {
-	vb = new VertexBuffer(postitions, 4 * 2 * 2 * sizeof(float));
+	vb = new VertexBuffer(postitions, 4 * 4 * sizeof(float));
 	ib = new IndexBuffer(indices, 6);
 	va = new VertexArray;
 
@@ -14,7 +14,8 @@ SpriteComponent::SpriteComponent(const char* pathTexture, const char* pathShader
 
 	shader_basic = new Shader(pathShader);
 	shader_basic->Bind();
-	const std::string mode = "REPEAT";
+
+	const std::string mode = "CLAMP";
 	texture = new Texture(pathTexture, mode);
 	texture->Bind();
 	shader_basic->SetUniform1i("u_Texture", 0);
@@ -58,7 +59,7 @@ void SpriteComponent::update()
 void SpriteComponent::draw()
 {
 	texture->Bind();
-	renderer.Draw(*va, *ib, *shader_basic);
+	Renderer::Draw(*va, *ib, *shader_basic);
 	texture->Unbind();
 }
 

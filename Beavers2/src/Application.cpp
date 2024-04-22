@@ -14,12 +14,12 @@ int main()
 	std::unique_ptr<Manager> manager = ECSInit();
 	while (true)
 	{
+		manager->refresh();
+
 		if (!GameIter(manager))
 			break;
 		if (!Render(manager))
 			break;
-
-		manager->refresh();
 	}
 	
 

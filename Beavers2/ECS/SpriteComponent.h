@@ -16,7 +16,6 @@ private:
 	VertexArray* va;
 	Shader* shader_basic;
 	Texture* texture;
-	Renderer renderer;
 
 	glm::vec4 color;
 

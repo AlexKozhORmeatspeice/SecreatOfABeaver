@@ -26,7 +26,6 @@ private:
 	IndexBuffer* ib;
 	VertexArray* va;
 	Shader* shader;
-	Renderer renderer;
 
 	glm::mat4 m_MVP;
 public:

@@ -33,7 +33,7 @@
     <ClCompile Include="ECS\Colliders\BoxCollider.cpp" />
     <ClCompile Include="ECS\Colliders\CircleCollider.cpp" />
     <ClCompile Include="ECS\Colliders\Collider.cpp" />
-    <ClCompile Include="ECS\Pers\Enemy.cpp" />
+    <ClCompile Include="ECS\MovementSystem\EnemyMov.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Depend\GLEW\include\GL\eglew.h" />
@@ -315,7 +315,8 @@
     <ClInclude Include="ECS\Colliders\BoxCollider.h" />
     <ClInclude Include="ECS\Colliders\CircleCollider.h" />
     <ClInclude Include="ECS\Colliders\Collider.h" />
-    <ClInclude Include="ECS\Pers\Enemy.h" />
+    <ClInclude Include="ECS\MovementSystem\EnemyMov.h" />
+    <ClInclude Include="ECS\Pers\Hero.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\Textures\Beaver1.jpg" />
@@ -326,6 +327,8 @@
     <Image Include="Depend\GLEW\doc\new.png" />
     <Image Include="Depend\GLEW\doc\ogl_sm.jpg" />
     <Image Include="Depend\GLEW\doc\travis.png" />
+    <Image Include="res\Textures\bobr.png" />
+    <Image Include="res\Textures\soldier.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Depend\GLEW\doc\advanced.html" />

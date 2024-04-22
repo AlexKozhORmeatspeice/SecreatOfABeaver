@@ -18,33 +18,38 @@ void CircleCollider::init()
 {
 	pos = entity->GetComponent<PositionComponent>();
 
-	vertices[0] = -checkDist;
-	vertices[1] = -checkDist;
+	float sideSquare = checkDist; //we want to make an inner circle of a square
+	vertices[0] =  -sideSquare;
+	vertices[1] =  -sideSquare;
 
-	vertices[2] = checkDist;
-	vertices[3] = -checkDist;
+	vertices[4] =   sideSquare;
+	vertices[5] =  -sideSquare;
 
-	vertices[4] = checkDist;
-	vertices[5] = checkDist;
+	vertices[8] =   sideSquare;
+	vertices[9] =   sideSquare;
 
-	vertices[6] = -checkDist;
-	vertices[7] = checkDist;
+	vertices[12] = -sideSquare;
+	vertices[13] =  sideSquare;
 
-	vb = new VertexBuffer(vertices, 4 * 2 * sizeof(float));
+	vb = new VertexBuffer(vertices, 4 * 4 * sizeof(float));
 	ib = new IndexBuffer(indices, 6);
 
 	va = new VertexArray;
 	VertexBufferLayout layout;
 	layout.Push<float>(2);
+	layout.Push<float>(2);
 	va->AddBuffer(*vb, layout);
 
 	shader = new Shader("res/Shaders/Circle.shader");
+	shader->Bind();
 	shader->SetUniform4f("u_Color", 1.0f, 1.0f, 1.0f, 1.0f);
 
 	vb->Unbind();
 	ib->Unbind();
 	va->Unbind();
 	shader->Unbind();
+
+	initVecPositions();
 }
 
 void CircleCollider::draw()
@@ -56,31 +61,31 @@ void CircleCollider::draw()
 	if (getCol)
 	{
 		shader->SetUniform4f("u_Color", 1.0f, 0.0f, 0.0f, 1.0f);
-		if (isTrigger && (collisionObj != nullptr && collisionObj->GetIsTrigger()))
-			ResolveColision();
 	}
 	else
 	{
 		shader->SetUniform4f("u_Color", 0.0f, 1.0f, 0.0f, 1.0f);
 	}
-	shader->Unbind();
+	
 
 	glm::mat4 proj = CamComponent::GetProj();
 	glm::mat4 view = glm::translate(glm::mat4(1.0f), -CamComponent::GetPos());
 	glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(pos->GetPos().x, pos->GetPos().y, pos->GetPos().z + 1.0f));
 	m_MVP = proj * view * model;
 
-	shader->Bind();
 	shader->SetUniformMat4f("u_MVP", m_MVP);
-	shader->Unbind();
 
-	renderer.Draw(*va, *ib, *shader);
+	Renderer::Draw(*va, *ib, *shader);
+	shader->Unbind();
 }
 
 bool CircleCollider::CheckCollision()
 {
 	for (auto& collider : AllColliders)
 	{
+		if (collider == this)
+			continue;
+
 		float checkDistNow = checkDist + collider->GetCheckDist();
 
 		std::vector<glm::vec3> verticesB = collider->flatVectors;
@@ -88,12 +93,17 @@ bool CircleCollider::CheckCollision()
 		glm::vec3 posA = pos->GetPos();
 		glm::vec3 posB = (verticesB[0] + verticesB[1] + verticesB[2] + verticesB[3]) / 4.0f; //avarage of pos_vertices sum is a center of the figure éîó
 
-		if (glm::distance(posA, posB) < checkDistNow)
+		glm::vec2 posA2(posA);
+		glm::vec2 posB2(posB);
+
+		if (glm::distance(posA2, posB2) < checkDistNow )
 		{
 			collisionObj = collider;
 			return true;
 		}
 	}
+
+	collisionObj = nullptr;
 	return false;
 }
 
@@ -111,6 +121,20 @@ void CircleCollider::ResolveColision()
 	resVec /= glm::length(resVec);
 
 	pos->SetPos(pos->GetPos() + resVec * 5.0f);
+}
+
+void CircleCollider::initVecPositions()
+{
+	float x = pos->GetPos().x;
+	float y = pos->GetPos().y;
+
+	flatVectors =
+	{
+		glm::vec3(x - checkDist, y - checkDist, 0),
+		glm::vec3(x + checkDist, y - checkDist, 0),
+		glm::vec3(x + checkDist, y + checkDist, 0),
+		glm::vec3(x - checkDist, y + checkDist, 0),
+	};
 }
 
 CircleCollider::~CircleCollider()

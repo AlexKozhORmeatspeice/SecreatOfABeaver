@@ -7,6 +7,10 @@ void Renderer::Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& 
 	shader.Bind();
 
 	GLCall(glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr));
+
+	va.Unbind();
+	ib.Unbind();
+	shader.Unbind();
 }
 
 void Renderer::DrawLines(const VertexArray& va, const IndexBuffer& ib, const Shader& shader)
@@ -16,6 +20,10 @@ void Renderer::DrawLines(const VertexArray& va, const IndexBuffer& ib, const Sha
 	shader.Bind();
 
 	GLCall(glDrawElements(GL_LINE_LOOP, ib.GetCount(), GL_UNSIGNED_INT, nullptr));
+
+	va.Unbind();
+	ib.Unbind();
+	shader.Unbind();
 }
 
 void Renderer::Clear()

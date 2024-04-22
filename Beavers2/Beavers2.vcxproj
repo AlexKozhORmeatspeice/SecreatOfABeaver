@@ -82,7 +82,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)Depend\GLFW\include;$(ProjectDir)Depend\GLEW\include;$(ProjectDir)res\Shaders;$(ProjectDir)res\GL;$(ProjectDir)res\Renderer;$(ProjectDir)src;$(ProjectDir)res\Textures;$(ProjectDir)res\vendor\stb_image;$(ProjectDir)res\vendor;$(ProjectDir)res\vendor\imgui;$(ProjectDir)ECS;$(ProjectDir)ECS\MovementSystem;$(ProjectDir)ECS\Managers;$(ProjectDir)ECS\Colliders</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Depend\GLFW\include;$(ProjectDir)Depend\GLEW\include;$(ProjectDir)res\Shaders;$(ProjectDir)res\GL;$(ProjectDir)res\Renderer;$(ProjectDir)src;$(ProjectDir)res\Textures;$(ProjectDir)res\vendor\stb_image;$(ProjectDir)res\vendor;$(ProjectDir)res\vendor\imgui;$(ProjectDir)ECS;$(ProjectDir)ECS\MovementSystem;$(ProjectDir)ECS\Managers;$(ProjectDir)ECS\Colliders;$(ProjectDir)ECS\Pers</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -99,7 +99,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)Depend\GLFW\include;$(ProjectDir)Depend\GLEW\include;$(ProjectDir)res\Shaders;$(ProjectDir)res\GL;$(ProjectDir)res\Renderer;$(ProjectDir)src;$(ProjectDir)res\Textures;$(ProjectDir)res\vendor\stb_image;$(ProjectDir)res\vendor;$(ProjectDir)res\vendor\imgui;$(ProjectDir)ECS;$(ProjectDir)ECS\MovementSystem;$(ProjectDir)ECS\Managers;$(ProjectDir)ECS\Colliders</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Depend\GLFW\include;$(ProjectDir)Depend\GLEW\include;$(ProjectDir)res\Shaders;$(ProjectDir)res\GL;$(ProjectDir)res\Renderer;$(ProjectDir)src;$(ProjectDir)res\Textures;$(ProjectDir)res\vendor\stb_image;$(ProjectDir)res\vendor;$(ProjectDir)res\vendor\imgui;$(ProjectDir)ECS;$(ProjectDir)ECS\MovementSystem;$(ProjectDir)ECS\Managers;$(ProjectDir)ECS\Colliders;$(ProjectDir)ECS\Pers</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -147,7 +147,7 @@
     <ClCompile Include="ECS\Managers\Coursor.cpp" />
     <ClCompile Include="ECS\MovementSystem\HeroMovementComponent.cpp" />
     <ClCompile Include="ECS\MovementSystem\MovementComponent.cpp" />
-    <ClCompile Include="ECS\Pers\Enemy.cpp" />
+    <ClCompile Include="ECS\MovementSystem\EnemyMov.cpp" />
     <ClCompile Include="ECS\PlainsGenerator.cpp" />
     <ClCompile Include="ECS\PositionComponent.cpp" />
     <ClCompile Include="ECS\SpriteComponent.cpp" />
@@ -189,7 +189,8 @@
     <ClInclude Include="ECS\Managers\Coursor.h" />
     <ClInclude Include="ECS\MovementSystem\HeroMovementComponent.h" />
     <ClInclude Include="ECS\MovementSystem\MovementComponent.h" />
-    <ClInclude Include="ECS\Pers\Enemy.h" />
+    <ClInclude Include="ECS\MovementSystem\EnemyMov.h" />
+    <ClInclude Include="ECS\Pers\Hero.h" />
     <ClInclude Include="ECS\PlainsGenerator.h" />
     <ClInclude Include="ECS\PositionComponent.h" />
     <ClInclude Include="ECS\SpriteComponent.h" />
@@ -615,7 +616,9 @@
     <Image Include="Depend\GLEW\doc\ogl_sm.jpg" />
     <Image Include="Depend\GLEW\doc\travis.png" />
     <Image Include="res\Textures\Beaver1.jpg" />
+    <Image Include="res\Textures\bobr.png" />
     <Image Include="res\Textures\Man.jpeg" />
+    <Image Include="res\Textures\soldier.png" />
     <Image Include="res\Textures\Wood.jpg" />
   </ItemGroup>
   <ItemGroup>

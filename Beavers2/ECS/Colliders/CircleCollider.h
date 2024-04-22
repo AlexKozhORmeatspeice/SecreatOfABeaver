@@ -2,15 +2,15 @@
 #include "Collider.h"
 #include "Renderer.h"
 #include "CamComponent.h"
-
+#include "Render.h"
 class CircleCollider : public Collider
 {
 private:
-	float vertices[8] = {
-		-10.0f, -10.0f,
-		 10.0f, -10.0f,
-		 10.0f,  10.0f,
-		-10.0f,  10.0f
+	float vertices[16] = {
+		-10.0f, -10.0f, 0.0f, 0.0f,
+		 10.0f, -10.0f, 1.0f, 0.0f,
+		 10.0f,  10.0f, 1.0f, 1.0f,
+		-10.0f,  10.0f, 0.0f, 1.0f
 	};
 
 	unsigned int indices[6] = {
@@ -22,7 +22,6 @@ private:
 	IndexBuffer* ib;
 	VertexArray* va;
 	Shader* shader;
-	Renderer renderer;
 
 	glm::mat4 m_MVP;
 public:
@@ -36,5 +35,6 @@ public:
 protected:
 	bool CheckCollision() override;
 	void ResolveColision() override;
+	void initVecPositions() override;
 
 };

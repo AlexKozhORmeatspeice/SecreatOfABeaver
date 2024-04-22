@@ -20,7 +20,7 @@ int Shader::GetUniformLocation(const std::string& name)
     GLCall(int loc = glGetUniformLocation(m_RendererID, name.c_str()));
 
     if (loc == -1)
-        std::cout << "Warning: unifrom " << name << "doesn't existd" << std::endl;
+        std::cout << "Warning: unifrom " << name << " doesn't existd" << std::endl;
 
     m_UniLocatinCache[name] = loc;
     return loc;
@@ -83,13 +83,13 @@ unsigned int Shader::CompileShader(const std::string& source, unsigned int type)
     if (res == GL_FALSE)
     {
         int length;
-        glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length);
+        GLCall(glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length));
         char* message = (char*)alloca(length * sizeof(char));
-        glGetShaderInfoLog(id, length, &length, message);
+        GLCall(glGetShaderInfoLog(id, length, &length, message));
         std::cout << "Failed compile " <<
             (type == GL_VERTEX_SHADER ? "vertex" : "fragment") << " shader!" << std::endl;
         std::cout << message << std::endl;
-        glDeleteShader(id);
+        GLCall(glDeleteShader(id));
         return 0;
     }
 
@@ -130,6 +130,11 @@ void Shader::SetUniform4f(const std::string& name, GLfloat v0, GLfloat v1, GLflo
 {
     int loc = GetUniformLocation(name);
     GLCall(glUniform4f(loc, v0, v1, v2, v3));
+}
+void Shader::SetUniform2f(const std::string& name, GLfloat v0, GLfloat v1)
+{
+    int loc = GetUniformLocation(name);
+    GLCall(glUniform2f(loc, v0, v1));
 }
 void Shader::SetUniformMat4f(const std::string& name, glm::mat4 matrix)
 {

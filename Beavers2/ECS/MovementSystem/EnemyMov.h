@@ -1,7 +1,7 @@
 #pragma once
 #include "Components.h"
 
-class Enemy : public Component
+class EnemyMovement : public Component
 {
 private:
 	std::shared_ptr<PositionComponent> heroPos;
@@ -9,14 +9,16 @@ private:
 
 	std::shared_ptr<BoxCollider> collider;
 
+	Entity* checkCircle;
+	std::shared_ptr<PositionComponent> checkCirclePos;
+
 	glm::vec3 viewDir;
 	float viewDist;
-	float viewAngle;
 
 	float speed;
 public:
-	Enemy();
-	Enemy(float nowViewDist, float nowViewAngle, float nowSpeed);
+	EnemyMovement();
+	EnemyMovement(float nowViewDist, float nowSpeed);
 
 	void update() override;
 	void init() override;

@@ -34,6 +34,11 @@ bool RenderInit()
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
 
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    stbi_set_flip_vertically_on_load(1);
+
     ImGui::CreateContext();
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init(glsl_version);
@@ -59,7 +64,7 @@ bool Render(std::unique_ptr<Manager> & manager)
 
     
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    
+
     ////////////////////actual prog//////////////////////////
     manager->draw();
     ////////////////////actual prog//////////////////////////
