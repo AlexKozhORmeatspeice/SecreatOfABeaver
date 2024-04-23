@@ -18,19 +18,6 @@ void CircleCollider::init()
 {
 	pos = entity->GetComponent<PositionComponent>();
 
-	float sideSquare = checkDist; //we want to make an inner circle of a square
-	vertices[0] =  -sideSquare;
-	vertices[1] =  -sideSquare;
-
-	vertices[4] =   sideSquare;
-	vertices[5] =  -sideSquare;
-
-	vertices[8] =   sideSquare;
-	vertices[9] =   sideSquare;
-
-	vertices[12] = -sideSquare;
-	vertices[13] =  sideSquare;
-
 	vb = new VertexBuffer(vertices, 4 * 4 * sizeof(float));
 	ib = new IndexBuffer(indices, 6);
 
@@ -71,6 +58,10 @@ void CircleCollider::draw()
 	glm::mat4 proj = CamComponent::GetProj();
 	glm::mat4 view = glm::translate(glm::mat4(1.0f), -CamComponent::GetPos());
 	glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(pos->GetPos().x, pos->GetPos().y, pos->GetPos().z + 1.0f));
+	
+	glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(checkDist, checkDist, 1.0f));
+	model = model * scale;
+
 	m_MVP = proj * view * model;
 
 	shader->SetUniformMat4f("u_MVP", m_MVP);

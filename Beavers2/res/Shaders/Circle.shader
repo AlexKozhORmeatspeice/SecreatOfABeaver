@@ -25,7 +25,7 @@ void main()
 {
 	vec2 uv = localPos * 2.0 - 1.0;
 	float fade = 0.01;
-	float thickness = 0.05;
+	float thickness = 0.03;
 
 	float dist = 1.0 - length(uv);
 	vec3 color = vec3(smoothstep(0.0, fade, dist));

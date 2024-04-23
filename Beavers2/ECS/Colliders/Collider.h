@@ -8,7 +8,7 @@ protected:
 	static std::vector<Collider*> AllColliders;
 	std::shared_ptr<PositionComponent> pos;
 
-	bool drawingColliders = true;
+	bool drawingColliders = true; // to test param
 	bool isTrigger; //true - can react with others, false - cant
 	bool isMoveble; //can be moved
 	float checkDist;

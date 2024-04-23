@@ -26,18 +26,6 @@ BoxCollider::BoxCollider(float nowWidth, float nowHeigt, bool nowIsTrigger, bool
 void BoxCollider::init()
 {
 	pos = entity->GetComponent<PositionComponent>();
-	
-	vertices[0] = -width;
-	vertices[1] = -height;
-
-	vertices[2] = width;
-	vertices[3] = -height;
-
-	vertices[4] = width;
-	vertices[5] = height;
-
-	vertices[6] = -width;
-	vertices[7] = height;
 
 	vb = new VertexBuffer(vertices, 4 * 2 * sizeof(float));
 	ib = new IndexBuffer(indices, 6);
@@ -77,6 +65,10 @@ void BoxCollider::draw()
 	glm::mat4 proj = CamComponent::GetProj();
 	glm::mat4 view = glm::translate(glm::mat4(1.0f), -CamComponent::GetPos());
 	glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(pos->GetPos().x, pos->GetPos().y, pos->GetPos().z + 1.0f));
+	
+	glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(width, height, 1.0f));
+	model = model * scale;
+	
 	m_MVP = proj * view * model;
 
 	shader->SetUniformMat4f("u_MVP", m_MVP);
@@ -182,7 +174,7 @@ void BoxCollider::ResolveColision()
 	glm::vec3 resVec = posA - posB;
 	resVec /= glm::length(resVec);
 
-	pos->SetPos(pos->GetPos() + resVec * 5.0f);
+	pos->SetPos(pos->GetPos() + resVec * 10.0f);
 }
 
 void BoxCollider::initVecPositions()

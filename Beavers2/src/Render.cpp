@@ -125,3 +125,10 @@ void GLFWSetMousePos(double &xpos, double& ypos)
     glfwGetCursorPos(window, &xpos, &ypos);
 }
 
+
+
+float GLFWGetScroolAxis()
+{
+    return 0.0f;
+}
+

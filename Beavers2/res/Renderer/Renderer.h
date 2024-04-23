@@ -22,5 +22,6 @@ public:
 
 	static void DrawLines(const VertexArray& va, const IndexBuffer& ib, const Shader& shader);
 
+	
 	void Clear();
 };

@@ -12,10 +12,10 @@ private:
 	float height;
 
 	float vertices[8] = {
-		-10.0f, -10.0f,
-		 10.0f, -10.0f,
-		 10.0f,  10.0f,
-		-10.0f,  10.0f
+		-1.0f, -1.0f,
+		 1.0f, -1.0f,
+		 1.0f,  1.0f,
+		-1.0f,  1.0f
 	};
 
 	unsigned int indices[6] = {

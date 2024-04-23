@@ -7,10 +7,10 @@ class CircleCollider : public Collider
 {
 private:
 	float vertices[16] = {
-		-10.0f, -10.0f, 0.0f, 0.0f,
-		 10.0f, -10.0f, 1.0f, 0.0f,
-		 10.0f,  10.0f, 1.0f, 1.0f,
-		-10.0f,  10.0f, 0.0f, 1.0f
+		-1.0f, -1.0f, 0.0f, 0.0f,
+		 1.0f, -1.0f, 1.0f, 0.0f,
+		 1.0f,  1.0f, 1.0f, 1.0f,
+		-1.0f,  1.0f, 0.0f, 1.0f
 	};
 
 	unsigned int indices[6] = {

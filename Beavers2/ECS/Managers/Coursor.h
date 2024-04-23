@@ -37,7 +37,5 @@ bool Coursor::GetCollision(Entity* collider)
 		return coll1 == coll2;
 	}
 
-	std::cout << "NULL POINTER" << std::endl;
-
 	return false;
 }

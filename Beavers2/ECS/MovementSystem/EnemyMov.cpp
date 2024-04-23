@@ -1,20 +1,23 @@
 #include "EnemyMov.h"
 
-EnemyMovement::EnemyMovement()
+EnemyMov::EnemyMov()
 {
 	viewDir = glm::vec3(1, 0, 0);
-	viewDist = 10.0f;
-	speed = 1.0f;
+
+	speed = stamina->GetCellSize();
 }
 
-EnemyMovement::EnemyMovement(float nowViewDist, float nowSpeed)
+EnemyMov::EnemyMov(float nowViewDist, unsigned int nowMoveCost)
 {
 	viewDir = glm::vec3(1, 0, 0);
+
 	viewDist = nowViewDist;
-	speed = nowSpeed;
+	moveCost = nowMoveCost;
+
+	speed = stamina->GetCellSize();
 }
 
-void EnemyMovement::init()
+void EnemyMov::init()
 {
 	pos = entity->GetComponent<PositionComponent>();
 
@@ -26,7 +29,7 @@ void EnemyMovement::init()
 	checkCircle->AddComponent<CircleCollider>(viewDist, false, false);
 }
 
-void EnemyMovement::update()
+void EnemyMov::update()
 {
 	checkCirclePos->SetPos(pos->GetPos());
 
@@ -40,7 +43,7 @@ void EnemyMovement::update()
 		isHeroCollid = entityHero->HasComponent<Hero>();
 	}
 		
-
+	//TODO: change to stamina system movement
 	if (isHeroCollid)
 	{
 		if(heroPos == nullptr)
@@ -54,10 +57,15 @@ void EnemyMovement::update()
 	}
 }
 
-void EnemyMovement::Move()
+void EnemyMov::Move()
 {
 	viewDir = heroPos->GetPos() - pos->GetPos();
 	viewDir /= glm::length(viewDir);
 
 	pos->SetPos(pos->GetPos() + viewDir * speed);
+}
+
+EnemyMov::~EnemyMov()
+{
+	delete checkCircle;
 }
