@@ -2,6 +2,7 @@
 #include "ECS.h"
 #include "PositionComponent.h"
 #include "Renderer.h"
+#include "algorithm"
 
 class CamComponent : public Component
 {
@@ -9,6 +10,8 @@ private:
 	static std::shared_ptr<PositionComponent> pos;
 	static glm::mat4 proj;
 
+	float maxScroll;
+	float minScroll;
 	float scrollK;
 public:
 	void init() override;

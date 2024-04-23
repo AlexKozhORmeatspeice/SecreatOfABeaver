@@ -8,6 +8,13 @@ const char* glsl_version = "#version 330";
 ImGuiIO* io;
 GLFWwindow* window;
 
+static float scroll = 0.0f;
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+{
+    scroll = yoffset;
+}
+
+
 bool RenderInit()
 {
     //set glfw,  glew, imgui
@@ -24,6 +31,8 @@ bool RenderInit()
     }
     glfwMakeContextCurrent(window);
     glfwSwapInterval(1);
+    glfwSetScrollCallback(window, scroll_callback);
+
 
     if (glewInit() != GLEW_OK)
     {
@@ -125,10 +134,9 @@ void GLFWSetMousePos(double &xpos, double& ypos)
     glfwGetCursorPos(window, &xpos, &ypos);
 }
 
-
-
-float GLFWGetScroolAxis()
+float GLFWGetScrool()
 {
-    return 0.0f;
+    float val = scroll;
+    scroll = 0.0f;
+    return val;
 }
-

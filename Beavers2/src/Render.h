@@ -15,3 +15,4 @@ float GLFWGetHeight();
 float GLFWGetWeidth();
 void GLFWSetMousePos(double& xpos, double& ypos);
 int GLFWGetKeyMouseState(int state);
+float GLFWGetScrool();

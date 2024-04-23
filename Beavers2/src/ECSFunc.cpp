@@ -25,8 +25,7 @@ std::unique_ptr<Manager> ECSInit()
 	
 	cam.AddComponent<PositionComponent>(glm::vec3(0, 0, 0));
 	cam.AddComponent<CamComponent>();
-	//cam.AddComponent<MovementComponent>(5.0f);
-
+	cam.AddComponent<MovementComponent>(5.0f);
 
 	glm::vec4 color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
 
