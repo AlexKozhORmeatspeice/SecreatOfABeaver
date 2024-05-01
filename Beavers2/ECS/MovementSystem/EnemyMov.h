@@ -4,17 +4,19 @@
 class EnemyMov : public Component
 {
 private:
-	std::shared_ptr<PositionComponent> heroPos;
-	std::shared_ptr<PositionComponent> pos;
+	Enemy* enemy;
 
-	std::shared_ptr<BoxCollider> collider;
+	PositionComponent* heroPos;
+	PositionComponent* pos;
+
+	BoxCollider* collider;
 
 	Entity* checkCircle;
-	std::shared_ptr<PositionComponent> checkCirclePos;
+	PositionComponent* checkCirclePos;
 
 	glm::vec3 viewDir;
 	
-	std::shared_ptr<Stamina> stamina;
+	Stamina* stamina;
 	unsigned int moveCost;
 	float viewDist;
 

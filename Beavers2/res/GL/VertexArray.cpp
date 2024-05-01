@@ -1,5 +1,4 @@
 #include "VertexArray.h"
-#include "Render.h"
 
 
 VertexArray::VertexArray()

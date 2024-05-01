@@ -1,13 +1,13 @@
 #include "Coursor.h"
 
 
-std::shared_ptr<PositionComponent> Coursor::posBox;
+PositionComponent* Coursor::posBox;
 Entity* Coursor::checkBox;
 glm::vec3 Coursor::mousePos;
 
 void Coursor::init()
 {
-	checkBox = &CreatObj();
+	checkBox = &Manager::addEntity();
 	mousePos = glm::vec3(0.0f, 0.0f, 0.0f);
 
 	checkBox->AddComponent<PositionComponent>();
@@ -37,6 +37,10 @@ void Coursor::update()
 	mousePos = glm::vec3(mousePos4.x, mousePos4.y, mousePos4.z);
 
 	posBox->SetPos(mousePos);
+}
+
+Coursor::~Coursor()
+{
 
 }
 

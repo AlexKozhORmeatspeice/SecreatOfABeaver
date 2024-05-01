@@ -1,39 +1,35 @@
 #include "HeroMov.h"
-std::vector<HeroMov*> HeroMov::movComps;
 
 HeroMov::HeroMov()
 {
-	movComps.push_back(this);
-	
 	moveCost = 10;
-	speed = stamina->GetCellSize();
+	speed = stamina->GetCellSize() / 5.0f;
 }
 HeroMov::HeroMov(unsigned int nowMoveCost)
 {
-	movComps.push_back(this);
-
 	moveCost = nowMoveCost;
-	speed = stamina->GetCellSize();
+	speed = stamina->GetCellSize() / 5.0f;
 }
 
 void HeroMov::init()
 {
+	heroComp = entity->GetComponent<Hero>();
+
 	isMoving = false;
-	isChoosed = false;
 	canMove = false;
 
 	pos = entity->GetComponent<PositionComponent>();
 
 	stamina = entity->GetComponent<Stamina>();
 
-	circleMoveEntity = &CreatObj();
+	Entity& circleMoveEntity = Manager::addEntity();
 
-	circleMoveEntity->AddComponent<PositionComponent>();
-	circlePos = circleMoveEntity->GetComponent<PositionComponent>();
+	circleMoveEntity.AddComponent<PositionComponent>();
+	circlePos = circleMoveEntity.GetComponent<PositionComponent>();
 	circlePos->SetPos(pos->GetPos());
 
-	circleMoveEntity->AddComponent<Circle>(1.0f);
-	circle = circleMoveEntity->GetComponent<Circle>();
+	circleMoveEntity.AddComponent<Circle>(1.0f);
+	circle = circleMoveEntity.GetComponent<Circle>();
 	circle->Unactivate();
 }
 
@@ -44,48 +40,34 @@ void HeroMov::update()
 	{
 		Move();
 	}
-	else
-	{
-		targetPoint = pos->GetPos();
-	}
 
 	int mouseLeftState = GLFWGetKeyMouseState(GLFW_MOUSE_BUTTON_LEFT);
-	int mouseRightState = GLFWGetKeyMouseState(GLFW_MOUSE_BUTTON_RIGHT);
 
-	//check which hero set active
-	for (auto* coll : movComps)
-	{
-		if (mouseLeftState == GLFW_PRESS && Coursor::GetCollision<BoxCollider>(coll->entity))
-		{
-			coll->isChoosed = true;
-			SetOtherNotChoosed(coll); 
-			break;
-		}
-	}
-	if (!isChoosed)
+	////////////////////////////////////////
+	if (!heroComp->isChoosed)
 		return;
 
-	bool inMoveRadius = stamina->CanMove(Coursor::GetMousePos(), pos->GetPos(), moveCost);
+	bool inMoveRadius = CanMove(Coursor::GetMousePos(), pos->GetPos(), moveCost);
 	bool gotClickNotOnObject = (
 								mouseLeftState == GLFW_PRESS && 
 								!Coursor::GetCollision<BoxCollider>(entity)
 							   );
 	
 	//if get right mouse or click to move out of move distance set not choosed
-	if (mouseRightState == GLFW_PRESS || (gotClickNotOnObject && !inMoveRadius))
+	if (gotClickNotOnObject && !inMoveRadius)
 	{
-		isChoosed = false;
+		heroComp->isChoosed = false;
 		return;
 	}
 
-	//if got right click of left mouse start move
+	//if got left mouse click is right start move
 	if (!isMoving && !canMove && gotClickNotOnObject && inMoveRadius)
 	{
-		isChoosed = false;
+		heroComp->isChoosed = false;
 		canMove = true;
 		SetTarget();
 
-		stamina->UseStaminaToMove(targetPoint, pos->GetPos(), moveCost);
+		UseStaminaToMove(targetPoint, pos->GetPos(), moveCost);
 	}
 }
 
@@ -109,7 +91,7 @@ void HeroMov::Move()
 
 void HeroMov::draw()
 {	
-	if (isChoosed)
+	if (heroComp->isChoosed)
 	{
 		circle->Activate();
 	}
@@ -120,9 +102,9 @@ void HeroMov::draw()
 	}
 		
 	circlePos->SetPos(pos->GetPos());
-	circle->SetRadius(stamina->GetMaxDistMove(moveCost) * sqrt(2));
+	circle->SetRadius(((float)stamina->GetNowStamina() / (float)moveCost) * (float)stamina->GetCellSize());
 
-	bool inMoveRadius = stamina->CanMove(Coursor::GetMousePos(), pos->GetPos(), moveCost);
+	bool inMoveRadius = CanMove(Coursor::GetMousePos(), pos->GetPos(), moveCost);
 
 	if (inMoveRadius)
 		circle->SetColor(glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
@@ -135,23 +117,28 @@ void HeroMov::SetTarget()
 	targetPoint = Coursor::GetMousePos();
 }
 
-void HeroMov::SetOtherNotChoosed(HeroMov* exceptComp)
+bool HeroMov::CanMove(glm::vec3 pos1, glm::vec3 pos2, unsigned int nowMovCost)
 {
-	for (auto& comp : movComps)
+	unsigned int cellsCount = glm::distance(pos1, pos2) / stamina->GetCellSize();
+	unsigned int stamCostMove = cellsCount * nowMovCost;
+
+	return stamCostMove <= stamina->GetNowStamina();
+}
+
+void HeroMov::UseStaminaToMove(glm::vec3 pos1, glm::vec3 pos2, unsigned int nowMovCost)
+{
+	unsigned int cellsCount = glm::distance(pos1, pos2) / stamina->GetCellSize();
+	unsigned int stamCostMove = cellsCount * nowMovCost;
+
+	if (!stamina->UseStamina(stamCostMove))
 	{
-		if (comp == exceptComp)
-			continue;
-
-		comp->isChoosed = false;
+		std::cout << "Not enough stamina" << std::endl;
+		canMove = false;
+		return;
 	}
-
 }
 
 HeroMov::~HeroMov()
 {
-	delete circleMoveEntity;
 
-	auto it = std::find(movComps.begin(), movComps.end(), this);
-	if (it != movComps.end())
-		movComps.erase(it);
 }

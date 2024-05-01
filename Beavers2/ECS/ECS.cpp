@@ -16,10 +16,14 @@ void Entity::destroy() { active = false; }
 
 Entity::~Entity()
 {
-	//
+	for (auto& c : components)
+	{
+		delete c;
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+std::vector<Entity*> Manager::entities;
 void Manager::update()
 {
 	for (auto& e : entities) e->update();
@@ -35,22 +39,23 @@ void Manager::refresh()
 	entities.erase(
 		std::remove_if(std::begin(entities),
 			std::end(entities),
-			[](const std::unique_ptr<Entity>& mEntity) { return !mEntity->isActive(); }),
-		std::end(entities)
+			[](Entity* mEntity) { return  (mEntity == nullptr || !mEntity->isActive()); }),
+		entities.end()
 	);
 }
 
 Entity& Manager::addEntity()
 {
 	Entity* e = new Entity();
-	std::unique_ptr<Entity> uPtr{ e };
-
-	entities.emplace_back(std::move(uPtr));
+	entities.emplace_back(e);
 
 	return *e;
 }
 
 Manager::~Manager()
 {		
-		
+	for (auto entity : entities)
+	{
+		delete entity;
+	}
 }

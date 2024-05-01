@@ -29,7 +29,7 @@ inline ComponentID GetComponentTypeID() noexcept
 constexpr std::size_t maxComp = 32;
 
 using ComponentBitSet = std::bitset<maxComp>;
-using ComponentArray = std::array<std::shared_ptr<Component>, maxComp>;
+using ComponentArray = std::array<Component*, maxComp>;
 
 class Component
 {
@@ -56,27 +56,25 @@ private:
 
 public:
 	void update();
-
 	void draw();
+
 	bool isActive() const { return active; }
 	void destroy();
 
 	template <typename T, typename ... TArgs> 
-	T& AddComponent(TArgs&&...mArgs)
+	T* AddComponent(TArgs&&...mArgs)
 	{
-		std::shared_ptr<T> c = std::make_shared<T>(std::forward<TArgs>(mArgs)...);
-		c.get()->entity = this;
+		T* c = new T(std::forward<TArgs>(mArgs)...);
+		c->entity = this;
 
-		auto* uPtr{ c.get() };
-		components.emplace_back(std::move(uPtr));
+		components.emplace_back(c);
 		
 		componentArray[GetComponentTypeID<T>()] = c;
 		componentBitSet[GetComponentTypeID<T>()] = true;
 		
+		c->init();
 
-		c.get()->init();
-
-		return *c.get();
+		return c;
 	}
 
 	template <typename T> 
@@ -86,10 +84,18 @@ public:
 	}
 
 	template <typename T> 
-	std::shared_ptr<T> GetComponent()
+	T* GetComponent()
 	{
-		auto ptr(componentArray[GetComponentTypeID<T>()]);
-		return std::static_pointer_cast<T>(ptr);
+		if (HasComponent<T>())
+		{
+			auto ptr(componentArray[GetComponentTypeID<T>()]);
+			return static_cast<T*>(ptr);
+		}
+		else
+		{
+			return nullptr;
+		}
+		
 	}
 
 	~Entity();
@@ -98,7 +104,7 @@ public:
 class Manager
 {
 private:
-	std::vector<std::unique_ptr<Entity>> entities;
+	static std::vector<Entity*> entities;
 
 public:
 	void update();
@@ -107,7 +113,7 @@ public:
 
 	void refresh();
 
-	Entity& addEntity();
+	static Entity& addEntity();
 
 	~Manager();
 };

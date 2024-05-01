@@ -14,7 +14,6 @@ void Circle::init()
 {
 	pos = entity->GetComponent<PositionComponent>();
 
-	float sideSquare = radius; //we want to make an inner circle of a square
 
 	vb = new VertexBuffer(vertices, 4 * 4 * sizeof(float));
 	ib = new IndexBuffer(indices, 6);
@@ -42,7 +41,7 @@ void Circle::draw()
 	glm::mat4 proj = CamComponent::GetProj();
 	glm::mat4 view = glm::translate(glm::mat4(1.0f), -CamComponent::GetPos());
 	
-	glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(pos->GetPos().x, pos->GetPos().y, pos->GetPos().z + 1.0f));
+	glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(pos->GetPos().x, pos->GetPos().y, pos->GetPos().z));
 	glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(radius, radius, 1.0f));
 	model = model * scale;
 

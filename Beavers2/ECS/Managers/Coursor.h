@@ -1,16 +1,19 @@
 #pragma once
+#include "ECS.h"
+
 #include "Collider.h"
 #include "BoxCollider.h"
 
-#include "Components.h"
+#include "PositionComponent.h"
 #include "Renderer.h"
+
 
 
 class Coursor : public Component
 {
 private:
 	static Entity* checkBox;
-	static std::shared_ptr<PositionComponent> posBox;
+	static PositionComponent* posBox;
 
 	static glm::vec3 mousePos;
 public:
@@ -24,12 +27,14 @@ public:
 	{
 		return mousePos;
 	}
+
+	~Coursor();
 };
 
 template <typename T>
 bool Coursor::GetCollision(Entity* collider)
 {
-	const Collider* coll1 = collider->GetComponent<T>().get();
+	const Collider* coll1 = collider->GetComponent<T>();
 	const Collider* coll2 = checkBox->GetComponent<BoxCollider>()->GetColllidObj();
 
 	if (coll1 != nullptr && coll2 != nullptr)

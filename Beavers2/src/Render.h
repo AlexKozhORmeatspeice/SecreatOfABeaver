@@ -1,6 +1,15 @@
 #pragma once
-#include "Renderer.h"
-#include "Components.h"
+#include "ECS.h"
+
+#include "stb_image.h"
+#include <GL/glew.h>
+
+#include <GLFW/glfw3.h>
+
+#include "GLErrors.h"
+
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
 
 #include "imgui/imgui.h"
 #include "imgui/imgui_impl_opengl3.h"

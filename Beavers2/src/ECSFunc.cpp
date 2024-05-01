@@ -6,22 +6,20 @@
 ////    10																////
 ////////////////////////////////////////////////////////////////////////////
 
-
-std::unique_ptr<Manager> manager = std::make_unique<Manager>();
-
-std::unique_ptr<Manager> ECSInit()
+void ECSInit()
 {
-	Entity& beaver1(manager->addEntity());
-	Entity& beaver2(manager->addEntity());
+	Entity& beaver1(Manager::addEntity());
+	Entity& beaver2(Manager::addEntity());
 
-	Entity& enemy(manager->addEntity());
-	Entity& enemy2(manager->addEntity());
+	Entity& enemy(Manager::addEntity());
 
-	Entity& coursor(manager->addEntity());
-	Entity& cam(manager->addEntity());
+	Entity& coursor(Manager::addEntity());
+	Entity& cam(Manager::addEntity());
+	Entity& stepSys(Manager::addEntity());
+
+	StepSysManager* stepSM = stepSys.AddComponent<StepSysManager>();
 
 	coursor.AddComponent<Coursor>();
-
 	
 	cam.AddComponent<PositionComponent>(glm::vec3(0, 0, 0));
 	cam.AddComponent<CamComponent>();
@@ -29,39 +27,47 @@ std::unique_ptr<Manager> ECSInit()
 
 	glm::vec4 color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
 
-	beaver1.AddComponent<PositionComponent>(glm::vec3(0.0f, 0.0f, 0.0f));
+	////
+	beaver1.AddComponent<PositionComponent>(glm::vec3(-200.0f, 50.0f, 0.0f));
 	beaver1.AddComponent<Stamina>(100);
-	beaver1.AddComponent<SpriteComponent>("res/Textures/soldier.png", 
+	beaver1.AddComponent<HP>();
+	beaver1.AddComponent<SpriteComponent>("res/Textures/Zubki.png", 
 		"res/Shaders/Basic.shader",
 		color);
 	beaver1.AddComponent<BoxCollider>(50, 50, true, true);
+	stepSM->AddHero(beaver1.AddComponent<Hero>()); //!!!
 	beaver1.AddComponent<HeroMov>(10);
-	beaver1.AddComponent<Hero>();
+	////
 
-	beaver2.AddComponent<PositionComponent>(glm::vec3(-50.0f, 50.0f, 0.0f));
+	////
+	beaver2.AddComponent<PositionComponent>(glm::vec3(-50.0f, -100.0f, 0.0f));
 	beaver2.AddComponent<Stamina>(100);
-	beaver2.AddComponent<SpriteComponent>("res/Textures/soldier.png", 
+	beaver2.AddComponent<HP>();
+	beaver2.AddComponent<SpriteComponent>("res/Textures/Zubki.png", 
 		"res/Shaders/Basic.shader",
 		color);
 	beaver2.AddComponent<BoxCollider>(50, 50, true, false);
+	stepSM->AddHero(beaver2.AddComponent<Hero>()); //!!!
 	beaver2.AddComponent<HeroMov>(10);
-	beaver2.AddComponent<Hero>();
+	////
 
+	////
 	enemy.AddComponent<PositionComponent>(glm::vec3(100.0f, 100.0f, 0.0f));
 	enemy.AddComponent<Stamina>(100);
+	enemy.AddComponent<HP>();
 	enemy.AddComponent<SpriteComponent>("res/Textures/bobr.png",
 		"res/Shaders/Basic.shader",
 		color);
 	enemy.AddComponent<BoxCollider>(50, 50, true, true);
-	//enemy.AddComponent<EnemyMov>(150.0, 10);
-
+	stepSM->AddEnemy(enemy.AddComponent<Enemy>()); //!!!
+	enemy.AddComponent<EnemyMov>(400.0f, 10);
+	////
 	
-	Entity& floor(manager->addEntity());
+	////
+	Entity& floor(Manager::addEntity());
 	floor.AddComponent<PositionComponent>(glm::vec3(0.0f, 0.0f, 0.0f));
 	floor.AddComponent<Tile>(1200.0f, 1200.0f, "res/Shaders/Basic.shader", 
 												"res/Textures/FloorTexture.png");
-
-	return std::move(manager);
 }
 
 void ECSStop(std::unique_ptr<Manager> manager)
@@ -71,7 +77,7 @@ void ECSStop(std::unique_ptr<Manager> manager)
 
 Entity& CreatObj()
 {
-	Entity& obj(manager->addEntity());
+	Entity& obj(Manager::addEntity());
 
 	return obj;
 }

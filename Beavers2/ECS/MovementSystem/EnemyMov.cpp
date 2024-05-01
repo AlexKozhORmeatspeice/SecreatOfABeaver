@@ -4,7 +4,7 @@ EnemyMov::EnemyMov()
 {
 	viewDir = glm::vec3(1, 0, 0);
 
-	speed = stamina->GetCellSize();
+	speed = stamina->GetCellSize() / 5.0f;
 }
 
 EnemyMov::EnemyMov(float nowViewDist, unsigned int nowMoveCost)
@@ -14,14 +14,15 @@ EnemyMov::EnemyMov(float nowViewDist, unsigned int nowMoveCost)
 	viewDist = nowViewDist;
 	moveCost = nowMoveCost;
 
-	speed = stamina->GetCellSize();
+	speed = stamina->GetCellSize() / 5.0f;
 }
 
 void EnemyMov::init()
 {
+	enemy = entity->GetComponent<Enemy>();
 	pos = entity->GetComponent<PositionComponent>();
 
-	checkCircle = &CreatObj();
+	checkCircle = &Manager::addEntity();
 
 	checkCircle->AddComponent<PositionComponent>();
 	checkCirclePos = checkCircle->GetComponent<PositionComponent>();
@@ -37,24 +38,28 @@ void EnemyMov::update()
 	Entity* entityHero = nullptr;
 
 	bool isHeroCollid = false;
-	if (collidObj != nullptr)
+	if (collidObj != nullptr && collidObj != entity->GetComponent<BoxCollider>())
 	{
+		StepSysManager::instance->StartFight();
 		entityHero = collidObj->entity;
 		isHeroCollid = entityHero->HasComponent<Hero>();
 	}
-		
+	
+	
 	//TODO: change to stamina system movement
-	if (isHeroCollid)
+	if (isHeroCollid && (entityHero != nullptr && heroPos == nullptr))
 	{
-		if(heroPos == nullptr)
-			heroPos = entityHero->GetComponent<PositionComponent>();
-
-		Move();
+		StepSysManager::instance->StartFight();
+		heroPos = entityHero->GetComponent<PositionComponent>();
 	}
 	else
 	{
+		entityHero = nullptr;
 		heroPos = nullptr;
 	}
+
+	if (enemy->canTakeAction)
+		Move();
 }
 
 void EnemyMov::Move()
@@ -67,5 +72,5 @@ void EnemyMov::Move()
 
 EnemyMov::~EnemyMov()
 {
-	delete checkCircle;
+
 }

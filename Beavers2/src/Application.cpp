@@ -4,6 +4,7 @@
 #include "Components.h"
 #include "ECSFunc.h"
 
+
 int main()
 {	
 	if (!GameInit() || !RenderInit())
@@ -11,7 +12,8 @@ int main()
 		return 0;
 	}
 
-	std::unique_ptr<Manager> manager = ECSInit();
+	std::unique_ptr<Manager> manager = std::make_unique<Manager>();
+	ECSInit();
 	while (true)
 	{
 		manager->refresh();
@@ -21,9 +23,8 @@ int main()
 		if (!Render(manager))
 			break;
 	}
-	
 
-	ECSStop(std::move(manager));
 	GameStop();
+	ECSStop(std::move(manager));
 	RenderStop();
 }

@@ -14,12 +14,11 @@ public:
 	Stamina(unsigned int nowMaxStamina);
 
 	void init() override;
-	void RecoverStamina();
-	void UseStaminaToMove(glm::vec3 pos1, glm::vec3 pos2, unsigned int cellMoveCost);
+	void Recover();
 
-	bool CanMove(glm::vec3 pos1, glm::vec3 pos2, unsigned int cellMoveCost);
+	bool UseStamina(unsigned int usedStamina);
+	unsigned int GetNowStamina();
 
-	float GetMaxDistMove(unsigned int cellMoveCost);
 
 	inline unsigned int GetCellSize()
 	{

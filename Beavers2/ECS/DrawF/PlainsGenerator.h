@@ -15,7 +15,7 @@ class Tile: public Component {
 		std::vector<float> vertices;
 		std::vector<unsigned int> indexes;
 
-		std::shared_ptr<PositionComponent> pos;
+		PositionComponent* pos;
 		glm::mat4 m_MVP;
 	public: 
 		Tile(float now_height, float now_width, const char* pathShader, const char* pathTexture);

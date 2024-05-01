@@ -14,7 +14,7 @@ private:
 
 
 	float speed;
-	std::shared_ptr<PositionComponent> pos;
+	PositionComponent* pos;
 public:
 
 	MovementComponent();

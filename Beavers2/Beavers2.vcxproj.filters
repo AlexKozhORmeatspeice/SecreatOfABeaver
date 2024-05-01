@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="ECS\CamComponent.cpp" />
+    <ClCompile Include="ECS\Managers\CamComponent.cpp" />
     <ClCompile Include="ECS\ECS.cpp" />
     <ClCompile Include="ECS\Managers\Coursor.cpp" />
     <ClCompile Include="ECS\MovementSystem\HeroMov.cpp" />
@@ -35,7 +35,11 @@
     <ClCompile Include="ECS\Colliders\Collider.cpp" />
     <ClCompile Include="ECS\MovementSystem\EnemyMov.cpp" />
     <ClCompile Include="ECS\DrawF\Circle.cpp" />
-    <ClCompile Include="ECS\Stamina.cpp" />
+    <ClCompile Include="ECS\Stats\Stamina.cpp" />
+    <ClCompile Include="ECS\Stats\HP.cpp" />
+    <ClCompile Include="ECS\Managers\StepSystemManager.cpp" />
+    <ClCompile Include="ECS\Pers\Hero.cpp" />
+    <ClCompile Include="ECS\Pers\Enemy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Depend\GLEW\include\GL\eglew.h" />
@@ -45,7 +49,7 @@
     <ClInclude Include="Depend\GLFW\include\GLFW\glfw3.h" />
     <ClInclude Include="Depend\GLFW\include\GLFW\glfw3native.h" />
     <ClInclude Include="ECS\BoxCollider.h" />
-    <ClInclude Include="ECS\CamComponent.h" />
+    <ClInclude Include="ECS\Managers\CamComponent.h" />
     <ClInclude Include="ECS\Components.h" />
     <ClInclude Include="ECS\Managers\Coursor.h" />
     <ClInclude Include="ECS\MovementSystem\HeroMov.h" />
@@ -320,21 +324,22 @@
     <ClInclude Include="ECS\MovementSystem\EnemyMov.h" />
     <ClInclude Include="ECS\Pers\Hero.h" />
     <ClInclude Include="ECS\DrawF\Circle.h" />
-    <ClInclude Include="ECS\Stamina.h" />
+    <ClInclude Include="ECS\Stats\Stamina.h" />
     <ClInclude Include="ECS\Pers\Enemy.h" />
+    <ClInclude Include="ECS\Stats\HP.h" />
+    <ClInclude Include="ECS\Managers\StepSystemManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\Textures\Beaver1.jpg" />
     <Image Include="res\Textures\Wood.jpg" />
-    <Image Include="res\Textures\Man.jpeg" />
     <Image Include="Depend\GLEW\doc\github.png" />
     <Image Include="Depend\GLEW\doc\glew.png" />
     <Image Include="Depend\GLEW\doc\new.png" />
     <Image Include="Depend\GLEW\doc\ogl_sm.jpg" />
     <Image Include="Depend\GLEW\doc\travis.png" />
     <Image Include="res\Textures\bobr.png" />
-    <Image Include="res\Textures\soldier.png" />
     <Image Include="res\Textures\FloorTexture.png" />
+    <Image Include="res\Textures\Zubki.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Depend\GLEW\doc\advanced.html" />
@@ -499,8 +504,5 @@
     <Library Include="Depend\GLEW\lib\Release\Win32\glew32.lib" />
     <Library Include="Depend\GLEW\lib\Release\Win32\glew32s.lib" />
     <Library Include="Depend\GLFW\lib-vc2022\glfw3.lib" />
-  </ItemGroup>
-  <ItemGroup>
-    <Object Include="Debug\ECS.obj" />
   </ItemGroup>
 </Project>

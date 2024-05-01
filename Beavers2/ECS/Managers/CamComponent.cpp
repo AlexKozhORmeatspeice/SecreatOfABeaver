@@ -2,7 +2,7 @@
 #include "Render.h"
 #include <algorithm>
 
-std::shared_ptr<PositionComponent> CamComponent::pos;
+PositionComponent* CamComponent::pos;
 glm::mat4 CamComponent::proj;
 void CamComponent::init()
 {

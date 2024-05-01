@@ -7,7 +7,7 @@
 class CamComponent : public Component
 {
 private:
-	static std::shared_ptr<PositionComponent> pos;
+	static PositionComponent* pos;
 	static glm::mat4 proj;
 
 	float maxScroll;

@@ -1,19 +1,25 @@
 #pragma once
-#include "Components.h"
+#include "ECS.h"
+
+#include "StepSystemManager.h"
+#include "Hero.h"
+#include "HeroMov.h"
+
+#include "Stamina.h"
+#include "PositionComponent.h"
+
 #include "Render.h"
 #include "ECSFunc.h"
-
 
 class HeroMov : public Component
 {
 private:
-	static std::vector<HeroMov*> movComps;
+	Hero* heroComp;
 
-	std::shared_ptr<Stamina> stamina;
-	std::shared_ptr<PositionComponent> pos;
+	Stamina* stamina;
+	PositionComponent* pos;
 	
 	bool canMove = false;
-	bool isChoosed = false;
 
 	glm::vec3 targetPoint;
 	
@@ -22,9 +28,8 @@ private:
 
 	bool isMoving = false;
 
-	Entity* circleMoveEntity;
-	std::shared_ptr<Circle> circle;
-	std::shared_ptr<PositionComponent> circlePos;
+	Circle* circle;
+	PositionComponent* circlePos;
 public:
 	HeroMov();
 	HeroMov(unsigned int nowMoveCost);
@@ -39,4 +44,7 @@ private:
 
 	void Move();
 	void SetTarget();
+
+	bool CanMove(glm::vec3 pos1, glm::vec3 pos2, unsigned int nowMovCost);
+	void UseStaminaToMove(glm::vec3 pos1, glm::vec3 pos2, unsigned int nowMovCost);
 };
