@@ -79,6 +79,9 @@ void BoxCollider::draw()
 
 bool BoxCollider::CheckCollision() //it's an SAT algorithm or something like that
 {
+	collisionObjs.clear();
+	bool finelState = false;
+
 	for (auto& collider : AllColliders)
 	{
 		if (collider  == this)
@@ -150,14 +153,12 @@ bool BoxCollider::CheckCollision() //it's an SAT algorithm or something like tha
 
 		if (gotGap)
 			continue;
-
-		collisionObj = collider;
-		return true;
+		
+		collisionObjs.push_back(collider);
+		finelState = true;
 	}
 
-	collisionObj = nullptr;
-
-	return false;
+	return finelState;
 }
 
 
@@ -166,14 +167,26 @@ void BoxCollider::ResolveColision()
 	if (!isMoveble)
 		return;
 
-	std::vector<glm::vec3> verticesB = collisionObj->flatVectors;
-
 	glm::vec3 posA = pos->GetPos();
-	glm::vec3 posB = (verticesB[0] + verticesB[1] + verticesB[2] + verticesB[3]) / 4.0f; //avarage of pos_vertices sum is a center of the figure éîó
+	glm::vec3 resVec = glm::vec3(0.0f);
+	for (auto& collisionObj : collisionObjs)
+	{
+		if (!collisionObj->GetIsTrigger() || collisionObj == this)
+			continue;
+		
+		std::vector<glm::vec3> verticesB = collisionObj->flatVectors;
+		glm::vec3 posB = (verticesB[0] + verticesB[1] + verticesB[2] + verticesB[3]) / 4.0f; //avarage of pos_vertices sum is a center of the figure éîó
+		
+		resVec += posA - posB;
+		resVec.z = 0.0f;
+	}
 
-	glm::vec3 resVec = posA - posB;
+
+	if (resVec == glm::vec3(0.0f))
+		return;
 	resVec /= glm::length(resVec);
 
+	//TODO: some crazy math to increase speed when object near the center
 	pos->SetPos(pos->GetPos() + resVec * 10.0f);
 }
 

@@ -34,13 +34,5 @@ public:
 template <typename T>
 bool Coursor::GetCollision(Entity* collider)
 {
-	const Collider* coll1 = collider->GetComponent<T>();
-	const Collider* coll2 = checkBox->GetComponent<BoxCollider>()->GetColllidObj();
-
-	if (coll1 != nullptr && coll2 != nullptr)
-	{
-		return coll1 == coll2;
-	}
-
-	return false;
+	return checkBox->GetComponent<BoxCollider>()->IsColllidWith<T>(collider);
 }

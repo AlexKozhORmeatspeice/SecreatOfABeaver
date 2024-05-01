@@ -36,7 +36,7 @@ void HeroMov::init()
 
 void HeroMov::update()
 {
-	if (canMove)
+	if (canMove && heroComp->canTakeAction)
 	{
 		Move();
 	}
@@ -75,7 +75,6 @@ void HeroMov::Move()
 {
 	if (glm::distance(targetPoint, pos->GetPos()) <= stamina->GetCellSize())
 	{
-		std::cout << 2 << std::endl;
 		canMove = false;
 		isMoving = false;
 		return;

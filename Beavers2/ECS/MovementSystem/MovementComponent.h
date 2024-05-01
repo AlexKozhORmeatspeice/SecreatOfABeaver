@@ -1,5 +1,5 @@
 #pragma once
-#include "Components.h"
+#include "PositionComponent.h"
 
 class MovementComponent : public Component
 {
@@ -16,7 +16,7 @@ private:
 	float speed;
 	PositionComponent* pos;
 public:
-
+	bool isMoving;
 	MovementComponent();
 	MovementComponent(float nowSpeed);
 	void init() override;

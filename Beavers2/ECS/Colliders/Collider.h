@@ -13,7 +13,7 @@ protected:
 	bool isMoveble; //can be moved
 	float checkDist;
 
-	Collider* collisionObj;
+	std::vector<Collider*> collisionObjs;
 
 	bool getCol;
 public:
@@ -22,7 +22,9 @@ public:
 	
 	void update() override;
 
-	Collider* GetColllidObj();
+	template <typename T> bool IsColllidWith(Entity* collider);
+	template <typename T> Collider* GetCollidObj();
+
 	bool GetIsTrigger();
 	float GetCheckDist();
 
@@ -34,3 +36,36 @@ protected:
 
 	void GetMinMaxDotProduct(std::vector<glm::vec3> vertices, glm::vec3 normal, float& min, float& max);
 };
+
+template <typename T> 
+bool Collider::IsColllidWith(Entity* collider)
+{
+	const Collider* coll1 = collider->GetComponent<T>();
+
+	if (coll1 != nullptr)
+	{
+		for (auto& coll2 : collisionObjs)
+		{
+			if (coll2 == coll1)
+			{
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
+
+template <typename T> 
+Collider* Collider::GetCollidObj()
+{
+	for (auto& coll : collisionObjs)
+	{
+		if (coll->entity->HasComponent<T>())
+		{
+			return coll;
+		}
+	}
+
+	return nullptr;
+}

@@ -26,7 +26,8 @@ void Hero::update()
 		return;
 	}
 
-	CheckIsChoosed();
+	if(canTakeAction)
+		CheckIsChoosed();
 
 	if (!inFight)
 	{

@@ -1,10 +1,13 @@
 #include "StepSystemManager.h"
 
 StepSysManager* StepSysManager::instance;
+int StepSysManager::enemiesActCount;
 
 void StepSysManager::init()
 {
+	enemiesActCount = 0;
 	inFight = false;
+	heroAct = true;
 
 	if (instance == nullptr)
 	{
@@ -17,6 +20,49 @@ void StepSysManager::update()
 	
 	if (!inFight)
 		return;
+
+	StartFightLogic();
+}
+
+void StepSysManager::StartFightLogic()
+{
+	if (enemies.size() == 0)
+		EndFight();
+
+	if (heroAct) //hero logic
+	{
+		int letterEState = GLFWGetKeyState(GLFW_KEY_E); //if got letter E on keybord stop hero turn
+
+		if (letterEState == GLFW_PRESS)
+		{
+			std::cout << 2 << std::endl;
+			for (auto& hero : heroes)
+			{
+				hero->entity->GetComponent<Stamina>()->Recover();
+				hero->canTakeAction = false;
+				heroAct = false;
+
+				enemies[0]->canTakeAction = true;
+			}
+		}
+	}
+	else //enemy logic
+	{
+		if (enemiesActCount == enemies.size())
+		{
+			enemiesActCount = 0;
+			heroAct = true;
+			return;
+		}
+		
+		Enemy* enemy = enemies[0];
+		if (!enemy->canTakeAction)
+		{
+			enemies.erase(enemies.begin());
+			enemies.push_back(enemy);
+			enemiesActCount++;
+		}
+	}
 }
 
 void StepSysManager::AddHero(Hero* newHero)
@@ -31,6 +77,7 @@ void StepSysManager::AddEnemy(Enemy* newEnemy)
 void StepSysManager::StartFight()
 {
 	inFight = true;
+	heroAct = true;
 
 	for (Hero* hero : heroes)
 	{
@@ -50,6 +97,7 @@ void StepSysManager::EndFight()
 	SetEnemiesUnableToAct();
 
 	inFight = false;
+	heroAct = true;
 }
 
 void StepSysManager::RefreshList()

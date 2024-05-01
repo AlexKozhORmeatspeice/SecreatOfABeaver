@@ -91,6 +91,9 @@ void MovementComponent::update()
 		default:
 			break;
 	}
+	
+	isMoving = (resVec != glm::vec3(0.0f, 0.0f, 0.0f));
+
 	pos->SetPos(pos->GetPos() + resVec);
 }
 

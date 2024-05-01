@@ -6,7 +6,7 @@
 #include "Hero.h"
 #include "Enemy.h"
 
-
+#include "Render.h"
 class StepSysManager : public Component
 {
 private:
@@ -14,6 +14,8 @@ private:
 	std::vector<Enemy*> enemies;
 
 	bool inFight;
+	bool heroAct;
+	static int enemiesActCount;
 public:
 	static StepSysManager* instance;
 
@@ -27,6 +29,8 @@ public:
 	void EndFight();
 
 private:
+	void StartFightLogic();
+
 	void SetHeroesFreeToAct();
 	void SetEnemiesUnableToAct();
 

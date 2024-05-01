@@ -3,13 +3,8 @@ std::vector<Collider*> Collider::AllColliders;
 
 Collider::Collider()
 {
-	collisionObj = nullptr;
+	collisionObjs.clear();
 	AllColliders.push_back(this);
-}
-
-Collider* Collider::GetColllidObj()
-{
-	return collisionObj;
 }
 
 void Collider::update()
@@ -17,7 +12,7 @@ void Collider::update()
 	initVecPositions();
 	getCol = CheckCollision();
 
-	if (getCol && isTrigger && (collisionObj != nullptr && collisionObj->GetIsTrigger() ))
+	if (getCol && isTrigger && (collisionObjs.size() != 0))
 		ResolveColision();
 }
 

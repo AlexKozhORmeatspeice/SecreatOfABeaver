@@ -72,6 +72,9 @@ void CircleCollider::draw()
 
 bool CircleCollider::CheckCollision()
 {
+	collisionObjs.clear();
+	bool finelState = false;
+
 	for (auto& collider : AllColliders)
 	{
 		if (collider == this)
@@ -89,13 +92,12 @@ bool CircleCollider::CheckCollision()
 
 		if (glm::distance(posA2, posB2) < checkDistNow )
 		{
-			collisionObj = collider;
-			return true;
+			collisionObjs.push_back(collider);
+			finelState = true;
 		}
 	}
 
-	collisionObj = nullptr;
-	return false;
+	return finelState;
 }
 
 void CircleCollider::ResolveColision()
@@ -103,12 +105,22 @@ void CircleCollider::ResolveColision()
 	if (!isMoveble)
 		return;
 
-	std::vector<glm::vec3> verticesB = collisionObj->flatVectors;
-
 	glm::vec3 posA = pos->GetPos();
-	glm::vec3 posB = (verticesB[0] + verticesB[1] + verticesB[2] + verticesB[3]) / 4.0f; //avarage of pos_vertices sum is a center of the figure éîó
+	glm::vec3 resVec = glm::vec3(0.0f);
+	for (auto& collisionObj : collisionObjs)
+	{
+		if (!collisionObj->GetIsTrigger() || collisionObj == this)
+			continue;
 
-	glm::vec3 resVec = posA - posB;
+		std::vector<glm::vec3> verticesB = collisionObj->flatVectors;
+		glm::vec3 posB = (verticesB[0] + verticesB[1] + verticesB[2] + verticesB[3]) / 4.0f; //avarage of pos_vertices sum is a center of the figure éîó
+
+		resVec += posA - posB;
+	}
+
+
+	if (resVec == glm::vec3(0.0f))
+		return;
 	resVec /= glm::length(resVec);
 
 	pos->SetPos(pos->GetPos() + resVec * 5.0f);
