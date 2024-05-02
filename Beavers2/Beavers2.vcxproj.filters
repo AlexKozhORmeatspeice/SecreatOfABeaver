@@ -40,6 +40,11 @@
     <ClCompile Include="ECS\Managers\StepSystemManager.cpp" />
     <ClCompile Include="ECS\Pers\Hero.cpp" />
     <ClCompile Include="ECS\Pers\Enemy.cpp" />
+    <ClCompile Include="ECS\Items\Inventory.cpp" />
+    <ClCompile Include="ECS\UI\UIIcon.cpp" />
+    <ClCompile Include="ECS\UI\UIButton.cpp" />
+    <ClCompile Include="ECS\UI\UICollider.cpp" />
+    <ClCompile Include="ECS\UI\UIElement.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Depend\GLEW\include\GL\eglew.h" />
@@ -328,6 +333,14 @@
     <ClInclude Include="ECS\Pers\Enemy.h" />
     <ClInclude Include="ECS\Stats\HP.h" />
     <ClInclude Include="ECS\Managers\StepSystemManager.h" />
+    <ClInclude Include="ECS\Items\Inventory.h" />
+    <ClInclude Include="ECS\Items\Item.h" />
+    <ClInclude Include="ECS\Items\Weapon.h" />
+    <ClInclude Include="ECS\Items\Knife.h" />
+    <ClInclude Include="ECS\UI\UIIcon.h" />
+    <ClInclude Include="ECS\UI\UIElement.h" />
+    <ClInclude Include="ECS\UI\UIButton.h" />
+    <ClInclude Include="ECS\UI\UICollider.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\Textures\Beaver1.jpg" />
@@ -493,6 +506,7 @@
     <None Include="Depend\GLEW\bin\Release\x64\visualinfo.exe" />
     <None Include="Depend\GLEW\doc\glew.css" />
     <None Include="res\Shaders\WithoutTexBasic.shader" />
+    <None Include="ECS\Items\Item.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="res\vendor\glm\CMakeLists.txt" />

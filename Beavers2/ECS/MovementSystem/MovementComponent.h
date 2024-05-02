@@ -14,7 +14,7 @@ private:
 
 
 	float speed;
-	PositionComponent* pos;
+	Transform* pos;
 public:
 	bool isMoving;
 	MovementComponent();

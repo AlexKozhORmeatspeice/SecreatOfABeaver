@@ -45,7 +45,7 @@ void Hero::CheckIsChoosed()
 
 	for (Hero* hero : heroes)
 	{
-		if (mouseLeftState == GLFW_PRESS && Coursor::GetCollision<BoxCollider>(hero->entity))
+		if (mouseLeftState == GLFW_PRESS && Coursor::GetCollisionStatus<BoxCollider>(hero->entity))
 		{
 			hero->isChoosed = true;
 			SetOtherNotChoosed(hero);

@@ -18,14 +18,14 @@ void HeroMov::init()
 	isMoving = false;
 	canMove = false;
 
-	pos = entity->GetComponent<PositionComponent>();
+	pos = entity->GetComponent<Transform>();
 
 	stamina = entity->GetComponent<Stamina>();
 
 	Entity& circleMoveEntity = Manager::addEntity();
 
-	circleMoveEntity.AddComponent<PositionComponent>();
-	circlePos = circleMoveEntity.GetComponent<PositionComponent>();
+	circleMoveEntity.AddComponent<Transform>();
+	circlePos = circleMoveEntity.GetComponent<Transform>();
 	circlePos->SetPos(pos->GetPos());
 
 	circleMoveEntity.AddComponent<Circle>(1.0f);
@@ -50,7 +50,7 @@ void HeroMov::update()
 	bool inMoveRadius = CanMove(Coursor::GetMousePos(), pos->GetPos(), moveCost);
 	bool gotClickNotOnObject = (
 								mouseLeftState == GLFW_PRESS && 
-								!Coursor::GetCollision<BoxCollider>(entity)
+								!Coursor::GetCollisionStatus<BoxCollider>()
 							   );
 	
 	//if get right mouse or click to move out of move distance set not choosed
@@ -61,7 +61,7 @@ void HeroMov::update()
 	}
 
 	//if got left mouse click is right start move
-	if (!isMoving && !canMove && gotClickNotOnObject && inMoveRadius)
+	if (!isMoving && !canMove && gotClickNotOnObject && inMoveRadius && !Coursor::isOnUI)
 	{
 		heroComp->isChoosed = false;
 		canMove = true;

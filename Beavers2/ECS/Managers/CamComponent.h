@@ -9,7 +9,7 @@ class CamComponent : public Component
 {
 private:
 	static MovementComponent* movComp;
-	static PositionComponent* pos;
+	static Transform* pos;
 	static glm::mat4 proj;
 
 	float maxScroll;

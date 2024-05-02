@@ -24,4 +24,9 @@
 #include "HeroMov.h"
 #include "EnemyMov.h"
 
+#include "UIElement.h"
+#include "UICollider.h"
+#include "UIIcon.h"
+#include "UIButton.h"
+
 #include "PlainsGenerator.h"

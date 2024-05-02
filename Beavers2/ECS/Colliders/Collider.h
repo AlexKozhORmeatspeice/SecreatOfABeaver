@@ -6,7 +6,7 @@ class Collider : public Component
 {
 protected:
 	static std::vector<Collider*> AllColliders;
-	PositionComponent* pos;
+	Transform* pos;
 
 	bool drawingColliders = true; // to test param
 	bool isTrigger; //true - can react with others, false - cant

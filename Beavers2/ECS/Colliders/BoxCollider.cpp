@@ -25,7 +25,7 @@ BoxCollider::BoxCollider(float nowWidth, float nowHeigt, bool nowIsTrigger, bool
 
 void BoxCollider::init()
 {
-	pos = entity->GetComponent<PositionComponent>();
+	pos = entity->GetComponent<Transform>();
 
 	vb = new VertexBuffer(vertices, 4 * 2 * sizeof(float));
 	ib = new IndexBuffer(indices, 6);
@@ -181,9 +181,9 @@ void BoxCollider::ResolveColision()
 		resVec.z = 0.0f;
 	}
 
-
 	if (resVec == glm::vec3(0.0f))
 		return;
+
 	resVec /= glm::length(resVec);
 
 	//TODO: some crazy math to increase speed when object near the center

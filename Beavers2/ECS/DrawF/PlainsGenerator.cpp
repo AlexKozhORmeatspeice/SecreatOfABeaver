@@ -18,7 +18,7 @@ Tile::Tile(float now_height, float now_width, const char* pathShader, const char
 
 void Tile::init()
 {
-	pos = entity->GetComponent<PositionComponent>();
+	pos = entity->GetComponent<Transform>();
 	float tile_how_much_x = width / side;
 	float tile_how_much_y = height / side;
 	float verticesArr[4 * 4] = 

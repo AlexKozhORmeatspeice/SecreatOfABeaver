@@ -4,22 +4,24 @@
 void Entity::update()
 {
 	for (auto& c : components) c->update();
+	for (auto& c : components) c->lastUpdate();
 }
 
 void Entity::draw()
 {
 	for (auto& c : components) c->draw();
+	for (auto& c : components) c->lastDraw();
 }
 
-void Entity::destroy() { active = false; }
+void Entity::destroy() 
+{ 
+	active = false; 
+}
 
 
 Entity::~Entity()
 {
-	for (auto& c : components)
-	{
-		delete c;
-	}
+	
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -39,23 +41,20 @@ void Manager::refresh()
 	entities.erase(
 		std::remove_if(std::begin(entities),
 			std::end(entities),
-			[](Entity* mEntity) { return  (mEntity == nullptr || !mEntity->isActive()); }),
+			[](Entity* mEntity) { return (!mEntity->isActive()); }),
 		entities.end()
 	);
 }
 
 Entity& Manager::addEntity()
 {
-	Entity* e = new Entity();
-	entities.emplace_back(e);
+	Entity* entity = new Entity();
+	
+	entities.emplace_back(entity);
 
-	return *e;
+	return *entity;
 }
 
 Manager::~Manager()
 {		
-	for (auto entity : entities)
-	{
-		delete entity;
-	}
 }

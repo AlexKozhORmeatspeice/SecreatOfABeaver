@@ -82,7 +82,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)Depend\GLFW\include;$(ProjectDir)Depend\GLEW\include;$(ProjectDir)res\Shaders;$(ProjectDir)res\GL;$(ProjectDir)res\Renderer;$(ProjectDir)src;$(ProjectDir)res\Textures;$(ProjectDir)res\vendor\stb_image;$(ProjectDir)res\vendor;$(ProjectDir)res\vendor\imgui;$(ProjectDir)ECS;$(ProjectDir)ECS\MovementSystem;$(ProjectDir)ECS\Managers;$(ProjectDir)ECS\Colliders;$(ProjectDir)ECS\Pers;$(ProjectDir)ECS\DrawF;$(ProjectDir)ECS\Stats</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Depend\GLFW\include;$(ProjectDir)Depend\GLEW\include;$(ProjectDir)res\Shaders;$(ProjectDir)res\GL;$(ProjectDir)res\Renderer;$(ProjectDir)src;$(ProjectDir)res\Textures;$(ProjectDir)res\vendor\stb_image;$(ProjectDir)res\vendor;$(ProjectDir)res\vendor\imgui;$(ProjectDir)ECS;$(ProjectDir)ECS\MovementSystem;$(ProjectDir)ECS\Managers;$(ProjectDir)ECS\Colliders;$(ProjectDir)ECS\Pers;$(ProjectDir)ECS\DrawF;$(ProjectDir)ECS\Stats;$(ProjectDir)ECS\AttackSystem;$(ProjectDir)ECS\UI;$(ProjectDir)ECS\Items</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -99,7 +99,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)Depend\GLFW\include;$(ProjectDir)Depend\GLEW\include;$(ProjectDir)res\Shaders;$(ProjectDir)res\GL;$(ProjectDir)res\Renderer;$(ProjectDir)src;$(ProjectDir)res\Textures;$(ProjectDir)res\vendor\stb_image;$(ProjectDir)res\vendor;$(ProjectDir)res\vendor\imgui;$(ProjectDir)ECS;$(ProjectDir)ECS\MovementSystem;$(ProjectDir)ECS\Managers;$(ProjectDir)ECS\Colliders;$(ProjectDir)ECS\Pers;$(ProjectDir)ECS\DrawF;$(ProjectDir)ECS\Stats</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Depend\GLFW\include;$(ProjectDir)Depend\GLEW\include;$(ProjectDir)res\Shaders;$(ProjectDir)res\GL;$(ProjectDir)res\Renderer;$(ProjectDir)src;$(ProjectDir)res\Textures;$(ProjectDir)res\vendor\stb_image;$(ProjectDir)res\vendor;$(ProjectDir)res\vendor\imgui;$(ProjectDir)ECS;$(ProjectDir)ECS\MovementSystem;$(ProjectDir)ECS\Managers;$(ProjectDir)ECS\Colliders;$(ProjectDir)ECS\Pers;$(ProjectDir)ECS\DrawF;$(ProjectDir)ECS\Stats;$(ProjectDir)ECS\AttackSystem;$(ProjectDir)ECS\UI;$(ProjectDir)ECS\Items</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -156,7 +156,12 @@
     <ClCompile Include="ECS\PositionComponent.cpp" />
     <ClCompile Include="ECS\DrawF\SpriteComponent.cpp" />
     <ClCompile Include="ECS\Stats\HP.cpp" />
+    <ClCompile Include="ECS\Items\Inventory.cpp" />
     <ClCompile Include="ECS\Stats\Stamina.cpp" />
+    <ClCompile Include="ECS\UI\UIButton.cpp" />
+    <ClCompile Include="ECS\UI\UICollider.cpp" />
+    <ClCompile Include="ECS\UI\UIElement.cpp" />
+    <ClCompile Include="ECS\UI\UIIcon.cpp" />
     <ClCompile Include="res\GL\GLErrors.cpp" />
     <ClCompile Include="res\GL\IndexBuffer.cpp" />
     <ClCompile Include="res\GL\VertexArray.cpp" />
@@ -187,6 +192,7 @@
     <ClInclude Include="Depend\GLFW\include\GLFW\glfw3.h" />
     <ClInclude Include="Depend\GLFW\include\GLFW\glfw3native.h" />
     <ClInclude Include="ECS\BoxCollider.h" />
+    <ClInclude Include="ECS\UI\UICollider.h" />
     <ClInclude Include="ECS\Managers\CamComponent.h" />
     <ClInclude Include="ECS\Colliders\BoxCollider.h" />
     <ClInclude Include="ECS\Colliders\CircleCollider.h" />
@@ -204,7 +210,14 @@
     <ClInclude Include="ECS\PositionComponent.h" />
     <ClInclude Include="ECS\DrawF\SpriteComponent.h" />
     <ClInclude Include="ECS\Stats\HP.h" />
+    <ClInclude Include="ECS\Items\Inventory.h" />
+    <ClInclude Include="ECS\Items\Item.h" />
+    <ClInclude Include="ECS\Items\Knife.h" />
     <ClInclude Include="ECS\Stats\Stamina.h" />
+    <ClInclude Include="ECS\Items\Weapon.h" />
+    <ClInclude Include="ECS\UI\UIButton.h" />
+    <ClInclude Include="ECS\UI\UIElement.h" />
+    <ClInclude Include="ECS\UI\UIIcon.h" />
     <ClInclude Include="res\GL\GLErrors.h" />
     <ClInclude Include="res\GL\IndexBuffer.h" />
     <ClInclude Include="res\GL\VertexArray.h" />
@@ -485,6 +498,7 @@
     <None Include="Depend\GLEW\doc\install.html" />
     <None Include="Depend\GLEW\doc\log.html" />
     <None Include="Depend\GLEW\doc\wglew.html" />
+    <None Include="ECS\Items\Item.cpp" />
     <None Include="res\Shaders\Basic.shader" />
     <None Include="res\Shaders\Circle.shader" />
     <None Include="res\Shaders\WithoutTexBasic.shader" />

@@ -12,7 +12,7 @@ MovementComponent::MovementComponent(float nowSpeed)
 
 void MovementComponent::init()
 {
-	pos = entity->GetComponent<PositionComponent>();
+	pos = entity->GetComponent<Transform>();
 }
 
 void MovementComponent::update()
@@ -21,10 +21,10 @@ void MovementComponent::update()
 		return;
 	
 	glm::vec3 resVec = glm::vec3(0, 0, 0);
-	int stateDown = GLFWGetKeyState(GLFW_KEY_DOWN);
-	int stateLeft = GLFWGetKeyState(GLFW_KEY_LEFT);
-	int stateRight = GLFWGetKeyState(GLFW_KEY_RIGHT);
-	int stateUp = GLFWGetKeyState(GLFW_KEY_UP);
+	int stateDown = GLFWGetKeyState(GLFW_KEY_S);
+	int stateLeft = GLFWGetKeyState(GLFW_KEY_A);
+	int stateRight = GLFWGetKeyState(GLFW_KEY_D);
+	int stateUp = GLFWGetKeyState(GLFW_KEY_W);
 
 	if (stateLeft == GLFW_PRESS && stateRight == GLFW_RELEASE)
 	{

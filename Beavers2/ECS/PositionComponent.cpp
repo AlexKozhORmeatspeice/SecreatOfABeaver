@@ -1,36 +1,73 @@
 #include "PositionComponent.h"
 
-PositionComponent::PositionComponent()
+Transform::Transform()
 {
 	pos = glm::vec3(0.0f, 0.0f, 0.0f);
+	scale = glm::vec3(1.0f, 1.0f, 1.0f);
+	rotation = glm::vec3(0.0f, 0.0f, 0.0f);
 }
 
 
-PositionComponent::PositionComponent(glm::vec3 newPos)
+Transform::Transform(glm::vec3 newPos, glm::vec3 newScale, glm::vec3 newRot)
 {
 	pos = newPos;
+	scale = newScale;
+	rotation = newRot;
 }
 
-glm::vec3 PositionComponent::GetPos()
+Transform::Transform(glm::vec3 newPos, glm::vec3 newScale)
+{
+	pos = newPos;
+	scale = newScale;
+	rotation = glm::vec3(0.0f, 0.0f, 0.0f);
+}
+Transform::Transform(glm::vec3 newPos)
+{
+	pos = newPos;
+	scale = glm::vec3(1.0f, 1.0f, 1.0f);
+	rotation = glm::vec3(0.0f, 0.0f, 0.0f);
+}
+
+glm::vec3 Transform::GetPos()
 {
 	return pos;
 }
-
-void PositionComponent::init()
-{
-
-}
-
-void PositionComponent::update()
-{
-	//pos += glm::vec3(1, 1, 0);
-}
-void PositionComponent::SetPos(glm::vec3 newPos)
+void Transform::SetPos(glm::vec3 newPos)
 {
 	pos = newPos;
 }
 
-PositionComponent::~PositionComponent()
+glm::vec3 Transform::GetScale()
+{
+	return scale;
+}
+void Transform::SetScale(glm::vec3 newScale)
+{
+	scale = newScale;
+}
+
+glm::vec3 Transform::GetRot()
+{
+	return rotation;
+}
+void Transform::SetRot(glm::vec3 newRot)
+{
+	rotation = newRot;
+}
+
+
+void Transform::init()
+{
+
+}
+
+void Transform::update()
+{
+	//pos += glm::vec3(1, 1, 0);
+}
+
+
+Transform::~Transform()
 {
 	
 }

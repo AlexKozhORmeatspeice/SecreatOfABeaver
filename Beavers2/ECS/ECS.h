@@ -38,7 +38,10 @@ public:
 
 	virtual void init() {}
 	virtual void update() {}
+	virtual void lastUpdate() {}
+
 	virtual void draw() {}
+	virtual void lastDraw() {}
 
 	virtual ~Component() {}
 private:
@@ -49,7 +52,7 @@ class Entity
 {
 private:
 	bool active = true;
-	std::vector<Component*> components;
+	std::vector<std::unique_ptr<Component>> components;
 
 	ComponentArray componentArray;
 	ComponentBitSet componentBitSet;
@@ -67,7 +70,9 @@ public:
 		T* c = new T(std::forward<TArgs>(mArgs)...);
 		c->entity = this;
 
-		components.emplace_back(c);
+		std::unique_ptr<Component> uPtr{ c };
+
+		components.emplace_back(std::move(uPtr));
 		
 		componentArray[GetComponentTypeID<T>()] = c;
 		componentBitSet[GetComponentTypeID<T>()] = true;

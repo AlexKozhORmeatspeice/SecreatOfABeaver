@@ -42,15 +42,16 @@ void SpriteComponent::SetNewColor(glm::vec4 newColor)
 
 void SpriteComponent::init() 
 {
-	pos = entity->GetComponent<PositionComponent>();
+	transform = entity->GetComponent<Transform>();
 }
 
 void SpriteComponent::update() 
 {
 	glm::mat4 proj = CamComponent::GetProj();
 	glm::mat4 view = glm::translate(glm::mat4(1.0f), -CamComponent::GetPos());
-	glm::mat4 model = glm::translate(glm::mat4(1.0f), pos->GetPos());
-	m_MVP = proj * view * model;
+	glm::mat4 model = glm::translate(glm::mat4(1.0f), transform->GetPos());
+	glm::mat4 scale = glm::scale(glm::mat4(1.0f), transform->GetScale());
+	m_MVP = proj * view * model * scale;
 	
 	shader_basic->Bind();
 	shader_basic->SetUniformMat4f("u_MVP", m_MVP);

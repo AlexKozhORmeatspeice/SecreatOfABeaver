@@ -8,7 +8,7 @@ class Circle : public Component
 {
 private:
 	bool isActive;
-	PositionComponent* pos;
+	Transform* transform;
 
 	float vertices[16] = {
 		-1.0f, -1.0f, 0.0f, 0.0f,

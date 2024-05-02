@@ -1,17 +1,22 @@
 #include "Coursor.h"
 
 
-PositionComponent* Coursor::posBox;
+Transform* Coursor::posBox;
 Entity* Coursor::checkBox;
 glm::vec3 Coursor::mousePos;
+glm::vec2 Coursor::normMousePos;
+bool Coursor::isOnUI;
 
 void Coursor::init()
 {
-	checkBox = &Manager::addEntity();
-	mousePos = glm::vec3(0.0f, 0.0f, 0.0f);
+	isOnUI = false;
 
-	checkBox->AddComponent<PositionComponent>();
-	posBox = checkBox->GetComponent<PositionComponent>();
+	checkBox = &Manager::addEntity();
+	mousePos = glm::vec3(0.0f);
+	normMousePos = glm::vec2(0.0f);
+
+	checkBox->AddComponent<Transform>();
+	posBox = checkBox->GetComponent<Transform>();
 
 	checkBox->AddComponent<BoxCollider>(3.0f, 3.0f, false, false);
 }
@@ -27,6 +32,8 @@ void Coursor::update()
 	
 	mousePos.x = 2 * (mousePos.x + (GLFWGetWeidth() / 2)) / (GLFWGetWeidth()) - 1; //liner normalization from -1 to 1 (opengl coords)
 	mousePos.y = 2 * (mousePos.y + (GLFWGetHeight() / 2)) / (GLFWGetHeight()) - 1; //liner normalization from -1 to 1 (opengl coords)
+
+	normMousePos = glm::vec2(mousePos.x, mousePos.y); //do not delete this line
 
 	glm::mat4 proj = CamComponent::GetProj();
 	glm::mat4 view = glm::translate(glm::mat4(1.0f), CamComponent::GetPos());

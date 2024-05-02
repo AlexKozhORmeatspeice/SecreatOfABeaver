@@ -20,12 +20,12 @@ EnemyMov::EnemyMov(float nowViewDist, unsigned int nowMoveCost)
 void EnemyMov::init()
 {
 	enemy = entity->GetComponent<Enemy>();
-	pos = entity->GetComponent<PositionComponent>();
+	pos = entity->GetComponent<Transform>();
 
 	checkCircle = &Manager::addEntity();
 
-	checkCircle->AddComponent<PositionComponent>();
-	checkCirclePos = checkCircle->GetComponent<PositionComponent>();
+	checkCircle->AddComponent<Transform>();
+	checkCirclePos = checkCircle->GetComponent<Transform>();
 
 	checkCircle->AddComponent<CircleCollider>(viewDist, false, false);
 }
@@ -40,7 +40,7 @@ void EnemyMov::update()
 	if (collidObj != nullptr && heroPos == nullptr)
 	{
 		StepSysManager::instance->StartFight();
-		heroPos = collidObj->entity->GetComponent<PositionComponent>();
+		heroPos = collidObj->entity->GetComponent<Transform>();
 	}
 
 	if (enemy->canTakeAction)
@@ -69,5 +69,5 @@ void EnemyMov::Move()
 
 EnemyMov::~EnemyMov()
 {
-
+	checkCircle->destroy();
 }

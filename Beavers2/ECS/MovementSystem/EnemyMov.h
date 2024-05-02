@@ -6,13 +6,13 @@ class EnemyMov : public Component
 private:
 	Enemy* enemy;
 
-	PositionComponent* heroPos;
-	PositionComponent* pos;
+	Transform* heroPos;
+	Transform* pos;
 
 	BoxCollider* collider;
 
 	Entity* checkCircle;
-	PositionComponent* checkCirclePos;
+	Transform* checkCirclePos;
 
 	glm::vec3 viewDir;
 	

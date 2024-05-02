@@ -13,26 +13,47 @@ class Coursor : public Component
 {
 private:
 	static Entity* checkBox;
-	static PositionComponent* posBox;
+	static Transform* posBox;
 
 	static glm::vec3 mousePos;
+	static glm::vec2 normMousePos;
+
 public:
+	static bool isOnUI;
+
 	void update() override;
 	void init() override;
 
 	template <typename T>
-	static inline bool GetCollision(Entity* collider);
+	static inline bool GetCollisionStatus(Entity* collider);
 
+	template <typename T>
+	static inline bool GetCollisionStatus();
 	static inline glm::vec3 GetMousePos()
 	{
 		return mousePos;
 	}
 
+	static inline glm::vec2 GetNormalizedMousePos()
+	{
+		return normMousePos;
+	}
 	~Coursor();
 };
 
 template <typename T>
-bool Coursor::GetCollision(Entity* collider)
+bool Coursor::GetCollisionStatus(Entity* collider)
 {
+	if (isOnUI)
+		return false;
+
 	return checkBox->GetComponent<BoxCollider>()->IsColllidWith<T>(collider);
+}
+
+template <typename T>
+bool Coursor::GetCollisionStatus()
+{
+	Collider* boxCollider = checkBox->GetComponent<BoxCollider>()->GetCollidObj<T>();
+
+	return boxCollider != nullptr;
 }

@@ -12,8 +12,8 @@ Circle::Circle(float nowRadius)
 
 void Circle::init()
 {
-	pos = entity->GetComponent<PositionComponent>();
-
+	transform = entity->GetComponent<Transform>();
+	transform->SetScale(glm::vec3(radius, radius, 1.0f));
 
 	vb = new VertexBuffer(vertices, 4 * 4 * sizeof(float));
 	ib = new IndexBuffer(indices, 6);
@@ -41,11 +41,10 @@ void Circle::draw()
 	glm::mat4 proj = CamComponent::GetProj();
 	glm::mat4 view = glm::translate(glm::mat4(1.0f), -CamComponent::GetPos());
 	
-	glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(pos->GetPos().x, pos->GetPos().y, pos->GetPos().z));
-	glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(radius, radius, 1.0f));
-	model = model * scale;
+	glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(transform->GetPos().x, transform->GetPos().y, transform->GetPos().z));
+	glm::mat4 scale = glm::scale(glm::mat4(1.0f), transform->GetScale());
 
-	m_MVP = proj * view * model;
+	m_MVP = proj * view * model * scale;
 
 	shader->Bind();
 	shader->SetUniformMat4f("u_MVP", m_MVP);
@@ -64,6 +63,7 @@ void Circle::SetColor(glm::vec4 color)
 void Circle::SetRadius(float newRadius)
 {
 	radius = newRadius;
+	transform->SetScale(glm::vec3(radius, radius, 1.0f));
 }
 
 Circle::~Circle()

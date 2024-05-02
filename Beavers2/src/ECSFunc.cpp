@@ -17,19 +17,27 @@ void ECSInit()
 	Entity& cam(Manager::addEntity());
 	Entity& stepSys(Manager::addEntity());
 
+	//////////////////UIElements//////////////////
+	Entity& button(Manager::addEntity());
+	button.AddComponent<UIButton>(glm::vec2(0.8, -0.8), 
+								  "res/Textures/button.png",
+								  0.1f, 0.1f);
+
+	//////////////////////////////////////////////
 	StepSysManager* stepSM = stepSys.AddComponent<StepSysManager>();
 
 	coursor.AddComponent<Coursor>();
 	
-	cam.AddComponent<PositionComponent>(glm::vec3(0, 0, 0));
-	cam.AddComponent<MovementComponent>(5.0f);
+	cam.AddComponent<Transform>(glm::vec3(0, 0, 0));
+	cam.AddComponent<MovementComponent>(8.0f);
 	cam.AddComponent<CamComponent>();
 
 
 	glm::vec4 color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
 
 	////
-	beaver1.AddComponent<PositionComponent>(glm::vec3(-200.0f, 50.0f, 0.0f));
+	beaver1.AddComponent<Transform>(glm::vec3(-200.0f, 50.0f, 0.0f),
+									glm::vec3(50.0f, 50.0f, 1.0f));
 	beaver1.AddComponent<Stamina>(100);
 	beaver1.AddComponent<HP>();
 	beaver1.AddComponent<SpriteComponent>("res/Textures/Zubki.png", 
@@ -41,7 +49,8 @@ void ECSInit()
 	////
 
 	////
-	beaver2.AddComponent<PositionComponent>(glm::vec3(-50.0f, -100.0f, 0.0f));
+	beaver2.AddComponent<Transform>(glm::vec3(-50.0f, -100.0f, 0.0f),
+									glm::vec3(50.0f, 50.0f, 1.0f));
 	beaver2.AddComponent<Stamina>(100);
 	beaver2.AddComponent<HP>();
 	beaver2.AddComponent<SpriteComponent>("res/Textures/Zubki.png", 
@@ -53,7 +62,8 @@ void ECSInit()
 	////
 
 	////
-	enemy.AddComponent<PositionComponent>(glm::vec3(100.0f, 100.0f, 0.0f));
+	enemy.AddComponent<Transform>(glm::vec3(100.0f, 100.0f, 0.0f),
+								  glm::vec3(50.0f, 50.0f, 1.0f));
 	enemy.AddComponent<Stamina>(100);
 	enemy.AddComponent<HP>();
 	enemy.AddComponent<SpriteComponent>("res/Textures/bobr.png",
@@ -66,7 +76,7 @@ void ECSInit()
 	
 	////
 	Entity& floor(Manager::addEntity());
-	floor.AddComponent<PositionComponent>(glm::vec3(0.0f, 0.0f, 0.0f));
+	floor.AddComponent<Transform>();
 	floor.AddComponent<Tile>(1200.0f, 1200.0f, "res/Shaders/Basic.shader", 
 												"res/Textures/FloorTexture.png");
 }

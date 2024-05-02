@@ -1,7 +1,7 @@
 #include "CamComponent.h"
 #include "Render.h"
 
-PositionComponent* CamComponent::pos;
+Transform* CamComponent::pos;
 glm::mat4 CamComponent::proj;
 MovementComponent* CamComponent::movComp;
 
@@ -15,7 +15,7 @@ void CamComponent::init()
 	proj = glm::ortho(-GLFWGetWeidth() / 2.0f / scrollK, GLFWGetWeidth() / 2.0f / scrollK, -GLFWGetHeight() / 2.0f / scrollK, GLFWGetHeight() / 2.0f / scrollK, -1.0f, 1.0f);
 	
 	movComp = entity->GetComponent<MovementComponent>();
-	pos = entity->GetComponent<PositionComponent>();
+	pos = entity->GetComponent<Transform>();
 }
 
 void CamComponent::update()

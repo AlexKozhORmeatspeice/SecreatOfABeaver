@@ -1,16 +1,15 @@
 #pragma once
 #include "ECS.h"
-#include "PositionComponent.h"
-#include "CamComponent.h"
+#include "Render.h"
 #include "Renderer.h"
+#include "UIElement.h"
 
-class SpriteComponent : public Component
+/// <summary>
+/// works with opengl coords (-1 to 1)
+/// </summary>
+class UIIcon : public UIElement
 {
-private:
-	Transform* transform;
-	CamComponent* activeCam;
-	glm::mat4 m_MVP;
-
+protected:
 	VertexBuffer* vb;
 	IndexBuffer* ib;
 	VertexArray* va;
@@ -31,14 +30,12 @@ private:
 		2, 3, 0
 	};
 public:
-	SpriteComponent(const char* pathTexture, const char* pathShader, glm::vec4 nowColor);
-
-	void SetNewColor(glm::vec4 newColor);
+	UIIcon();
+	UIIcon(glm::vec2 newCoords, const char* pathTexture, float nowWidth, float nowHeight);
 
 	void init() override;
-
 	void update() override;
-	void draw() override;
-
-	~SpriteComponent();
+	void lastDraw() override;
+	
+	~UIIcon();
 };

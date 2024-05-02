@@ -17,7 +17,7 @@ private:
 	Hero* heroComp;
 
 	Stamina* stamina;
-	PositionComponent* pos;
+	Transform* pos;
 	
 	bool canMove = false;
 
@@ -29,7 +29,7 @@ private:
 	bool isMoving = false;
 
 	Circle* circle;
-	PositionComponent* circlePos;
+	Transform* circlePos;
 public:
 	HeroMov();
 	HeroMov(unsigned int nowMoveCost);
