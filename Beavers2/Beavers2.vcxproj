@@ -158,6 +158,8 @@
     <ClCompile Include="ECS\Stats\HP.cpp" />
     <ClCompile Include="ECS\Items\Inventory.cpp" />
     <ClCompile Include="ECS\Stats\Stamina.cpp" />
+    <ClCompile Include="ECS\TextComponents\FontSheet.cpp" />
+    <ClCompile Include="ECS\TextComponents\SystemMessage.cpp" />
     <ClCompile Include="ECS\UI\UIButton.cpp" />
     <ClCompile Include="ECS\UI\UICollider.cpp" />
     <ClCompile Include="ECS\UI\UIElement.cpp" />
@@ -192,6 +194,8 @@
     <ClInclude Include="Depend\GLFW\include\GLFW\glfw3.h" />
     <ClInclude Include="Depend\GLFW\include\GLFW\glfw3native.h" />
     <ClInclude Include="ECS\BoxCollider.h" />
+    <ClInclude Include="ECS\TextComponents\FontSheet.h" />
+    <ClInclude Include="ECS\TextComponents\SystemMessage.h" />
     <ClInclude Include="ECS\UI\UICollider.h" />
     <ClInclude Include="ECS\Managers\CamComponent.h" />
     <ClInclude Include="ECS\Colliders\BoxCollider.h" />

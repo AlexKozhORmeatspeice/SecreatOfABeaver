@@ -45,6 +45,8 @@
     <ClCompile Include="ECS\UI\UIButton.cpp" />
     <ClCompile Include="ECS\UI\UICollider.cpp" />
     <ClCompile Include="ECS\UI\UIElement.cpp" />
+    <ClCompile Include="ECS\TextComponents\SystemMessage.cpp" />
+    <ClCompile Include="ECS\TextComponents\FontSheet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Depend\GLEW\include\GL\eglew.h" />
@@ -341,6 +343,8 @@
     <ClInclude Include="ECS\UI\UIElement.h" />
     <ClInclude Include="ECS\UI\UIButton.h" />
     <ClInclude Include="ECS\UI\UICollider.h" />
+    <ClInclude Include="ECS\TextComponents\SystemMessage.h" />
+    <ClInclude Include="ECS\TextComponents\FontSheet.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\Textures\Beaver1.jpg" />
