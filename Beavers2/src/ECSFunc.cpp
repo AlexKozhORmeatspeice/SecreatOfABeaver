@@ -5,80 +5,36 @@
 //// 2. Размеры объектов указывать также числами кратными		////
 ////    10																////
 ////////////////////////////////////////////////////////////////////////////
+glm::vec4 basicColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
 
 void ECSInit()
 {
-	Entity& beaver1(Manager::addEntity());
-	Entity& beaver2(Manager::addEntity());
-
-	Entity& enemy(Manager::addEntity());
-
 	Entity& coursor(Manager::addEntity());
 	Entity& cam(Manager::addEntity());
 	Entity& stepSys(Manager::addEntity());
-
-	//////////////////UIElements//////////////////
-	Entity& button(Manager::addEntity());
-	button.AddComponent<UIButton>(glm::vec2(0.8, -0.8), 
-								  "res/Textures/button.png",
-								  0.1f, 0.1f);
+	Entity& floor(Manager::addEntity());
 
 	//////////////////////////////////////////////
 	StepSysManager* stepSM = stepSys.AddComponent<StepSysManager>();
 
 	coursor.AddComponent<Coursor>();
 	
-	cam.AddComponent<Transform>(glm::vec3(0, 0, 0));
+	cam.AddComponent<Transform>(glm::vec3(0.0f));
 	cam.AddComponent<MovementComponent>(8.0f);
 	cam.AddComponent<CamComponent>();
 
-
-	glm::vec4 color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-
-	////
-	beaver1.AddComponent<Transform>(glm::vec3(-200.0f, 50.0f, 0.0f),
-									glm::vec3(50.0f, 50.0f, 1.0f));
-	beaver1.AddComponent<Stamina>(100);
-	beaver1.AddComponent<HP>();
-	beaver1.AddComponent<SpriteComponent>("res/Textures/Zubki.png", 
-		"res/Shaders/Basic.shader",
-		color);
-	beaver1.AddComponent<BoxCollider>(50, 50, true, true);
-	stepSM->AddHero(beaver1.AddComponent<Hero>()); //!!!
-	beaver1.AddComponent<HeroMov>(10);
-	////
-
-	////
-	beaver2.AddComponent<Transform>(glm::vec3(-50.0f, -100.0f, 0.0f),
-									glm::vec3(50.0f, 50.0f, 1.0f));
-	beaver2.AddComponent<Stamina>(100);
-	beaver2.AddComponent<HP>();
-	beaver2.AddComponent<SpriteComponent>("res/Textures/Zubki.png", 
-		"res/Shaders/Basic.shader",
-		color);
-	beaver2.AddComponent<BoxCollider>(50, 50, true, false);
-	stepSM->AddHero(beaver2.AddComponent<Hero>()); //!!!
-	beaver2.AddComponent<HeroMov>(10);
-	////
-
-	////
-	enemy.AddComponent<Transform>(glm::vec3(100.0f, 100.0f, 0.0f),
-								  glm::vec3(50.0f, 50.0f, 1.0f));
-	enemy.AddComponent<Stamina>(100);
-	enemy.AddComponent<HP>();
-	enemy.AddComponent<SpriteComponent>("res/Textures/bobr.png",
-		"res/Shaders/Basic.shader",
-		color);
-	enemy.AddComponent<BoxCollider>(50, 50, true, true);
-	stepSM->AddEnemy(enemy.AddComponent<Enemy>()); //!!!
-	enemy.AddComponent<EnemyMov>(400.0f, 10);
-	////
 	
-	////
-	Entity& floor(Manager::addEntity());
-	floor.AddComponent<Transform>();
-	floor.AddComponent<Tile>(1200.0f, 1200.0f, "res/Shaders/Basic.shader", 
-												"res/Textures/FloorTexture.png");
+
+	stepSM->AddHero(HeroZubarPrefab()->GetComponent<Hero>()); //!!!
+	stepSM->AddHero(HeroZubarPrefab()->GetComponent<Hero>()); //!!!
+
+	stepSM->AddEnemy(BasicEnemyPrefab()->GetComponent<Enemy>()); //!!!
+	
+	
+	//////////////////////////////////////////////
+	floor.AddComponent<Transform>(glm::vec3(0.0f, 0.0f, 0.0f));
+	floor.AddComponent<Tile>(1200.0f, 1200.0f, "res/Shaders/Basic.shader",
+		"res/Textures/FloorTexture.png");
 }
 
 void ECSStop(std::unique_ptr<Manager> manager)
@@ -91,4 +47,45 @@ Entity& CreatObj()
 	Entity& obj(Manager::addEntity());
 
 	return obj;
+}
+
+
+
+//some prefabs as functions. Don't know still is it worth it to declare them?
+Entity* HeroZubarPrefab()
+{
+	Entity* hero(&Manager::addEntity());
+
+	hero->AddComponent<Transform>(glm::vec3(-200.0f, 50.0f, 0.1f),
+		glm::vec3(50.0f, 50.0f, 1.0f));
+	hero->AddComponent<Stamina>(100);
+	hero->AddComponent<HP>();
+	hero->AddComponent<SpriteComponent>("res/Textures/Zubki.png",
+		"res/Shaders/Basic.shader",
+		basicColor);
+	hero->AddComponent<BoxCollider>(50, 50, true, true);
+	hero->AddComponent<Hero>(); //!!!
+	hero->AddComponent<Inventory>();
+	hero->AddComponent<HeroMov>(10);
+	
+
+	return hero;
+}
+
+Entity* BasicEnemyPrefab()
+{
+	Entity* enemy(&Manager::addEntity());
+
+	enemy->AddComponent<Transform>(glm::vec3(100.0f, 100.0f, 0.1f),
+		glm::vec3(50.0f, 50.0f, 1.0f));
+	enemy->AddComponent<Stamina>(100);
+	enemy->AddComponent<HP>();
+	enemy->AddComponent<SpriteComponent>("res/Textures/bobr.png",
+		"res/Shaders/Basic.shader",
+		basicColor);
+	enemy->AddComponent<BoxCollider>(50, 50, true, true);
+	enemy->AddComponent<Enemy>(); //!!!
+	enemy->AddComponent<EnemyMov>(400.0f, 10);
+
+	return enemy;
 }

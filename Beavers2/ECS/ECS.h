@@ -40,6 +40,7 @@ public:
 	virtual void update() {}
 	virtual void lastUpdate() {}
 
+	virtual void firstDraw() {}
 	virtual void draw() {}
 	virtual void lastDraw() {}
 

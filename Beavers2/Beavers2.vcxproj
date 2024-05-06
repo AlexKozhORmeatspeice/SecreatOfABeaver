@@ -82,7 +82,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)Depend\GLFW\include;$(ProjectDir)Depend\GLEW\include;$(ProjectDir)res\Shaders;$(ProjectDir)res\GL;$(ProjectDir)res\Renderer;$(ProjectDir)src;$(ProjectDir)res\Textures;$(ProjectDir)res\vendor\stb_image;$(ProjectDir)res\vendor;$(ProjectDir)res\vendor\imgui;$(ProjectDir)ECS;$(ProjectDir)ECS\MovementSystem;$(ProjectDir)ECS\Managers;$(ProjectDir)ECS\Colliders;$(ProjectDir)ECS\Pers;$(ProjectDir)ECS\DrawF;$(ProjectDir)ECS\Stats;$(ProjectDir)ECS\AttackSystem;$(ProjectDir)ECS\UI;$(ProjectDir)ECS\Items</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Depend\GLFW\include;$(ProjectDir)Depend\GLEW\include;$(ProjectDir)res\Shaders;$(ProjectDir)res\GL;$(ProjectDir)res\Renderer;$(ProjectDir)src;$(ProjectDir)res\Textures;$(ProjectDir)res\vendor\stb_image;$(ProjectDir)res\vendor;$(ProjectDir)res\vendor\imgui;$(ProjectDir)ECS;$(ProjectDir)ECS\MovementSystem;$(ProjectDir)ECS\Managers;$(ProjectDir)ECS\Colliders;$(ProjectDir)ECS\Pers;$(ProjectDir)ECS\DrawF;$(ProjectDir)ECS\Stats;$(ProjectDir)ECS\AttackSystem;$(ProjectDir)ECS\UI;$(ProjectDir)ECS\Items;$(ProjectDir)ECS\Items\All_Items;$(ProjectDir)res\Textures\CodeFiles;$(ProjectDir)res\Textures\UI</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -99,7 +99,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)Depend\GLFW\include;$(ProjectDir)Depend\GLEW\include;$(ProjectDir)res\Shaders;$(ProjectDir)res\GL;$(ProjectDir)res\Renderer;$(ProjectDir)src;$(ProjectDir)res\Textures;$(ProjectDir)res\vendor\stb_image;$(ProjectDir)res\vendor;$(ProjectDir)res\vendor\imgui;$(ProjectDir)ECS;$(ProjectDir)ECS\MovementSystem;$(ProjectDir)ECS\Managers;$(ProjectDir)ECS\Colliders;$(ProjectDir)ECS\Pers;$(ProjectDir)ECS\DrawF;$(ProjectDir)ECS\Stats;$(ProjectDir)ECS\AttackSystem;$(ProjectDir)ECS\UI;$(ProjectDir)ECS\Items</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Depend\GLFW\include;$(ProjectDir)Depend\GLEW\include;$(ProjectDir)res\Shaders;$(ProjectDir)res\GL;$(ProjectDir)res\Renderer;$(ProjectDir)src;$(ProjectDir)res\Textures;$(ProjectDir)res\vendor\stb_image;$(ProjectDir)res\vendor;$(ProjectDir)res\vendor\imgui;$(ProjectDir)ECS;$(ProjectDir)ECS\MovementSystem;$(ProjectDir)ECS\Managers;$(ProjectDir)ECS\Colliders;$(ProjectDir)ECS\Pers;$(ProjectDir)ECS\DrawF;$(ProjectDir)ECS\Stats;$(ProjectDir)ECS\AttackSystem;$(ProjectDir)ECS\UI;$(ProjectDir)ECS\Items;$(ProjectDir)ECS\Items\All_Items;$(ProjectDir)res\Textures\CodeFiles;$(ProjectDir)res\Textures\UI</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -139,6 +139,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ECS\Items\All_Items\DamageWeapon.cpp" />
+    <ClCompile Include="ECS\Items\All_Items\Weapon.cpp" />
     <ClCompile Include="ECS\Managers\CamComponent.cpp" />
     <ClCompile Include="ECS\Colliders\BoxCollider.cpp" />
     <ClCompile Include="ECS\Colliders\CircleCollider.cpp" />
@@ -170,7 +172,7 @@
     <ClCompile Include="res\GL\VertexBuffer.cpp" />
     <ClCompile Include="res\GL\VertexBuffer.h" />
     <ClCompile Include="res\Shaders\Shader.cpp" />
-    <ClCompile Include="res\Textures\Texture.cpp" />
+    <ClCompile Include="res\Textures\CodeFiles\Texture.cpp" />
     <ClCompile Include="res\vendor\glm\detail\glm.cpp" />
     <ClCompile Include="res\vendor\imgui\imgui.cpp" />
     <ClCompile Include="res\vendor\imgui\imgui_demo.cpp" />
@@ -215,10 +217,10 @@
     <ClInclude Include="ECS\DrawF\SpriteComponent.h" />
     <ClInclude Include="ECS\Stats\HP.h" />
     <ClInclude Include="ECS\Items\Inventory.h" />
-    <ClInclude Include="ECS\Items\Item.h" />
-    <ClInclude Include="ECS\Items\Knife.h" />
+    <ClInclude Include="ECS\Items\All_Items\Item.h" />
+    <ClInclude Include="ECS\Items\All_Items\DamageWeapon.h" />
     <ClInclude Include="ECS\Stats\Stamina.h" />
-    <ClInclude Include="ECS\Items\Weapon.h" />
+    <ClInclude Include="ECS\Items\All_Items\Weapon.h" />
     <ClInclude Include="ECS\UI\UIButton.h" />
     <ClInclude Include="ECS\UI\UIElement.h" />
     <ClInclude Include="ECS\UI\UIIcon.h" />
@@ -227,7 +229,7 @@
     <ClInclude Include="res\GL\VertexArray.h" />
     <ClInclude Include="res\GL\VertexBufferLayout.h" />
     <ClInclude Include="res\Shaders\Shader.h" />
-    <ClInclude Include="res\Textures\Texture.h" />
+    <ClInclude Include="res\Textures\CodeFiles\Texture.h" />
     <ClInclude Include="res\vendor\glm\common.hpp" />
     <ClInclude Include="res\vendor\glm\detail\compute_common.hpp" />
     <ClInclude Include="res\vendor\glm\detail\compute_vector_relational.hpp" />
@@ -502,9 +504,10 @@
     <None Include="Depend\GLEW\doc\install.html" />
     <None Include="Depend\GLEW\doc\log.html" />
     <None Include="Depend\GLEW\doc\wglew.html" />
-    <None Include="ECS\Items\Item.cpp" />
+    <None Include="ECS\Items\All_Items\Item.cpp" />
     <None Include="res\Shaders\Basic.shader" />
     <None Include="res\Shaders\Circle.shader" />
+    <None Include="res\Shaders\HPBar.shader" />
     <None Include="res\Shaders\WithoutTexBasic.shader" />
     <None Include="res\vendor\glm\detail\func_common.inl" />
     <None Include="res\vendor\glm\detail\func_common_simd.inl" />
@@ -646,7 +649,10 @@
     <Image Include="Depend\GLEW\doc\travis.png" />
     <Image Include="res\Textures\Beaver1.jpg" />
     <Image Include="res\Textures\bobr.png" />
+    <Image Include="res\Textures\button.png" />
     <Image Include="res\Textures\FloorTexture.png" />
+    <Image Include="res\Textures\UI\HPBar.png" />
+    <Image Include="res\Textures\knife.png" />
     <Image Include="res\Textures\Wood.jpg" />
     <Image Include="res\Textures\Zubki.png" />
   </ItemGroup>
@@ -657,7 +663,6 @@
     <Text Include="res\vendor\glm\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="Depend\GLEW\lib\Release\Win32\glew32.lib" />
     <Library Include="Depend\GLEW\lib\Release\Win32\glew32s.lib" />
     <Library Include="Depend\GLFW\lib-vc2022\glfw3.lib" />
   </ItemGroup>

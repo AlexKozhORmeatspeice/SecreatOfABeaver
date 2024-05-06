@@ -4,3 +4,6 @@
 
 void ECSInit();
 void ECSStop(std::unique_ptr<Manager> manager);
+
+Entity* HeroZubarPrefab();
+Entity* BasicEnemyPrefab();

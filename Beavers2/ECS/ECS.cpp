@@ -9,6 +9,7 @@ void Entity::update()
 
 void Entity::draw()
 {
+	for (auto& c : components) c->firstDraw();
 	for (auto& c : components) c->draw();
 	for (auto& c : components) c->lastDraw();
 }

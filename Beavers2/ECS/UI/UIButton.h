@@ -3,11 +3,12 @@
 #include "UIIcon.h"
 #include "UICollider.h"
 #include "ctime"
+#include "functional"
 
 class UIButton : public UIIcon
 {
 private:
-	std::vector<void (*)()> calls;
+	std::vector<std::function<void()>> calls;
 	UICollider* UIColl;
 	
 	unsigned int timeBetweenClicks = 1; //in seconds
@@ -24,7 +25,7 @@ public:
 	void update() override;
 	void init() override;
 
-	void AddCall(void (*)());
+	void AddCall(std::function<void()> elem);
 
 	~UIButton();
 private:

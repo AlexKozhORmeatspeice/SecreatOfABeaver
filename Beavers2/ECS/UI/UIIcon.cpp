@@ -54,6 +54,10 @@ void UIIcon::update()
 
 void UIIcon::lastDraw()
 {
+	if (!enabled)
+		return;
+
+	glDepthFunc(GL_ALWAYS);
 	glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(coords.x, coords.y, 0.0f));
 	glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(width, height, 1.0f));
 
@@ -73,9 +77,9 @@ void UIIcon::lastDraw()
 
 UIIcon::~UIIcon()
 {
+	delete va;
 	delete ib;
 	delete vb;
-	delete va;
 	delete shader_basic;
 	delete texture;
 }

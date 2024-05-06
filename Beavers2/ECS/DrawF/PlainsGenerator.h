@@ -20,6 +20,6 @@ class Tile: public Component {
 	public: 
 		Tile(float now_height, float now_width, const char* pathShader, const char* pathTexture);
 		void update() override;
-		void draw() override;
+		void firstDraw() override;
 		void init() override;
 };

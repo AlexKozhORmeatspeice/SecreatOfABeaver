@@ -30,3 +30,4 @@
 #include "UIButton.h"
 
 #include "PlainsGenerator.h"
+#include "Inventory.h"

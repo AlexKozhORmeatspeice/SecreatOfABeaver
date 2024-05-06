@@ -7,7 +7,7 @@ class UICollider : public Component
 {
 private:
 	bool isCollidWithMouse;
-	
+	static bool gotCollisionAny;
 public:
 	float width;		//set in object on which it's collider
 	float height;	   //
@@ -17,6 +17,7 @@ public:
 
 	void init() override;
 	void update() override;
+	void lastUpdate() override;
 
 	bool GetIsCollidMouth();
 };

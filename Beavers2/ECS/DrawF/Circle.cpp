@@ -38,6 +38,8 @@ void Circle::draw()
 	if (!isActive)
 		return;
 
+	glDepthFunc(GL_LEQUAL);
+
 	glm::mat4 proj = CamComponent::GetProj();
 	glm::mat4 view = glm::translate(glm::mat4(1.0f), -CamComponent::GetPos());
 	

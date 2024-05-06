@@ -54,7 +54,7 @@ void HeroMov::update()
 							   );
 	
 	//if get right mouse or click to move out of move distance set not choosed
-	if (gotClickNotOnObject && !inMoveRadius)
+	if (gotClickNotOnObject && !inMoveRadius && !Coursor::isOnUI)
 	{
 		heroComp->isChoosed = false;
 		return;

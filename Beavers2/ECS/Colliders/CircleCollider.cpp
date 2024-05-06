@@ -44,6 +44,8 @@ void CircleCollider::draw()
 	if (!drawingColliders)
 		return;
 
+	glDepthFunc(GL_LEQUAL);
+
 	shader->Bind();
 	if (getCol)
 	{
@@ -57,7 +59,7 @@ void CircleCollider::draw()
 
 	glm::mat4 proj = CamComponent::GetProj();
 	glm::mat4 view = glm::translate(glm::mat4(1.0f), -CamComponent::GetPos());
-	glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(pos->GetPos().x, pos->GetPos().y, pos->GetPos().z + 1.0f));
+	glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(pos->GetPos().x, pos->GetPos().y, pos->GetPos().z));
 	
 	glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(checkDist, checkDist, 1.0f));
 	model = model * scale;

@@ -15,7 +15,6 @@
     <ClCompile Include="res\GL\VertexBuffer.cpp" />
     <ClCompile Include="res\GL\VertexBuffer.h" />
     <ClCompile Include="res\Shaders\Shader.cpp" />
-    <ClCompile Include="res\Textures\Texture.cpp" />
     <ClCompile Include="res\vendor\glm\detail\glm.cpp" />
     <ClCompile Include="res\vendor\imgui\imgui.cpp" />
     <ClCompile Include="res\vendor\imgui\imgui_demo.cpp" />
@@ -47,6 +46,9 @@
     <ClCompile Include="ECS\UI\UIElement.cpp" />
     <ClCompile Include="ECS\TextComponents\SystemMessage.cpp" />
     <ClCompile Include="ECS\TextComponents\FontSheet.cpp" />
+    <ClCompile Include="ECS\Items\All_Items\DamageWeapon.cpp" />
+    <ClCompile Include="ECS\Items\All_Items\Weapon.cpp" />
+    <ClCompile Include="res\Textures\CodeFiles\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Depend\GLEW\include\GL\eglew.h" />
@@ -69,7 +71,6 @@
     <ClInclude Include="res\GL\VertexArray.h" />
     <ClInclude Include="res\GL\VertexBufferLayout.h" />
     <ClInclude Include="res\Shaders\Shader.h" />
-    <ClInclude Include="res\Textures\Texture.h" />
     <ClInclude Include="res\vendor\glm\common.hpp" />
     <ClInclude Include="res\vendor\glm\detail\compute_common.hpp" />
     <ClInclude Include="res\vendor\glm\detail\compute_vector_relational.hpp" />
@@ -336,15 +337,16 @@
     <ClInclude Include="ECS\Stats\HP.h" />
     <ClInclude Include="ECS\Managers\StepSystemManager.h" />
     <ClInclude Include="ECS\Items\Inventory.h" />
-    <ClInclude Include="ECS\Items\Item.h" />
-    <ClInclude Include="ECS\Items\Weapon.h" />
-    <ClInclude Include="ECS\Items\Knife.h" />
     <ClInclude Include="ECS\UI\UIIcon.h" />
     <ClInclude Include="ECS\UI\UIElement.h" />
     <ClInclude Include="ECS\UI\UIButton.h" />
     <ClInclude Include="ECS\UI\UICollider.h" />
     <ClInclude Include="ECS\TextComponents\SystemMessage.h" />
     <ClInclude Include="ECS\TextComponents\FontSheet.h" />
+    <ClInclude Include="ECS\Items\All_Items\Item.h" />
+    <ClInclude Include="ECS\Items\All_Items\DamageWeapon.h" />
+    <ClInclude Include="ECS\Items\All_Items\Weapon.h" />
+    <ClInclude Include="res\Textures\CodeFiles\Texture.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\Textures\Beaver1.jpg" />
@@ -357,6 +359,9 @@
     <Image Include="res\Textures\bobr.png" />
     <Image Include="res\Textures\FloorTexture.png" />
     <Image Include="res\Textures\Zubki.png" />
+    <Image Include="res\Textures\button.png" />
+    <Image Include="res\Textures\knife.png" />
+    <Image Include="res\Textures\UI\HPBar.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Depend\GLEW\doc\advanced.html" />
@@ -510,7 +515,8 @@
     <None Include="Depend\GLEW\bin\Release\x64\visualinfo.exe" />
     <None Include="Depend\GLEW\doc\glew.css" />
     <None Include="res\Shaders\WithoutTexBasic.shader" />
-    <None Include="ECS\Items\Item.cpp" />
+    <None Include="ECS\Items\All_Items\Item.cpp" />
+    <None Include="res\Shaders\HPBar.shader" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="res\vendor\glm\CMakeLists.txt" />
@@ -519,8 +525,7 @@
     <Text Include="Depend\GLEW\doc\mesa.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="Depend\GLEW\lib\Release\Win32\glew32.lib" />
-    <Library Include="Depend\GLEW\lib\Release\Win32\glew32s.lib" />
     <Library Include="Depend\GLFW\lib-vc2022\glfw3.lib" />
+    <Library Include="Depend\GLEW\lib\Release\Win32\glew32s.lib" />
   </ItemGroup>
 </Project>

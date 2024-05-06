@@ -48,7 +48,7 @@ void Coursor::update()
 
 Coursor::~Coursor()
 {
-
+	checkBox->destroy();
 }
 
 

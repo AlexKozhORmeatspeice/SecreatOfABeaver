@@ -32,7 +32,7 @@ void main()
 
 	color *= vec3(smoothstep(thickness + fade, thickness, dist));
 
-	if(color == 0.0)
+	if(color == vec3(0.0, 0.0, 0.0))
 		discard;
 
 	o_color = vec4(u_Color.rgb * color, 1.0);

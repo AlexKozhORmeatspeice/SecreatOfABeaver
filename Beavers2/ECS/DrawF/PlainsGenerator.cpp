@@ -71,8 +71,10 @@ void Tile::update()
 	shader_basic->Unbind();
 }
 
-void Tile::draw()
+void Tile::firstDraw()
 {
+	glDepthFunc(GL_LEQUAL);
+
 	texture->Bind();
 	Renderer::Draw(*va, *ib, *shader_basic);
 	texture->Unbind();

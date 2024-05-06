@@ -15,6 +15,8 @@ private:
 	IndexBuffer* ib;
 	VertexArray* va;
 	Shader* shader_basic;
+
+	const char* texture_path;
 	Texture* texture;
 
 	glm::vec4 color;
@@ -31,6 +33,9 @@ private:
 		2, 3, 0
 	};
 public:
+	bool isDisabled;
+	SpriteComponent(const char* pathTexture);
+	SpriteComponent(const char* pathTexture, glm::vec4 nowColor);
 	SpriteComponent(const char* pathTexture, const char* pathShader, glm::vec4 nowColor);
 
 	void SetNewColor(glm::vec4 newColor);
@@ -40,5 +45,19 @@ public:
 	void update() override;
 	void draw() override;
 
+	void inline Disable()
+	{
+		isDisabled = true;
+	}
+
+	void inline Enable()
+	{
+		isDisabled = false;
+	}
+	
+	const char* GetTexture()
+	{
+		return texture_path;
+	}
 	~SpriteComponent();
 };

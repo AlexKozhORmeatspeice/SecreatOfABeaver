@@ -25,10 +25,14 @@ public:
 	void init() override;
 
 	template <typename T>
-	static inline bool GetCollisionStatus(Entity* collider);
+	static inline bool GetCollisionStatusWith(Entity* collider);
 
 	template <typename T>
 	static inline bool GetCollisionStatus();
+
+	template <typename T>
+	static inline T* GetCollision();
+
 	static inline glm::vec3 GetMousePos()
 	{
 		return mousePos;
@@ -42,7 +46,7 @@ public:
 };
 
 template <typename T>
-bool Coursor::GetCollisionStatus(Entity* collider)
+bool Coursor::GetCollisionStatusWith(Entity* collider)
 {
 	if (isOnUI)
 		return false;
@@ -56,4 +60,19 @@ bool Coursor::GetCollisionStatus()
 	Collider* boxCollider = checkBox->GetComponent<BoxCollider>()->GetCollidObj<T>();
 
 	return boxCollider != nullptr;
+}
+
+template <typename T>
+T* Coursor::GetCollision()
+{
+	Collider* boxCollider = checkBox->GetComponent<BoxCollider>()->GetCollidObj<T>();
+	if (boxCollider != nullptr)
+	{
+		return boxCollider->entity->GetComponent<T>();
+	}
+	else
+	{
+		return nullptr;
+	}
+	
 }

@@ -75,9 +75,9 @@ void UIButton::update()
 	}
 }
 
-void UIButton::AddCall(void (*func)())
+void UIButton::AddCall(std::function<void()> elem)
 {
-	calls.push_back(func);
+	calls.push_back(elem);
 }
 
 void UIButton::StartCalls()
