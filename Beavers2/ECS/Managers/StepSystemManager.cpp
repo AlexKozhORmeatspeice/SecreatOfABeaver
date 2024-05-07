@@ -2,6 +2,8 @@
 
 StepSysManager* StepSysManager::instance;
 int StepSysManager::enemiesActCount;
+std::vector<Hero*> StepSysManager::heroes;
+std::vector<Enemy*> StepSysManager::enemies;
 
 void StepSysManager::init()
 {
@@ -16,12 +18,19 @@ void StepSysManager::init()
 }
 void StepSysManager::update()
 {
-	RefreshList();
+	std::cout << enemies.size() << std::endl;
+	
+	
 	
 	if (!inFight)
 		return;
 
 	StartFightLogic();
+}
+
+void StepSysManager::lastUpdate()
+{
+	RefreshList();
 }
 
 void StepSysManager::StartFightLogic()
@@ -65,13 +74,13 @@ void StepSysManager::StartFightLogic()
 	}
 }
 
-void StepSysManager::AddHero(Hero* newHero)
+void StepSysManager::AddHero(Hero& newHero)
 {
-	heroes.push_back(newHero);
+	heroes.push_back(&newHero);
 }
-void StepSysManager::AddEnemy(Enemy* newEnemy)
+void StepSysManager::AddEnemy(Enemy& newEnemy)
 {
-	enemies.push_back(newEnemy);
+	enemies.push_back(&newEnemy);
 }
 
 void StepSysManager::StartFight()
@@ -105,14 +114,14 @@ void StepSysManager::RefreshList()
 	//remove deleted heroes
 	heroes.erase(std::remove_if
 	(heroes.begin(), heroes.end(),
-	[](Hero* hero) {return hero == nullptr; }
+	[](Hero* hero) {return (!hero->entity->isActive()); }
 	), heroes.end()
 	);
 
 	//remove deleted enemies
 	enemies.erase(std::remove_if
 	(enemies.begin(), enemies.end(),
-		[](Enemy* enemy) {return enemy == nullptr; }
+		[](Enemy* enemy) {return (!enemy->entity->isActive()); }
 	), enemies.end()
 	);
 }

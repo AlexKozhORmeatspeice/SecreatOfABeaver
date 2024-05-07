@@ -26,15 +26,15 @@ Entity::~Entity()
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::vector<Entity*> Manager::entities;
+std::vector<std::unique_ptr<Entity>> Manager::entities;
 void Manager::update()
 {
-	for (auto& e : entities) e->update();
+	for (const auto& e : entities) e->update();
 }
 
 void Manager::draw()
 {
-	for (auto& e : entities) e->draw();
+	for (const auto& e : entities) e->draw();
 }
 
 void Manager::refresh()
@@ -42,7 +42,7 @@ void Manager::refresh()
 	entities.erase(
 		std::remove_if(std::begin(entities),
 			std::end(entities),
-			[](Entity* mEntity) { return (!mEntity->isActive()); }),
+			[](std::unique_ptr<Entity>& mEntity) { return (!mEntity->isActive()); }),
 		entities.end()
 	);
 }
@@ -51,7 +51,9 @@ Entity& Manager::addEntity()
 {
 	Entity* entity = new Entity();
 	
-	entities.emplace_back(entity);
+	std::unique_ptr<Entity> uPtr{ entity };
+
+	entities.emplace_back(std::move(uPtr));
 
 	return *entity;
 }

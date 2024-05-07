@@ -1,4 +1,5 @@
 #include "Enemy.h"
+#include "StepSystemManager.h"
 
 void Enemy::init()
 {
@@ -19,6 +20,8 @@ void Enemy::update()
 		inFight = false;
 
 		entity->destroy();
+		StepSysManager::RefreshList();
+		return;
 	}
 
 	if (!inFight)
@@ -27,4 +30,9 @@ void Enemy::update()
 
 		stamina->Recover();
 	}
+}
+
+Enemy::~Enemy()
+{
+	entity = nullptr;
 }

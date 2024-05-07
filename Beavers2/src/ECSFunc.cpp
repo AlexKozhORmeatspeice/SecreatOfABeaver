@@ -25,10 +25,10 @@ void ECSInit()
 
 	
 
-	stepSM->AddHero(HeroZubarPrefab()->GetComponent<Hero>()); //!!!
-	stepSM->AddHero(HeroZubarPrefab()->GetComponent<Hero>()); //!!!
+	stepSM->AddHero(*HeroZubarPrefab()->GetComponent<Hero>()); //!!!
+	stepSM->AddHero(*HeroZubarPrefab()->GetComponent<Hero>()); //!!!
 
-	stepSM->AddEnemy(BasicEnemyPrefab()->GetComponent<Enemy>()); //!!!
+	stepSM->AddEnemy(*BasicEnemyPrefab()->GetComponent<Enemy>()); //!!!
 	
 	
 	//////////////////////////////////////////////

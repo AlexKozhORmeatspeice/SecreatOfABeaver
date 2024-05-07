@@ -110,7 +110,7 @@ public:
 class Manager
 {
 private:
-	static std::vector<Entity*> entities;
+	static std::vector<std::unique_ptr<Entity>> entities;
 
 public:
 	void update();

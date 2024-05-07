@@ -10,8 +10,8 @@
 class StepSysManager : public Component
 {
 private:
-	std::vector<Hero*> heroes;
-	std::vector<Enemy*> enemies;
+	static std::vector<Hero*> heroes;
+	static std::vector<Enemy*> enemies;
 
 	bool inFight;
 	bool heroAct;
@@ -21,18 +21,18 @@ public:
 
 	void init() override;
 	void update() override;
+	void lastUpdate() override;
 
-	void AddHero(Hero* newHero);
-	void AddEnemy(Enemy* newEnemy);
+	void AddHero(Hero& newHero);
+	void AddEnemy(Enemy& newEnemy);
 
 	void StartFight();
 	void EndFight();
 
+	static void RefreshList();
 private:
 	void StartFightLogic();
 
 	void SetHeroesFreeToAct();
 	void SetEnemiesUnableToAct();
-
-	void RefreshList();
 };

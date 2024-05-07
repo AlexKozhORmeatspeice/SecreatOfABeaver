@@ -27,16 +27,16 @@ private:
 	glm::mat4 m_MVP;
 
 	Transform* pos;
-	unsigned int maxHP = 100;
-	unsigned int nowHP;
+	int maxHP = 100;
+	int nowHP;
 public:
 	HP();
-	HP(unsigned int nowMaxHP);
+	HP(int nowMaxHP);
 
 	void init() override;
 	void draw() override;
 
-	void GetDamage(unsigned int useHP);
+	void GetDamage(int useHP);
 	void Recover();
 	bool isDead();
 

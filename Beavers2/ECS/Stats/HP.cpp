@@ -5,7 +5,7 @@ HP::HP()
 {
 	maxHP = 100;
 }
-HP::HP(unsigned int nowMaxHP)
+HP::HP(int nowMaxHP)
 {
 	maxHP = nowMaxHP;
 }
@@ -46,7 +46,7 @@ void HP::init()
 	nowHP = maxHP;
 }
 
-void HP::GetDamage(unsigned int useHP)
+void HP::GetDamage(int useHP)
 {
 	if (nowHP - useHP < 0)
 	{

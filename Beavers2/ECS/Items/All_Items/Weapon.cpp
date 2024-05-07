@@ -22,7 +22,6 @@ void Weapon::update()
 	bool enoughStamina = useCost <= nowStamina->GetNowStamina();
 	bool gotLeftClick = mouseLeftState == GLFW_PRESS;
 
-	std::cout << (enoughtDist && enoughStamina) << std::endl;
 	if (enoughtDist && enoughStamina && gotLeftClick)
 	{
 		nowStamina->UseStamina(useCost);

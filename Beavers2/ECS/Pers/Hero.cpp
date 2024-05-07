@@ -1,4 +1,5 @@
 #include "Hero.h"
+#include "StepSystemManager.h"
 
 std::vector<Hero*> Hero::heroes;
 
@@ -23,6 +24,7 @@ void Hero::update()
 		inFight = false;
 
 		entity->destroy();
+		StepSysManager::RefreshList();
 		return;
 	}
 
@@ -81,4 +83,6 @@ Hero::~Hero()
 	{
 		heroes.erase(it);
 	}
+
+	entity = nullptr;
 }
