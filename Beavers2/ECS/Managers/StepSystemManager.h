@@ -21,13 +21,17 @@ public:
 
 	void init() override;
 	void update() override;
-	void lastUpdate() override;
 
 	void AddHero(Hero& newHero);
 	void AddEnemy(Enemy& newEnemy);
 
 	void StartFight();
 	void EndFight();
+
+	bool inline IsInFight()
+	{
+		return inFight;
+	}
 
 	static void RefreshList();
 private:

@@ -83,6 +83,4 @@ Hero::~Hero()
 	{
 		heroes.erase(it);
 	}
-
-	entity = nullptr;
 }

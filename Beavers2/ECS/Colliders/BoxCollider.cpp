@@ -26,6 +26,7 @@ BoxCollider::BoxCollider(float nowWidth, float nowHeigt, bool nowIsTrigger, bool
 void BoxCollider::init()
 {
 	pos = entity->GetComponent<Transform>();
+	getColWithTrigger = false;
 
 	vb = new VertexBuffer(vertices, 4 * 2 * sizeof(float));
 	ib = new IndexBuffer(indices, 6);
@@ -82,6 +83,7 @@ bool BoxCollider::CheckCollision() //it's an SAT algorithm or something like tha
 {
 	collisionObjs.clear();
 	bool finelState = false;
+	bool finelStateWithTrigger = false;
 
 	for (auto& collider : AllColliders)
 	{
@@ -95,7 +97,13 @@ bool BoxCollider::CheckCollision() //it's an SAT algorithm or something like tha
 		float checkDistNow = checkDist + collider->GetCheckDist();
 
 		glm::vec3 posA = pos->GetPos();
-		glm::vec3 posB = (verticesB[0] + verticesB[1] + verticesB[2] + verticesB[3]) / 4.0f; //avarage of pos_vertices sum is a center of the figure éîó
+		glm::vec3 sumVec = glm::vec3(0.0f);
+		for (auto& vec : verticesB)
+		{
+			sumVec += vec;
+		}
+
+		glm::vec3 posB = sumVec / (float)verticesB.size(); //avarage of pos_vertices sum is a center of the figure éîó
 		
 		glm::vec2 posA2(posA);
 		glm::vec2 posB2(posB);
@@ -155,9 +163,15 @@ bool BoxCollider::CheckCollision() //it's an SAT algorithm or something like tha
 		if (gotGap)
 			continue;
 		
+
+		if (collider->GetIsTrigger())
+			finelStateWithTrigger = true;
+		
 		collisionObjs.push_back(collider);
 		finelState = true;
 	}
+
+	getColWithTrigger = finelStateWithTrigger;
 
 	return finelState;
 }
@@ -176,8 +190,15 @@ void BoxCollider::ResolveColision()
 			continue;
 		
 		std::vector<glm::vec3> verticesB = collisionObj->flatVectors;
-		glm::vec3 posB = (verticesB[0] + verticesB[1] + verticesB[2] + verticesB[3]) / 4.0f; //avarage of pos_vertices sum is a center of the figure éîó
 		
+		glm::vec3 sumVec = glm::vec3(0.0f);
+		for (auto& vec : verticesB)
+		{
+			sumVec += vec;
+		}
+
+		glm::vec3 posB = sumVec / (float)verticesB.size(); //avarage of pos_vertices sum is a center of the figure éîó
+
 		resVec += posA - posB;
 		resVec.z = 0.0f;
 	}
@@ -195,6 +216,8 @@ void BoxCollider::initVecPositions()
 {
 	float x = pos->GetPos().x;
 	float y = pos->GetPos().y;
+	flatVectors.clear();
+
 
 	flatVectors =
 	{

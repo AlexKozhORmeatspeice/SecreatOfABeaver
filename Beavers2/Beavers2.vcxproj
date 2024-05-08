@@ -148,6 +148,7 @@
     <ClCompile Include="ECS\DrawF\Circle.cpp" />
     <ClCompile Include="ECS\ECS.cpp" />
     <ClCompile Include="ECS\Managers\Coursor.cpp" />
+    <ClCompile Include="ECS\Managers\Raycast.cpp" />
     <ClCompile Include="ECS\Managers\StepSystemManager.cpp" />
     <ClCompile Include="ECS\MovementSystem\HeroMov.cpp" />
     <ClCompile Include="ECS\MovementSystem\MovementComponent.cpp" />
@@ -196,6 +197,7 @@
     <ClInclude Include="Depend\GLFW\include\GLFW\glfw3.h" />
     <ClInclude Include="Depend\GLFW\include\GLFW\glfw3native.h" />
     <ClInclude Include="ECS\BoxCollider.h" />
+    <ClInclude Include="ECS\Managers\Raycast.h" />
     <ClInclude Include="ECS\TextComponents\FontSheet.h" />
     <ClInclude Include="ECS\TextComponents\SystemMessage.h" />
     <ClInclude Include="ECS\UI\UICollider.h" />
@@ -653,6 +655,7 @@
     <Image Include="res\Textures\FloorTexture.png" />
     <Image Include="res\Textures\UI\HPBar.png" />
     <Image Include="res\Textures\knife.png" />
+    <Image Include="res\Textures\wall.png" />
     <Image Include="res\Textures\Wood.jpg" />
     <Image Include="res\Textures\Zubki.png" />
   </ItemGroup>

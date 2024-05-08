@@ -19,6 +19,8 @@ EnemyMov::EnemyMov(float nowViewDist, unsigned int nowMoveCost)
 
 void EnemyMov::init()
 {
+	seeHero = false;
+
 	enemy = entity->GetComponent<Enemy>();
 	pos = entity->GetComponent<Transform>();
 
@@ -39,9 +41,26 @@ void EnemyMov::update()
 	//TODO: change to stamina system movement
 	if (collidObj != nullptr && heroPos == nullptr)
 	{
-		StepSysManager::instance->StartFight();
 		heroPos = collidObj->entity->GetComponent<Transform>();
 	}
+	
+
+	seeHero = (heroPos != nullptr &&
+			   Raycast::CheckCollision<Hero>(pos->GetPos(), heroPos->GetPos() - pos->GetPos(), entity)
+			  );
+
+	if (!seeHero)
+	{
+		heroPos = nullptr;
+	}
+	
+	std::cout << seeHero << std::endl;
+
+	//if see hero start fight
+	/*if (seeHero && heroPos != nullptr && !StepSysManager::instance->IsInFight())
+	{
+		StepSysManager::instance->StartFight();
+	}*/
 
 	if (enemy->canTakeAction)
 		Move();
@@ -50,10 +69,8 @@ void EnemyMov::update()
 void EnemyMov::Move()
 {
 	bool GetCollisionWithHero = entity->GetComponent<BoxCollider>()->IsColllidWith<BoxCollider>(heroPos->entity);
-
 	if (GetCollisionWithHero)
 	{
-		std::cout << 1 << std::endl;
 		enemy->canTakeAction = false;
 		heroPos = nullptr;
 		return;
@@ -64,7 +81,14 @@ void EnemyMov::Move()
 	viewDir = heroPos->GetPos() - pos->GetPos();
 	viewDir /= glm::length(viewDir);
 
-	pos->SetPos(pos->GetPos() + viewDir * speed);
+
+	if (seeHero)
+	{
+		pos->SetPos(pos->GetPos() + viewDir * speed);
+	}
+	{
+		enemy->canTakeAction = false;
+	}
 }
 
 EnemyMov::~EnemyMov()

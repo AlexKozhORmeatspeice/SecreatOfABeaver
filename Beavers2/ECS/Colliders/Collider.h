@@ -16,17 +16,29 @@ protected:
 	std::vector<Collider*> collisionObjs;
 
 	bool getCol;
+	bool getColWithTrigger;
 public:
 	std::vector<glm::vec3> flatVectors;
 	Collider();
 	
 	void update() override;
+	void lastUpdate() override;
 
 	template <typename T> bool IsColllidWith(Entity* collider);
 	template <typename T> Collider* GetCollidObj();
 
 	bool GetIsTrigger();
 	float GetCheckDist();
+
+	bool inline IsCollide()
+	{
+		return getCol;
+	}
+
+	bool inline IsCollideWithTrigger()
+	{
+		return getColWithTrigger;
+	}
 
 	~Collider();
 protected:

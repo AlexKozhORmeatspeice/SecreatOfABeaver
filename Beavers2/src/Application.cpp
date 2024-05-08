@@ -24,7 +24,7 @@ int main()
 			break;
 	}
 
-	GameStop();
 	ECSStop(std::move(manager));
 	RenderStop();
+	GameStop();
 }

@@ -10,6 +10,10 @@ Collider::Collider()
 void Collider::update()
 {
 	initVecPositions();
+}
+
+void Collider::lastUpdate()
+{
 	getCol = CheckCollision();
 
 	if (getCol && isTrigger && (collisionObjs.size() != 0))

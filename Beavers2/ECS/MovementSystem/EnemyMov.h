@@ -21,6 +21,8 @@ private:
 	float viewDist;
 
 	float speed;
+
+	bool seeHero;
 public:
 	EnemyMov();
 	EnemyMov(float nowViewDist, unsigned int nowMoveCost);

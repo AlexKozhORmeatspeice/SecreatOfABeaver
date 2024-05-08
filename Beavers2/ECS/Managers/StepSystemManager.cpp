@@ -18,19 +18,10 @@ void StepSysManager::init()
 }
 void StepSysManager::update()
 {
-	std::cout << enemies.size() << std::endl;
-	
-	
-	
 	if (!inFight)
 		return;
 
 	StartFightLogic();
-}
-
-void StepSysManager::lastUpdate()
-{
-	RefreshList();
 }
 
 void StepSysManager::StartFightLogic()

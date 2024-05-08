@@ -64,7 +64,7 @@ void HP::draw()
 	glm::mat4 view = glm::translate(glm::mat4(1.0f), -CamComponent::GetPos());
 	glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(pos->GetPos().x, 
 																pos->GetPos().y + pos->GetScale().y * 1.5f, 
-																pos->GetPos().z));
+																pos->GetPos().z + 0.3f));
 	glm::mat4 scale = glm::scale(glm::mat4(1.0f), pos->GetScale());
 
 	m_MVP = proj * view * model * scale;

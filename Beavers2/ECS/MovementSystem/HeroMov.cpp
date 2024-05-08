@@ -84,6 +84,7 @@ void HeroMov::Move()
 
 	glm::vec3 dir = targetPoint - pos->GetPos();
 	dir /= glm::length(dir);
+	dir.z = 0.0f;
 
 	pos->SetPos(pos->GetPos() + dir * speed);
 }

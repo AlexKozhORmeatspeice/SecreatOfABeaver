@@ -49,6 +49,7 @@
     <ClCompile Include="ECS\Items\All_Items\DamageWeapon.cpp" />
     <ClCompile Include="ECS\Items\All_Items\Weapon.cpp" />
     <ClCompile Include="res\Textures\CodeFiles\Texture.cpp" />
+    <ClCompile Include="ECS\Managers\Raycast.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Depend\GLEW\include\GL\eglew.h" />
@@ -347,6 +348,7 @@
     <ClInclude Include="ECS\Items\All_Items\DamageWeapon.h" />
     <ClInclude Include="ECS\Items\All_Items\Weapon.h" />
     <ClInclude Include="res\Textures\CodeFiles\Texture.h" />
+    <ClInclude Include="ECS\Managers\Raycast.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\Textures\Beaver1.jpg" />
@@ -362,6 +364,7 @@
     <Image Include="res\Textures\button.png" />
     <Image Include="res\Textures\knife.png" />
     <Image Include="res\Textures\UI\HPBar.png" />
+    <Image Include="res\Textures\wall.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Depend\GLEW\doc\advanced.html" />

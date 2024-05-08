@@ -3,9 +3,12 @@
 #include "Renderer.h"
 #include "CamComponent.h"
 #include "Render.h"
+
 class CircleCollider : public Collider
 {
 private:
+	const float pi = 3.14f;
+
 	float vertices[16] = {
 		-1.0f, -1.0f, 0.0f, 0.0f,
 		 1.0f, -1.0f, 1.0f, 0.0f,

@@ -60,4 +60,8 @@ Entity& Manager::addEntity()
 
 Manager::~Manager()
 {		
+	for (auto& entity : entities)
+	{
+		entity.reset();
+	}
 }
