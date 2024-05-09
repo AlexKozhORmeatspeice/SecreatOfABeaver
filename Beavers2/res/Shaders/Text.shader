@@ -11,8 +11,7 @@ void main()
 {
    gl_Position = u_MVP * position;
    vec4 tex_coords4 = vec4(texCoords.x, texCoords.y, 0.0, 1.0); 
-   //v_TexCoords = (u_SCALE_AND_TRANSLATE * tex_coords4).xy;
-   v_TexCoords = texCoords;
+   v_TexCoords = (u_SCALE_AND_TRANSLATE * tex_coords4).xy;
 };
 #shader fragment
 
