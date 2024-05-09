@@ -15,11 +15,9 @@ void ECSInit()
 	Entity& raycast(Manager::addEntity());
 	Entity& stepSys(Manager::addEntity());
 	Entity& floor(Manager::addEntity());
-	Entity& wall(Manager::addEntity());
-	/////////////////////////////////////////////////////////
+	Entity& message(Manager::addEntity());
 
-
-	/////////////////////Managers/////////////////////
+	//////////////////////////////////////////////
 	StepSysManager* stepSM = stepSys.AddComponent<StepSysManager>();
 
 	raycast.AddComponent<Raycast>();
@@ -43,19 +41,8 @@ void ECSInit()
 
 	/////////////////////Environment/////////////////////
 	floor.AddComponent<Transform>(glm::vec3(0.0f, 0.0f, 0.0f));
-	floor.AddComponent<Tile>(1200.0f, 1200.0f, "res/Shaders/Basic.shader",
-		"res/Textures/FloorTexture.png");
-
-
-	wall.AddComponent<Transform>(glm::vec3(0.0f, 0.0f, 0.0f));
-	wall.AddComponent<Tile>(50.0f, 300.0f, "res/Shaders/Basic.shader", "res/Textures/wall.png");
-	wall.AddComponent<BoxCollider>(50.0f, 300.0f, true, false);
-	
-	wall.AddComponent<Transform>(glm::vec3(-250.0f, 250.0f, 0.0f));
-	wall.AddComponent<Tile>(300.0f, 50.0f, "res/Shaders/Basic.shader", "res/Textures/wall.png");
-	wall.AddComponent<BoxCollider>(300.0f, 50.0f, true, false);
-	////////////////////////////////////////////////////
-
+	//floor.AddComponent<Tile>(1200.0f, 1200.0f, "res/Shaders/Basic.shader", "res/Textures/FloorTexture.png");
+	message.AddComponent<SystemMessage>("i hate my life", "res/Textures/Beaver1.jpg");
 }
 
 void ECSStop(std::unique_ptr<Manager> manager)

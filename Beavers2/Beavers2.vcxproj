@@ -82,13 +82,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)Depend\GLFW\include;$(ProjectDir)Depend\GLEW\include;$(ProjectDir)res\Shaders;$(ProjectDir)res\GL;$(ProjectDir)res\Renderer;$(ProjectDir)src;$(ProjectDir)res\Textures;$(ProjectDir)res\vendor\stb_image;$(ProjectDir)res\vendor;$(ProjectDir)res\vendor\imgui;$(ProjectDir)ECS;$(ProjectDir)ECS\MovementSystem;$(ProjectDir)ECS\Managers;$(ProjectDir)ECS\Colliders;$(ProjectDir)ECS\Pers;$(ProjectDir)ECS\DrawF;$(ProjectDir)ECS\Stats;$(ProjectDir)ECS\AttackSystem;$(ProjectDir)ECS\UI;$(ProjectDir)ECS\Items;$(ProjectDir)ECS\Items\All_Items;$(ProjectDir)res\Textures\CodeFiles;$(ProjectDir)res\Textures\UI</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Depend\GLFW\include;$(ProjectDir)Depend\GLEW\include;$(ProjectDir)res\Shaders;$(ProjectDir)res\GL;$(ProjectDir)res\Renderer;$(ProjectDir)src;$(ProjectDir)res\Textures;$(ProjectDir)res\vendor\stb_image;$(ProjectDir)res\vendor;$(ProjectDir)res\vendor\imgui;$(ProjectDir)ECS;$(ProjectDir)ECS\MovementSystem;$(ProjectDir)ECS\Managers;$(ProjectDir)ECS\Colliders;$(ProjectDir)ECS\Pers;$(ProjectDir)ECS\DrawF;$(ProjectDir)ECS\Stats;$(ProjectDir)ECS\AttackSystem;$(ProjectDir)ECS\UI;$(ProjectDir)ECS\Items;$(ProjectDir)ECS\Items\All_Items;$(ProjectDir)res\Textures\CodeFiles;$(ProjectDir)Depend\FREETYPE\include;$(ProjectDir)res\Textures\UI;$(ProjectDir)ECS\TextComponents</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)Depend\GLFW\lib-vc2022;$(ProjectDir)Depend\GLEW\lib\Release\Win32</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;user32.lib;Gdi32.lib;Shell32.lib;glew32s.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)Depend\GLFW\lib-vc2022;$(ProjectDir)Depend\GLEW\lib\Release\Win32;$(ProjectDir)Depend\FREETYPE\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;user32.lib;Gdi32.lib;Shell32.lib;glew32s.lib;freetype.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -99,15 +99,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)Depend\GLFW\include;$(ProjectDir)Depend\GLEW\include;$(ProjectDir)res\Shaders;$(ProjectDir)res\GL;$(ProjectDir)res\Renderer;$(ProjectDir)src;$(ProjectDir)res\Textures;$(ProjectDir)res\vendor\stb_image;$(ProjectDir)res\vendor;$(ProjectDir)res\vendor\imgui;$(ProjectDir)ECS;$(ProjectDir)ECS\MovementSystem;$(ProjectDir)ECS\Managers;$(ProjectDir)ECS\Colliders;$(ProjectDir)ECS\Pers;$(ProjectDir)ECS\DrawF;$(ProjectDir)ECS\Stats;$(ProjectDir)ECS\AttackSystem;$(ProjectDir)ECS\UI;$(ProjectDir)ECS\Items;$(ProjectDir)ECS\Items\All_Items;$(ProjectDir)res\Textures\CodeFiles;$(ProjectDir)res\Textures\UI</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Depend\GLFW\include;$(ProjectDir)Depend\GLEW\include;$(ProjectDir)res\Shaders;$(ProjectDir)res\GL;$(ProjectDir)res\Renderer;$(ProjectDir)src;$(ProjectDir)res\Textures;$(ProjectDir)res\vendor\stb_image;$(ProjectDir)res\vendor;$(ProjectDir)res\vendor\imgui;$(ProjectDir)ECS;$(ProjectDir)ECS\MovementSystem;$(ProjectDir)ECS\Managers;$(ProjectDir)ECS\Colliders;$(ProjectDir)ECS\Pers;$(ProjectDir)ECS\DrawF;$(ProjectDir)ECS\Stats;$(ProjectDir)ECS\AttackSystem;$(ProjectDir)ECS\UI;$(ProjectDir)ECS\Items;$(ProjectDir)ECS\Items\All_Items;$(ProjectDir)res\Textures\CodeFiles;$(ProjectDir)Depend\FREETYPE\include;$(ProjectDir)res\Textures\UI;$(ProjectDir)ECS\TextComponents</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)Depend\GLFW\lib-vc2022;$(ProjectDir)Depend\GLEW\lib\Release\Win32</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;user32.lib;Gdi32.lib;Shell32.lib;glew32s.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)Depend\GLFW\lib-vc2022;$(ProjectDir)Depend\GLEW\lib\Release\Win32;$(ProjectDir)Depend\FREETYPE\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;user32.lib;Gdi32.lib;Shell32.lib;glew32s.lib;freetype.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -510,6 +510,7 @@
     <None Include="res\Shaders\Basic.shader" />
     <None Include="res\Shaders\Circle.shader" />
     <None Include="res\Shaders\HPBar.shader" />
+    <None Include="res\Shaders\Text.shader" />
     <None Include="res\Shaders\WithoutTexBasic.shader" />
     <None Include="res\vendor\glm\detail\func_common.inl" />
     <None Include="res\vendor\glm\detail\func_common_simd.inl" />
@@ -649,6 +650,8 @@
     <Image Include="Depend\GLEW\doc\new.png" />
     <Image Include="Depend\GLEW\doc\ogl_sm.jpg" />
     <Image Include="Depend\GLEW\doc\travis.png" />
+    <Image Include="res\Fonts\Verdana.png" />
+    <Image Include="res\Fonts\Verdana_B_alpha.png" />
     <Image Include="res\Textures\Beaver1.jpg" />
     <Image Include="res\Textures\bobr.png" />
     <Image Include="res\Textures\button.png" />

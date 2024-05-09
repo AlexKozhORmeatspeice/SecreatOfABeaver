@@ -364,7 +364,12 @@
     <Image Include="res\Textures\button.png" />
     <Image Include="res\Textures\knife.png" />
     <Image Include="res\Textures\UI\HPBar.png" />
+<<<<<<< Updated upstream
     <Image Include="res\Textures\wall.png" />
+=======
+    <Image Include="res\Fonts\Verdana.png" />
+    <Image Include="res\Fonts\Verdana_B_alpha.png" />
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <None Include="Depend\GLEW\doc\advanced.html" />

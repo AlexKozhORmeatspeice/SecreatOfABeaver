@@ -1,7 +1,9 @@
 #pragma once
 #include <iostream>
-#include "Components.h"
+#include "ECS.h"
 #include "FontSheet.h"
+#include "UIElement.h"
+
 //
 // Алгоритм примерно такой: 
 // 1. Создаем шрифт-лист из N букв и символов
@@ -24,12 +26,30 @@
 //			 w*(sx-1), h*(sy-1), 0, 1]
 //	3.2. Красить буквы можно все тем же шейдером, главное только разобраться, как в пределах одной строки покрасить разные слова в разные
 //			цвета. Прикрутим к тексту анимацию - плюсик в карму, но за байт у "катаны зеро" могут и на ротан дать, так что тут осторожно.
-class SystemMessage : public Component
+class SystemMessage : public UIElement
 {
 private:
 	std::string message;
-	FontSheet* fontsheet;
-	std::map<char, int> indexes_map; //ТОЛЬКО В ЛАТИНИЦЕ МОЖНО ПРОСТО ТАК ВЗЯТЬ И int index = char - '0' - 48 :(((
+
+	IndexBuffer* ib;
+	VertexBuffer* vb;
+	VertexArray* va;
+	Shader* shader;
+	Texture* texture;
+	float vertices[4 * 4] = {
+	 -1.0f, -1.0f, 0.0f, 0.0f,
+	  1.0f, -1.0f, 1.0f, 0.0f,
+	  1.0f,  1.0f, 1.0f, 1.0f,
+	 -1.0f,  1.0f, 0.0f, 1.0f
+	};
+
+	unsigned int indexes[6] = {
+		0, 1, 2,
+		2, 3, 0
+	};
+
 public: 
-	SystemMessage(std::string cur_message, FontSheet* cur_fs);
+	SystemMessage(std::string cur_message, const char* pathTexture);
+	void draw() override;
+	void init() override;
 };
