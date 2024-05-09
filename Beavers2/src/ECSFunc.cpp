@@ -41,7 +41,7 @@ void ECSInit()
 
 	/////////////////////Environment/////////////////////
 	floor.AddComponent<Transform>(glm::vec3(0.0f, 0.0f, 0.0f));
-	//floor.AddComponent<Tile>(1200.0f, 1200.0f, "res/Shaders/Basic.shader", "res/Textures/FloorTexture.png");
+	floor.AddComponent<Tile>(1200.0f, 1200.0f, "res/Shaders/Basic.shader", "res/Textures/FloorTexture.png");
 	message.AddComponent<SystemMessage>("i hate my life", "res/Fonts/Verdana.png");
 }
 

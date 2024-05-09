@@ -29,6 +29,8 @@
 class SystemMessage : public UIElement
 {
 private:
+	float space_x = 1 / 8.0f;
+	float space_y = 1 / 8.0f;
 	std::string message;
 
 	IndexBuffer* ib;

@@ -38,22 +38,31 @@ void SystemMessage::draw()
 {
 	shader->Bind();
 	texture->Bind();
+	int ind = 0;
+	for (auto c = message.begin(); c != message.end(); c++)
+	{
+		shader->Bind();
+		char symb = *c;
+		int x = symb >> 4;
+		int y = symb & 0b1111;
+		//texture coords
+		glm::mat4 Scale = glm::scale(glm::mat4(1.0f), glm::vec3(1 / 16.0f, 1 / 16.0f, 1.0f));
+		glm::mat4 Translate = glm::translate(glm::mat4(1.0f), glm::vec3(x/16.f, y/16.f, 0.2f));
 
-	//texture coords
-	glm::mat4 Scale = glm::scale(glm::mat4(1.0f), glm::vec3(1/16.0f, 1/16.0f, 1.0f));
-	glm::mat4 Translate = glm::translate(glm::mat4(1.0f), glm::vec3(coords.x, coords.y, 0.2f));
-	
-	glm::mat4 TAS = Translate * Scale;
-	shader->SetUniformMat4f("u_SCALE_AND_TRANSLATE", TAS);
-	
-	//vertex coords
-	glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
-	glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(1/16.0f, 1/16.0f, 1.0f));
+		glm::mat4 TAS = Translate * Scale;
+		shader->SetUniformMat4f("u_SCALE_AND_TRANSLATE", TAS);
 
-	glm::mat4 m_MS = model * scale;
+		//vertex coords
+		glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(coords.x + ind*space_x, 0.0f, 0.0f));
+		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(1 / 16.0f, 1 / 16.0f, 1.0f));
 
-	shader->SetUniformMat4f("u_MVP", m_MS);
+		glm::mat4 m_MS = model * scale;
 
-	Renderer::Draw(*va, *ib, *shader);
+		shader->SetUniformMat4f("u_MVP", m_MS);
+
+		Renderer::Draw(*va, *ib, *shader);
+		ind++;
+		shader->Unbind();
+	}
 	texture->Unbind();
 }
