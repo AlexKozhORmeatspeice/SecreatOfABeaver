@@ -53,14 +53,16 @@ void EnemyMov::update()
 	{
 		heroPos = nullptr;
 	}
-	
-	std::cout << seeHero << std::endl;
+	else
+	{
+		lastHeroPos = heroPos->GetPos();
+	}
 
 	//if see hero start fight
-	/*if (seeHero && heroPos != nullptr && !StepSysManager::instance->IsInFight())
+	if (seeHero && heroPos != nullptr && !StepSysManager::instance->IsInFight())
 	{
 		StepSysManager::instance->StartFight();
-	}*/
+	}
 
 	if (enemy->canTakeAction)
 		Move();
@@ -68,27 +70,35 @@ void EnemyMov::update()
 
 void EnemyMov::Move()
 {
-	bool GetCollisionWithHero = entity->GetComponent<BoxCollider>()->IsColllidWith<BoxCollider>(heroPos->entity);
-	if (GetCollisionWithHero)
+	
+	if (!seeHero && glm::distance(lastHeroPos, pos->GetPos()) <= 10.0f)
 	{
 		enemy->canTakeAction = false;
 		heroPos = nullptr;
 		return;
 	}
-
+	
 	CamComponent::SetPos(pos->GetPos());
+	if (heroPos == nullptr)
+	{
+		viewDir = lastHeroPos - pos->GetPos();
+	}
+	else
+	{
+		bool GetCollisionWithHero = entity->GetComponent<BoxCollider>()->IsColllidWith<BoxCollider>(heroPos->entity);
+		if (GetCollisionWithHero)
+		{
+			enemy->canTakeAction = false;
+			heroPos = nullptr;
+			return;
+		}
 
-	viewDir = heroPos->GetPos() - pos->GetPos();
+		viewDir = heroPos->GetPos() - pos->GetPos();
+	}
 	viewDir /= glm::length(viewDir);
 
 
-	if (seeHero)
-	{
-		pos->SetPos(pos->GetPos() + viewDir * speed);
-	}
-	{
-		enemy->canTakeAction = false;
-	}
+	pos->SetPos(pos->GetPos() + viewDir * speed);
 }
 
 EnemyMov::~EnemyMov()

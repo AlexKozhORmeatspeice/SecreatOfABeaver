@@ -18,7 +18,7 @@ class Tile: public Component {
 		Transform* pos;
 		glm::mat4 m_MVP;
 	public: 
-		Tile(float now_height, float now_width, const char* pathShader, const char* pathTexture);
+		Tile(float now_width, float now_height, const char* pathShader, const char* pathTexture);
 		void update() override;
 		void firstDraw() override;
 		void init() override;

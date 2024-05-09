@@ -1,4 +1,6 @@
 #include "CircleCollider.h"
+#include "Raycast.h"
+
 
 CircleCollider::CircleCollider()
 {
@@ -188,17 +190,18 @@ void CircleCollider::ResolveColision()
 			sumVec += vec;
 		}
 
-		glm::vec3 posB = sumVec / (float)verticesB.size(); //avarage of pos_vertices sum is a center of the figure éîó
+		glm::vec3 posBCenter = sumVec / (float)verticesB.size(); //avarage of pos_vertices sum is a center of the figure éîó
+		glm::vec3 posB = Raycast::GetPointOfCollision(posA, posBCenter - posA, entity);
 
 		resVec += posA - posB;
 	}
 
-
 	if (resVec == glm::vec3(0.0f))
 		return;
+
 	resVec /= glm::length(resVec);
 
-	pos->SetPos(pos->GetPos() + resVec * 5.0f);
+	pos->SetPos(pos->GetPos() + resVec * 15.0f);
 }
 
 void CircleCollider::initVecPositions()

@@ -20,6 +20,8 @@ public:
 	template <typename T>
 	static bool CheckCollision(glm::vec3 startPoint, glm::vec3 dir, const Entity* exceptEntity);
 
+	static glm::vec3 GetPointOfCollision(glm::vec3 startPoint, glm::vec3 dir, const Entity* exceptEntity);
+
 	~Raycast();
 };
 

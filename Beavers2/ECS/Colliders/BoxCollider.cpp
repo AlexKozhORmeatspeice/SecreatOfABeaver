@@ -1,5 +1,5 @@
 #include "BoxCollider.h"
-
+#include "Raycast.h"
 
 BoxCollider::BoxCollider()
 {
@@ -197,7 +197,9 @@ void BoxCollider::ResolveColision()
 			sumVec += vec;
 		}
 
-		glm::vec3 posB = sumVec / (float)verticesB.size(); //avarage of pos_vertices sum is a center of the figure éîó
+		glm::vec3 posBCenter = sumVec / (float)verticesB.size(); //avarage of pos_vertices sum is a center of the figure éîó
+		glm::vec3 posB = Raycast::GetPointOfCollision(posA, posBCenter - posA, entity);
+
 
 		resVec += posA - posB;
 		resVec.z = 0.0f;
@@ -206,10 +208,13 @@ void BoxCollider::ResolveColision()
 	if (resVec == glm::vec3(0.0f))
 		return;
 
+	if (resVec == glm::vec3(0.0f))
+		return;
+
 	resVec /= glm::length(resVec);
 
 	//TODO: some crazy math to increase speed when object near the center
-	pos->SetPos(pos->GetPos() + resVec * 10.0f);
+	pos->SetPos(pos->GetPos() + resVec * 15.0f);
 }
 
 void BoxCollider::initVecPositions()

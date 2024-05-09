@@ -34,7 +34,7 @@ void ECSInit()
 
 
 	/////////////////////Heroes and enemies/////////////////////
-	stepSM->AddHero(*HeroZubarPrefab(glm::vec3(-200.0f, 50.0f, 0.1f))->GetComponent<Hero>()); //!!!
+	stepSM->AddHero(*HeroZubarPrefab(glm::vec3(-200.0f, 0.0f, 0.1f))->GetComponent<Hero>()); //!!!
 	stepSM->AddHero(*HeroZubarPrefab(glm::vec3(-200.0f, 100.0f, 0.1f))->GetComponent<Hero>()); //!!!
 
 	stepSM->AddEnemy(*BasicEnemyPrefab(glm::vec3(150.0f, 100.0f, 0.1f))->GetComponent<Enemy>()); //!!!
@@ -48,8 +48,12 @@ void ECSInit()
 
 
 	wall.AddComponent<Transform>(glm::vec3(0.0f, 0.0f, 0.0f));
-	wall.AddComponent<Tile>(300.0f, 50.0f, "res/Shaders/Basic.shader", "res/Textures/wall.png");
+	wall.AddComponent<Tile>(50.0f, 300.0f, "res/Shaders/Basic.shader", "res/Textures/wall.png");
 	wall.AddComponent<BoxCollider>(50.0f, 300.0f, true, false);
+	
+	wall.AddComponent<Transform>(glm::vec3(-250.0f, 250.0f, 0.0f));
+	wall.AddComponent<Tile>(300.0f, 50.0f, "res/Shaders/Basic.shader", "res/Textures/wall.png");
+	wall.AddComponent<BoxCollider>(300.0f, 50.0f, true, false);
 	////////////////////////////////////////////////////
 
 }

@@ -1,6 +1,6 @@
 #include <PlainsGenerator.h>
 
-Tile::Tile(float now_height, float now_width, const char* pathShader, const char* pathTexture)
+Tile::Tile(float now_width, float now_height, const char* pathShader, const char* pathTexture)
 {
 	width = now_width;
 	height = now_height;

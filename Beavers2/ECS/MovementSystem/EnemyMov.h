@@ -7,6 +7,7 @@ private:
 	Enemy* enemy;
 
 	Transform* heroPos;
+	glm::vec3 lastHeroPos;
 	Transform* pos;
 
 	BoxCollider* collider;

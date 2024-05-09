@@ -73,7 +73,10 @@ void HeroMov::update()
 
 void HeroMov::Move()
 {
-	if (glm::distance(targetPoint, pos->GetPos()) <= stamina->GetCellSize())
+	bool isCollide = entity->GetComponent<BoxCollider>()->GetCollidObj<Hero>();
+
+	if ((isCollide && glm::distance(targetPoint, pos->GetPos()) <= stamina->GetCellSize() * 2.5f ) ||
+		glm::distance(targetPoint, pos->GetPos()) <= stamina->GetCellSize() * 2.0f)
 	{
 		canMove = false;
 		isMoving = false;
@@ -114,7 +117,9 @@ void HeroMov::draw()
 
 void HeroMov::SetTarget()
 {
-	targetPoint = Coursor::GetMousePos();
+	targetPoint = Raycast::GetPointOfCollision(pos->GetPos(), Coursor::GetMousePos() - pos->GetPos(), entity);
+
+	//targetPoint = Coursor::GetMousePos();
 }
 
 bool HeroMov::CanMove(glm::vec3 pos1, glm::vec3 pos2, unsigned int nowMovCost)

@@ -41,9 +41,9 @@ void StepSysManager::StartFightLogic()
 				hero->entity->GetComponent<Stamina>()->Recover();
 				hero->canTakeAction = false;
 				heroAct = false;
-
-				enemies[0]->canTakeAction = true;
 			}
+
+			enemies[0]->canTakeAction = true;
 		}
 	}
 	else //enemy logic
@@ -51,6 +51,10 @@ void StepSysManager::StartFightLogic()
 		if (enemiesActCount == enemies.size())
 		{
 			enemiesActCount = 0;
+			for (Hero* hero : heroes)
+			{
+				hero->canTakeAction = true;
+			}
 			heroAct = true;
 			return;
 		}
