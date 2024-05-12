@@ -6,7 +6,7 @@
 
 
 int main()
-{	
+{
 	if (!GameInit() || !RenderInit())
 	{
 		return 0;

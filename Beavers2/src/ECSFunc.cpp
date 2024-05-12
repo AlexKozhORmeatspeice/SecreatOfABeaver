@@ -33,16 +33,16 @@ void ECSInit()
 
 	/////////////////////Heroes and enemies/////////////////////
 	stepSM->AddHero(*HeroZubarPrefab(glm::vec3(-200.0f, 0.0f, 0.1f))->GetComponent<Hero>()); //!!!
-	stepSM->AddHero(*HeroZubarPrefab(glm::vec3(-200.0f, 100.0f, 0.1f))->GetComponent<Hero>()); //!!!
+	stepSM->AddHero(*HeroZubarPrefab(glm::vec3(200.0f, 0.0f, 0.1f))->GetComponent<Hero>()); //!!!
 
-	stepSM->AddEnemy(*BasicEnemyPrefab(glm::vec3(150.0f, 100.0f, 0.1f))->GetComponent<Enemy>()); //!!!
+	stepSM->AddEnemy(*BasicEnemyPrefab(glm::vec3(0.0f, 0.0f, 0.1f))->GetComponent<Enemy>()); //!!!
 	//////////////////////////////////////////////////////////////
 
 
 	/////////////////////Environment/////////////////////
 	floor.AddComponent<Transform>(glm::vec3(0.0f, 0.0f, 0.0f));
 	floor.AddComponent<Tile>(1200.0f, 1200.0f, "res/Shaders/Basic.shader", "res/Textures/FloorTexture.png");
-	message.AddComponent<SystemMessage>("i hate my life", "res/Fonts/Verdana.png");
+	message.AddComponent<SystemMessage>("i hate my life\nand it s cool", "res/Fonts/Verdana.png");
 }
 
 void ECSStop(std::unique_ptr<Manager> manager)

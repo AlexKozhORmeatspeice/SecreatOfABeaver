@@ -13,7 +13,7 @@ void SystemMessage::init()
 	ib = new IndexBuffer(indexes, 6);
 	va = new VertexArray;
 
-	coords = glm::vec2(0.0f);
+	coords = glm::vec2(-0.8f, 0.8f);
 	
 	VertexBufferLayout layout;
 	layout.Push<float>(2);
@@ -34,34 +34,47 @@ void SystemMessage::init()
 	va->Unbind();
 	texture->Unbind();
 }
-void SystemMessage::draw()
+void SystemMessage::lastDraw()
 {
 	shader->Bind();
 	texture->Bind();
-	int ind = 0;
+	int indX = 0;
+	int indY = 0;
 	for (auto c = message.begin(); c != message.end(); c++)
 	{
 		shader->Bind();
 		char symb = *c;
-		int x = symb >> 4;
-		int y = symb & 0b1111;
-		//texture coords
-		glm::mat4 Scale = glm::scale(glm::mat4(1.0f), glm::vec3(1 / 16.0f, 1 / 16.0f, 1.0f));
-		glm::mat4 Translate = glm::translate(glm::mat4(1.0f), glm::vec3(x/16.f, y/16.f, 0.2f));
+		
+		int y = 17 - (symb >> 4);
+		int x = symb & 0b1111;
+		float textureScale = 1/16.0f;
+		if (symb == '\n')
+		{
+			indY++;
+			indX = 0;
+			continue;
+		}
 
-		glm::mat4 TAS = Translate * Scale;
-		shader->SetUniformMat4f("u_SCALE_AND_TRANSLATE", TAS);
+		//texture coords
+		glm::mat4 Scale = glm::scale(glm::mat4(1.0f), glm::vec3(textureScale, textureScale, 1.0f));
+		glm::mat4 Translate = glm::translate(glm::mat4(1.0f), glm::vec3(x*textureScale, y * textureScale, 0.0f));
+
+		glm::mat4 Tr_a_Sc = Translate * Scale;
+		shader->SetUniformMat4f("u_SCALE_AND_TRANSLATE", Tr_a_Sc);
 
 		//vertex coords
-		glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(coords.x + ind*space_x, 0.0f, 0.0f));
-		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(1 / 16.0f, 1 / 16.0f, 1.0f));
+		glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(coords.x + indX*(space_x + textureScale * (symb != ' ')),
+																	coords.y - indY*(space_y + textureScale),
+																	-0.1f));
+
+		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(symbolSize, symbolSize, 1.0f));
 
 		glm::mat4 m_MS = model * scale;
 
 		shader->SetUniformMat4f("u_MVP", m_MS);
 
 		Renderer::Draw(*va, *ib, *shader);
-		ind++;
+		indX++;
 		shader->Unbind();
 	}
 	texture->Unbind();

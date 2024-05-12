@@ -1,20 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="ECS\Items\All_Items\DamageWeapon.cpp" />
+    <ClCompile Include="ECS\Items\All_Items\Weapon.cpp" />
     <ClCompile Include="ECS\Managers\CamComponent.cpp" />
+    <ClCompile Include="ECS\Colliders\BoxCollider.cpp" />
+    <ClCompile Include="ECS\Colliders\CircleCollider.cpp" />
+    <ClCompile Include="ECS\Colliders\Collider.cpp" />
+    <ClCompile Include="ECS\DrawF\Circle.cpp" />
     <ClCompile Include="ECS\ECS.cpp" />
     <ClCompile Include="ECS\Managers\Coursor.cpp" />
+    <ClCompile Include="ECS\Managers\Raycast.cpp" />
+    <ClCompile Include="ECS\Managers\StepSystemManager.cpp" />
     <ClCompile Include="ECS\MovementSystem\HeroMov.cpp" />
     <ClCompile Include="ECS\MovementSystem\MovementComponent.cpp" />
+    <ClCompile Include="ECS\MovementSystem\EnemyMov.cpp" />
     <ClCompile Include="ECS\DrawF\PlainsGenerator.cpp" />
+    <ClCompile Include="ECS\Pers\Enemy.cpp" />
+    <ClCompile Include="ECS\Pers\Hero.cpp" />
     <ClCompile Include="ECS\PositionComponent.cpp" />
     <ClCompile Include="ECS\DrawF\SpriteComponent.cpp" />
+    <ClCompile Include="ECS\Stats\HP.cpp" />
+    <ClCompile Include="ECS\Items\Inventory.cpp" />
+    <ClCompile Include="ECS\Stats\Stamina.cpp" />
+    <ClCompile Include="ECS\UI\TextComponents\FontSheet.cpp" />
+    <ClCompile Include="ECS\UI\TextComponents\SystemMessage.cpp" />
+    <ClCompile Include="ECS\UI\UIButton.cpp" />
+    <ClCompile Include="ECS\UI\UICollider.cpp" />
+    <ClCompile Include="ECS\UI\UIElement.cpp" />
+    <ClCompile Include="ECS\UI\UIIcon.cpp" />
     <ClCompile Include="res\GL\GLErrors.cpp" />
     <ClCompile Include="res\GL\IndexBuffer.cpp" />
     <ClCompile Include="res\GL\VertexArray.cpp" />
     <ClCompile Include="res\GL\VertexBuffer.cpp" />
     <ClCompile Include="res\GL\VertexBuffer.h" />
     <ClCompile Include="res\Shaders\Shader.cpp" />
+    <ClCompile Include="res\Textures\CodeFiles\Texture.cpp" />
     <ClCompile Include="res\vendor\glm\detail\glm.cpp" />
     <ClCompile Include="res\vendor\imgui\imgui.cpp" />
     <ClCompile Include="res\vendor\imgui\imgui_demo.cpp" />
@@ -29,27 +50,6 @@
     <ClCompile Include="src\Render.cpp" />
     <ClCompile Include="res\Renderer\Renderer.cpp" />
     <ClCompile Include="src\System.cpp" />
-    <ClCompile Include="ECS\Colliders\BoxCollider.cpp" />
-    <ClCompile Include="ECS\Colliders\CircleCollider.cpp" />
-    <ClCompile Include="ECS\Colliders\Collider.cpp" />
-    <ClCompile Include="ECS\MovementSystem\EnemyMov.cpp" />
-    <ClCompile Include="ECS\DrawF\Circle.cpp" />
-    <ClCompile Include="ECS\Stats\Stamina.cpp" />
-    <ClCompile Include="ECS\Stats\HP.cpp" />
-    <ClCompile Include="ECS\Managers\StepSystemManager.cpp" />
-    <ClCompile Include="ECS\Pers\Hero.cpp" />
-    <ClCompile Include="ECS\Pers\Enemy.cpp" />
-    <ClCompile Include="ECS\Items\Inventory.cpp" />
-    <ClCompile Include="ECS\UI\UIIcon.cpp" />
-    <ClCompile Include="ECS\UI\UIButton.cpp" />
-    <ClCompile Include="ECS\UI\UICollider.cpp" />
-    <ClCompile Include="ECS\UI\UIElement.cpp" />
-    <ClCompile Include="ECS\TextComponents\SystemMessage.cpp" />
-    <ClCompile Include="ECS\TextComponents\FontSheet.cpp" />
-    <ClCompile Include="ECS\Items\All_Items\DamageWeapon.cpp" />
-    <ClCompile Include="ECS\Items\All_Items\Weapon.cpp" />
-    <ClCompile Include="res\Textures\CodeFiles\Texture.cpp" />
-    <ClCompile Include="ECS\Managers\Raycast.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Depend\GLEW\include\GL\eglew.h" />
@@ -59,19 +59,41 @@
     <ClInclude Include="Depend\GLFW\include\GLFW\glfw3.h" />
     <ClInclude Include="Depend\GLFW\include\GLFW\glfw3native.h" />
     <ClInclude Include="ECS\BoxCollider.h" />
+    <ClInclude Include="ECS\Managers\Raycast.h" />
+    <ClInclude Include="ECS\UI\TextComponents\FontSheet.h" />
+    <ClInclude Include="ECS\UI\TextComponents\SystemMessage.h" />
+    <ClInclude Include="ECS\UI\UICollider.h" />
     <ClInclude Include="ECS\Managers\CamComponent.h" />
+    <ClInclude Include="ECS\Colliders\BoxCollider.h" />
+    <ClInclude Include="ECS\Colliders\CircleCollider.h" />
+    <ClInclude Include="ECS\Colliders\Collider.h" />
     <ClInclude Include="ECS\Components.h" />
+    <ClInclude Include="ECS\DrawF\Circle.h" />
     <ClInclude Include="ECS\Managers\Coursor.h" />
+    <ClInclude Include="ECS\Managers\StepSystemManager.h" />
     <ClInclude Include="ECS\MovementSystem\HeroMov.h" />
     <ClInclude Include="ECS\MovementSystem\MovementComponent.h" />
+    <ClInclude Include="ECS\MovementSystem\EnemyMov.h" />
+    <ClInclude Include="ECS\Pers\Enemy.h" />
+    <ClInclude Include="ECS\Pers\Hero.h" />
     <ClInclude Include="ECS\DrawF\PlainsGenerator.h" />
     <ClInclude Include="ECS\PositionComponent.h" />
     <ClInclude Include="ECS\DrawF\SpriteComponent.h" />
+    <ClInclude Include="ECS\Stats\HP.h" />
+    <ClInclude Include="ECS\Items\Inventory.h" />
+    <ClInclude Include="ECS\Items\All_Items\Item.h" />
+    <ClInclude Include="ECS\Items\All_Items\DamageWeapon.h" />
+    <ClInclude Include="ECS\Stats\Stamina.h" />
+    <ClInclude Include="ECS\Items\All_Items\Weapon.h" />
+    <ClInclude Include="ECS\UI\UIButton.h" />
+    <ClInclude Include="ECS\UI\UIElement.h" />
+    <ClInclude Include="ECS\UI\UIIcon.h" />
     <ClInclude Include="res\GL\GLErrors.h" />
     <ClInclude Include="res\GL\IndexBuffer.h" />
     <ClInclude Include="res\GL\VertexArray.h" />
     <ClInclude Include="res\GL\VertexBufferLayout.h" />
     <ClInclude Include="res\Shaders\Shader.h" />
+    <ClInclude Include="res\Textures\CodeFiles\Texture.h" />
     <ClInclude Include="res\vendor\glm\common.hpp" />
     <ClInclude Include="res\vendor\glm\detail\compute_common.hpp" />
     <ClInclude Include="res\vendor\glm\detail\compute_vector_relational.hpp" />
@@ -327,62 +349,53 @@
     <ClInclude Include="src\Render.h" />
     <ClInclude Include="res\Renderer\Renderer.h" />
     <ClInclude Include="src\System.h" />
-    <ClInclude Include="ECS\Colliders\BoxCollider.h" />
-    <ClInclude Include="ECS\Colliders\CircleCollider.h" />
-    <ClInclude Include="ECS\Colliders\Collider.h" />
-    <ClInclude Include="ECS\MovementSystem\EnemyMov.h" />
-    <ClInclude Include="ECS\Pers\Hero.h" />
-    <ClInclude Include="ECS\DrawF\Circle.h" />
-    <ClInclude Include="ECS\Stats\Stamina.h" />
-    <ClInclude Include="ECS\Pers\Enemy.h" />
-    <ClInclude Include="ECS\Stats\HP.h" />
-    <ClInclude Include="ECS\Managers\StepSystemManager.h" />
-    <ClInclude Include="ECS\Items\Inventory.h" />
-    <ClInclude Include="ECS\UI\UIIcon.h" />
-    <ClInclude Include="ECS\UI\UIElement.h" />
-    <ClInclude Include="ECS\UI\UIButton.h" />
-    <ClInclude Include="ECS\UI\UICollider.h" />
-    <ClInclude Include="ECS\TextComponents\SystemMessage.h" />
-    <ClInclude Include="ECS\TextComponents\FontSheet.h" />
-    <ClInclude Include="ECS\Items\All_Items\Item.h" />
-    <ClInclude Include="ECS\Items\All_Items\DamageWeapon.h" />
-    <ClInclude Include="ECS\Items\All_Items\Weapon.h" />
-    <ClInclude Include="res\Textures\CodeFiles\Texture.h" />
-    <ClInclude Include="ECS\Managers\Raycast.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\Textures\Beaver1.jpg" />
-    <Image Include="res\Textures\Wood.jpg" />
+    <Library Include="Depend\GLEW\lib\Release\Win32\glew32s.lib" />
+    <Library Include="Depend\GLFW\lib-vc2022\glfw3.lib" />
+  </ItemGroup>
+  <ItemGroup>
     <Image Include="Depend\GLEW\doc\github.png" />
     <Image Include="Depend\GLEW\doc\glew.png" />
     <Image Include="Depend\GLEW\doc\new.png" />
     <Image Include="Depend\GLEW\doc\ogl_sm.jpg" />
     <Image Include="Depend\GLEW\doc\travis.png" />
-    <Image Include="res\Textures\bobr.png" />
-    <Image Include="res\Textures\FloorTexture.png" />
-    <Image Include="res\Textures\Zubki.png" />
-    <Image Include="res\Textures\button.png" />
-    <Image Include="res\Textures\knife.png" />
-    <Image Include="res\Textures\UI\HPBar.png" />
-<<<<<<< Updated upstream
-    <Image Include="res\Textures\wall.png" />
-=======
     <Image Include="res\Fonts\Verdana.png" />
     <Image Include="res\Fonts\Verdana_B_alpha.png" />
->>>>>>> Stashed changes
+    <Image Include="res\Textures\Beaver1.jpg" />
+    <Image Include="res\Textures\bobr.png" />
+    <Image Include="res\Textures\button.png" />
+    <Image Include="res\Textures\FloorTexture.png" />
+    <Image Include="res\Textures\UI\HPBar.png" />
+    <Image Include="res\Textures\knife.png" />
+    <Image Include="res\Textures\wall.png" />
+    <Image Include="res\Textures\Wood.jpg" />
+    <Image Include="res\Textures\Zubki.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Depend\GLEW\bin\Release\Win32\glew32.dll" />
+    <None Include="Depend\GLEW\bin\Release\Win32\glewinfo.exe" />
+    <None Include="Depend\GLEW\bin\Release\Win32\visualinfo.exe" />
+    <None Include="Depend\GLEW\bin\Release\x64\glew32.dll" />
+    <None Include="Depend\GLEW\bin\Release\x64\glewinfo.exe" />
+    <None Include="Depend\GLEW\bin\Release\x64\visualinfo.exe" />
     <None Include="Depend\GLEW\doc\advanced.html" />
     <None Include="Depend\GLEW\doc\basic.html" />
     <None Include="Depend\GLEW\doc\build.html" />
     <None Include="Depend\GLEW\doc\credits.html" />
+    <None Include="Depend\GLEW\doc\glew.css" />
     <None Include="Depend\GLEW\doc\glew.html" />
     <None Include="Depend\GLEW\doc\glxew.html" />
     <None Include="Depend\GLEW\doc\index.html" />
     <None Include="Depend\GLEW\doc\install.html" />
     <None Include="Depend\GLEW\doc\log.html" />
     <None Include="Depend\GLEW\doc\wglew.html" />
+    <None Include="ECS\Items\All_Items\Item.cpp" />
     <None Include="res\Shaders\Basic.shader" />
+    <None Include="res\Shaders\Circle.shader" />
+    <None Include="res\Shaders\HPBar.shader" />
+    <None Include="res\Shaders\Text.shader" />
+    <None Include="res\Shaders\WithoutTexBasic.shader" />
     <None Include="res\vendor\glm\detail\func_common.inl" />
     <None Include="res\vendor\glm\detail\func_common_simd.inl" />
     <None Include="res\vendor\glm\detail\func_exponential.inl" />
@@ -514,26 +527,11 @@
     <None Include="res\vendor\glm\gtx\vector_angle.inl" />
     <None Include="res\vendor\glm\gtx\vector_query.inl" />
     <None Include="res\vendor\glm\gtx\wrap.inl" />
-    <None Include="res\Shaders\Circle.shader" />
-    <None Include="Depend\GLEW\bin\Release\Win32\glew32.dll" />
-    <None Include="Depend\GLEW\bin\Release\Win32\glewinfo.exe" />
-    <None Include="Depend\GLEW\bin\Release\Win32\visualinfo.exe" />
-    <None Include="Depend\GLEW\bin\Release\x64\glew32.dll" />
-    <None Include="Depend\GLEW\bin\Release\x64\glewinfo.exe" />
-    <None Include="Depend\GLEW\bin\Release\x64\visualinfo.exe" />
-    <None Include="Depend\GLEW\doc\glew.css" />
-    <None Include="res\Shaders\WithoutTexBasic.shader" />
-    <None Include="ECS\Items\All_Items\Item.cpp" />
-    <None Include="res\Shaders\HPBar.shader" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="res\vendor\glm\CMakeLists.txt" />
     <Text Include="Depend\GLEW\doc\glew.txt" />
     <Text Include="Depend\GLEW\doc\khronos.txt" />
     <Text Include="Depend\GLEW\doc\mesa.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="Depend\GLFW\lib-vc2022\glfw3.lib" />
-    <Library Include="Depend\GLEW\lib\Release\Win32\glew32s.lib" />
+    <Text Include="res\vendor\glm\CMakeLists.txt" />
   </ItemGroup>
 </Project>

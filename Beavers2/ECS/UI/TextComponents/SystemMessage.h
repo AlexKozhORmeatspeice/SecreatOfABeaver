@@ -29,8 +29,9 @@
 class SystemMessage : public UIElement
 {
 private:
-	float space_x = 1 / 8.0f;
-	float space_y = 1 / 8.0f;
+	float space_x = 1 / 16.0f;
+	float space_y = 1 / 16.0f;
+	float symbolSize = 0.05f;
 	std::string message;
 
 	IndexBuffer* ib;
@@ -52,6 +53,6 @@ private:
 
 public: 
 	SystemMessage(std::string cur_message, const char* pathTexture);
-	void draw() override;
+	void lastDraw() override;
 	void init() override;
 };

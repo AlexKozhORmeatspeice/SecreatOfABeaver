@@ -26,8 +26,10 @@ uniform sampler2D u_Texture;
 
 void main()
 {
-	vec2 flipped = vec2(v_TexCoords.x, 1.0 - v_TexCoords.y);
-	vec4 texColor = texture(u_Texture, flipped);
+	vec4 texColor = texture(u_Texture, v_TexCoords);
+
+	if(length(texColor.rgb) < 0.02)
+		discard;
 
 	color = texColor;
 };
