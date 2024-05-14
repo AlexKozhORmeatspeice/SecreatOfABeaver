@@ -31,10 +31,10 @@ protected:
 	};
 public:
 	UIIcon();
+	UIIcon(glm::vec2 newCoords, const char* pathTexture, const char* pathShader, float nowWidth, float nowHeight);
 	UIIcon(glm::vec2 newCoords, const char* pathTexture, float nowWidth, float nowHeight);
 
 	void init() override;
-	void update() override;
 	void lastDraw() override;
 	
 	~UIIcon();

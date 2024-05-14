@@ -1,7 +1,7 @@
 #include "Render.h"
 
-unsigned int windowW = 800;
-unsigned int windowH = 800;
+int windowW = 1000;
+int windowH = 800;
 
 const char* glsl_version = "#version 330";
 
@@ -71,7 +71,7 @@ bool Render(std::unique_ptr<Manager> & manager)
     if (glfwWindowShouldClose(window))
         return false;
 
-    
+
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     ////////////////////actual prog//////////////////////////

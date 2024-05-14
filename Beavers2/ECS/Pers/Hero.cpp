@@ -3,6 +3,16 @@
 
 std::vector<Hero*> Hero::heroes;
 
+Hero::Hero()
+{
+	name = "default";
+}
+
+Hero::Hero(const char& heroName)
+{
+	name = &heroName;
+}
+
 void Hero::init()
 {
 	heroes.push_back(this);
@@ -77,6 +87,8 @@ void Hero::SetOtherNotChoosed(Hero* exceptHero)
 
 Hero::~Hero()
 {
+	delete name;
+
 	auto it = std::find(heroes.begin(), heroes.end(), this);
 	
 	if (it != heroes.end())

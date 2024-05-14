@@ -1,19 +1,20 @@
 #include "SystemMessage.h"
 
-SystemMessage::SystemMessage(std::string cur_message, const char* pathTexture)
+UIText::UIText(std::string cur_message, glm::vec2 nowCoords, float size)
 {
 	message = cur_message;
+	coords = nowCoords;
+	symbolSize = size;
 
 	std::string mode = "CLAMP";
-	texture = new Texture(pathTexture, mode);
+	texture = new Texture("res/Fonts/Verdana.png", mode);
 }
-void SystemMessage::init()
+void UIText::init()
 {
 	vb = new VertexBuffer(vertices, 4 * 4 * sizeof(float));
 	ib = new IndexBuffer(indexes, 6);
 	va = new VertexArray;
 
-	coords = glm::vec2(-0.8f, 0.8f);
 	
 	VertexBufferLayout layout;
 	layout.Push<float>(2);
@@ -34,8 +35,11 @@ void SystemMessage::init()
 	va->Unbind();
 	texture->Unbind();
 }
-void SystemMessage::lastDraw()
+void UIText::lastDraw()
 {
+	if (!enabled)
+		return;
+
 	shader->Bind();
 	texture->Bind();
 	int indX = 0;
@@ -63,8 +67,8 @@ void SystemMessage::lastDraw()
 		shader->SetUniformMat4f("u_SCALE_AND_TRANSLATE", Tr_a_Sc);
 
 		//vertex coords
-		glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(coords.x + indX*(space_x + textureScale * (symb != ' ')),
-																	coords.y - indY*(space_y + textureScale),
+		glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(coords.x + indX*(space_x + (symbolSize / 2.0f) * (symb != ' ')),
+																	coords.y - indY*(space_y + (symbolSize / 2.0f)),
 																	-0.1f));
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(symbolSize, symbolSize, 1.0f));
@@ -78,4 +82,14 @@ void SystemMessage::lastDraw()
 		shader->Unbind();
 	}
 	texture->Unbind();
+}
+
+
+UIText::~UIText()
+{
+	delete va;
+	delete vb;
+	delete ib;
+	delete shader;
+	delete texture;
 }

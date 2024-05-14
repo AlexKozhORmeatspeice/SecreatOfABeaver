@@ -14,6 +14,7 @@ private:
 	unsigned int timeBetweenClicks = 1; //in seconds
 	unsigned int lastClickTime;
 
+	bool isLocked; //meanes it stay darker if pressed
 	bool gotClick;
 	bool doCalls;
 
@@ -26,6 +27,8 @@ public:
 	void init() override;
 
 	void AddCall(std::function<void()> elem);
+
+	void SetLockedStatus(bool locked);
 
 	~UIButton();
 private:

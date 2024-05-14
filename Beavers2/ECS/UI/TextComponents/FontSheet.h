@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
-#include "Components.h"
+#include "Texture.h"
+
 class F_char
 {
 private: 

@@ -2,6 +2,10 @@
 
 void UIButton::init()
 {
+	isLocked = false;
+	gotClick = false;
+	doCalls = false;
+
 	//////////////////from UIIcon/////////////////////
 	vb = new VertexBuffer(postitions, 4 * 4 * sizeof(float));
 	ib = new IndexBuffer(indices, 6);
@@ -48,6 +52,7 @@ void UIButton::update()
 	bool mouthOn = UIColl->GetIsCollidMouth();
 	int mouseLeftState = GLFWGetKeyMouseState(GLFW_MOUSE_BUTTON_LEFT);
 
+	
 	if (!gotClick)
 	{
 		gotClick = (mouthOn && mouseLeftState == GLFW_PRESS);
@@ -64,8 +69,12 @@ void UIButton::update()
 		doCalls = false;
 		gotClick = false;
 	}
+	if (!isLocked && gotClick)
+	{
 
-	if (doCalls)
+	}
+
+	if (gotClick)
 	{
 		color = startColor - glm::vec4(0.3f);
 	}
@@ -78,6 +87,11 @@ void UIButton::update()
 void UIButton::AddCall(std::function<void()> elem)
 {
 	calls.push_back(elem);
+}
+
+void UIButton::SetLockedStatus(bool locked)
+{
+	isLocked = locked;
 }
 
 void UIButton::StartCalls()

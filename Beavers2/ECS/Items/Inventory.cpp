@@ -1,14 +1,47 @@
 #include "Inventory.h"
+#include "SpriteComponent.h"
+#include "Hero.h"
+#include "DamageWeapon.h"
 
+UIIcon* Inventory::background;
+UIButton* Inventory::dropItemButton;
+int Inventory::m_inventories = 0;
 
 void Inventory::init()
 {
-	nowWeight = 0.0f;
+    itemStartCoords = glm::vec2(-0.35f, -0.8f);
 
-	Entity* knife(&Manager::addEntity()); //TODO : remove after test
+	m_inventories++;
+	nowWeight = 0.0f;
+	//some inventory UI
+	if (background == nullptr)
+	{
+		Entity* black(&Manager::addEntity());
+		background = black->AddComponent<UIIcon>(glm::vec2(0.0f, -0.6f), "res/Textures/UI/Inventory.png", 1.0f, 0.4f);
+	}
+	
+	if (dropItemButton == nullptr)
+	{
+
+	}
+	Entity* icon(&Manager::addEntity());
+	heroIcon = icon->AddComponent<UIIcon>(glm::vec2(-0.8f, -0.6f),
+										  entity->GetComponent<SpriteComponent>()->GetTexture(), //get sprite of hero from entity
+										  0.2f, 0.2f);
+
+	Entity* heroText(&Manager::addEntity());
+	heroNameTxt = heroText->AddComponent<UIText>(entity->GetComponent<Hero>()->GetName(),
+												glm::vec2(-0.94f, -0.92f),
+												0.02f);
+
+
+
+	//base weapon
+	Entity* knife(&Manager::addEntity());
 	knife->AddComponent<Transform>();
 	knife->AddComponent<SpriteComponent>("res/Textures/knife.png");
 	DamageWeapon* weapon = knife->AddComponent<DamageWeapon>(30, 10, 10.0f, 150.0f);
+
 	AddItem(weapon);
 }
 void Inventory::update()
@@ -20,6 +53,10 @@ void Inventory::lastDraw()
 	Hero* hero = entity->GetComponent<Hero>();
 	if (!hero->isChoosed)
 	{
+		background->Disable();
+		heroIcon->Disable();
+		heroNameTxt->Disable();
+
 		for (auto& button : buttons)
 		{
 			button->Disable();
@@ -28,13 +65,16 @@ void Inventory::lastDraw()
 	}
 
 	glm::vec2 drawPoint = itemStartCoords;
-
+	background->Enable();
+	heroIcon->Enable();
+	heroNameTxt->Enable();
 	for (auto& button : buttons)
 	{
-		button->Enable();
 		button->SetCoords(drawPoint);
+		button->Enable();
 		drawPoint.x += button->width + spacing;
 	}
+
 }
 
 void Inventory::AddItem(Item* item)
@@ -78,10 +118,29 @@ void Inventory::RemoveItem(Item* item)
 	buttons[index]->entity->destroy();
 	buttons.erase(buttons.begin() + index); //im not sure that it would work, but maybe?
 
-
 	nowWeight -= item->GetWeight();
-	
-	//TODO: drop item as object
-	
-	
+
+
+	SpriteComponent* spriteItem = item->entity->GetComponent<SpriteComponent>();
+	Transform* pos = item->entity->GetComponent<Transform>();
+
+	pos->SetPos(entity->GetComponent<Transform>()->GetPos());
+	spriteItem->Enable();
+	item->isInInventory = false;
+}
+
+
+Inventory::~Inventory()
+{
+	m_inventories--;
+
+	heroIcon->entity->destroy();
+	heroNameTxt->entity->destroy();
+
+	if (m_inventories == 0)
+	{
+		delete background->entity;
+		//dropItemButton->entity->destroy();
+	}
+
 }

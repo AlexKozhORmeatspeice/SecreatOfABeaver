@@ -161,7 +161,6 @@
     <ClCompile Include="ECS\Stats\HP.cpp" />
     <ClCompile Include="ECS\Items\Inventory.cpp" />
     <ClCompile Include="ECS\Stats\Stamina.cpp" />
-    <ClCompile Include="ECS\UI\TextComponents\FontSheet.cpp" />
     <ClCompile Include="ECS\UI\TextComponents\SystemMessage.cpp" />
     <ClCompile Include="ECS\UI\UIButton.cpp" />
     <ClCompile Include="ECS\UI\UICollider.cpp" />
@@ -200,6 +199,7 @@
     <ClInclude Include="ECS\Managers\Raycast.h" />
     <ClInclude Include="ECS\UI\TextComponents\FontSheet.h" />
     <ClInclude Include="ECS\UI\TextComponents\SystemMessage.h" />
+    <ClInclude Include="ECS\UI\UI.h" />
     <ClInclude Include="ECS\UI\UICollider.h" />
     <ClInclude Include="ECS\Managers\CamComponent.h" />
     <ClInclude Include="ECS\Colliders\BoxCollider.h" />
@@ -510,6 +510,7 @@
     <None Include="res\Shaders\Basic.shader" />
     <None Include="res\Shaders\Circle.shader" />
     <None Include="res\Shaders\HPBar.shader" />
+    <None Include="res\Shaders\Inventory.shader" />
     <None Include="res\Shaders\Text.shader" />
     <None Include="res\Shaders\WithoutTexBasic.shader" />
     <None Include="res\vendor\glm\detail\func_common.inl" />
@@ -658,6 +659,7 @@
     <Image Include="res\Textures\FloorTexture.png" />
     <Image Include="res\Textures\UI\HPBar.png" />
     <Image Include="res\Textures\knife.png" />
+    <Image Include="res\Textures\UI\Inventory.png" />
     <Image Include="res\Textures\wall.png" />
     <Image Include="res\Textures\Wood.jpg" />
     <Image Include="res\Textures\Zubki.png" />

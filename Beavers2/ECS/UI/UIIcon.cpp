@@ -8,6 +8,8 @@ UIIcon::UIIcon()
 
 	const std::string mode = "CLAMP";
 	texture = new Texture("res/Textures/button.png", mode);
+
+	shader_basic = new Shader("res/Shaders/Basic.shader");
 }
 
 UIIcon::UIIcon(glm::vec2 newCoords, const char* pathTexture, float nowWidth, float nowHeight)
@@ -18,6 +20,21 @@ UIIcon::UIIcon(glm::vec2 newCoords, const char* pathTexture, float nowWidth, flo
 
 	const std::string mode = "CLAMP";
 	texture = new Texture(pathTexture, mode);
+
+	shader_basic = new Shader("res/Shaders/Basic.shader");
+}
+
+UIIcon::UIIcon(glm::vec2 newCoords, const char* pathTexture, const char* pathShader, float nowWidth, float nowHeight)
+{
+	coords = newCoords;
+	width = nowWidth;
+	height = nowHeight;
+
+	const std::string mode = "CLAMP";
+	texture = new Texture(pathTexture, mode);
+
+	shader_basic = new Shader(pathShader);
+
 }
 
 void UIIcon::init()
@@ -31,7 +48,6 @@ void UIIcon::init()
 	layout.Push<float>(2);
 	va->AddBuffer(*vb, layout);
 
-	shader_basic = new Shader("res/Shaders/Basic.shader");
 	shader_basic->Bind();
 	
 	texture->Bind();
@@ -47,18 +63,15 @@ void UIIcon::init()
 	texture->Unbind();
 }
 
-void UIIcon::update()
-{
-	
-}
 
 void UIIcon::lastDraw()
 {
 	if (!enabled)
 		return;
 
-	glDepthFunc(GL_ALWAYS);
-	glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(coords.x, coords.y, 0.0f));
+	glDepthFunc(GL_LEQUAL);
+
+	glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(coords.x, coords.y, -0.1f));
 	glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(width, height, 1.0f));
 
 	glm::mat4 m_MS = model * scale;

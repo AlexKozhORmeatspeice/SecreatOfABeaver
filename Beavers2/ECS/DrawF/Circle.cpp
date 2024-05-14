@@ -43,7 +43,7 @@ void Circle::draw()
 	glm::mat4 proj = CamComponent::GetProj();
 	glm::mat4 view = glm::translate(glm::mat4(1.0f), -CamComponent::GetPos());
 	
-	glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(transform->GetPos().x, transform->GetPos().y, transform->GetPos().z));
+	glm::mat4 model = glm::translate(glm::mat4(1.0f), transform->GetPos());
 	glm::mat4 scale = glm::scale(glm::mat4(1.0f), transform->GetScale());
 
 	m_MVP = proj * view * model * scale;

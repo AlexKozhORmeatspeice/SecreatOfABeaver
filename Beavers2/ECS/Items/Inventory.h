@@ -1,14 +1,19 @@
 #pragma once
 #include "ECS.h"
 #include "Item.h"
-#include "SpriteComponent.h"
-#include "UIButton.h"
-#include "DamageWeapon.h"
-#include "Hero.h"
+#include "UI.h"
+
 
 class Inventory : public Component
 {
 private:
+	static UIIcon* background;
+	static UIButton* dropItemButton;
+	static int m_inventories;
+
+	UIIcon* heroIcon;
+	UIText* heroNameTxt;
+
 	float maxWeight = 30.0f;
 	float nowWeight;
 	std::vector<Item*> items;
@@ -18,7 +23,7 @@ private:
 	const float buttonWidth  = 0.2f;   //in gl coords
 	const float buttonHeight = 0.2f;   //in gl coords
 	
-	glm::vec2 itemStartCoords = glm::vec2(-0.8f, -0.8f);
+	glm::vec2 itemStartCoords;
 public:
 	void init() override;
 	void update() override;
@@ -26,4 +31,6 @@ public:
 
 	void AddItem(Item* item);
 	void RemoveItem(Item* item);
+
+	~Inventory();
 };

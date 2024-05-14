@@ -12,11 +12,15 @@
 class Hero : public Component
 {
 private:
+	const char* name;
 	static std::vector<Hero*> heroes;
 	Stamina* stamina;
 	HP* hp;
 
 public:
+	Hero();
+	Hero(const char& heroName);
+
 	bool isChoosed;
 
 	bool canTakeAction;
@@ -24,6 +28,11 @@ public:
 
 	void init() override;
 	void update() override;
+
+	inline const char* GetName()
+	{
+		return name;
+	}
 
 	~Hero();
 private:

@@ -2,7 +2,7 @@
 
 void Weapon::update()
 {
-	if (!onHero->isChoosed)
+	if (onHero == nullptr || !onHero->isChoosed)
 	{
 		isChoosed = false;
 		return;
