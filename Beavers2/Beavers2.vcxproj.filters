@@ -49,6 +49,7 @@
     <ClCompile Include="src\Render.cpp" />
     <ClCompile Include="res\Renderer\Renderer.cpp" />
     <ClCompile Include="src\System.cpp" />
+    <ClCompile Include="ECS\Managers\TimeManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Depend\GLEW\include\GL\eglew.h" />
@@ -349,6 +350,7 @@
     <ClInclude Include="res\Renderer\Renderer.h" />
     <ClInclude Include="src\System.h" />
     <ClInclude Include="ECS\UI\UI.h" />
+    <ClInclude Include="ECS\Managers\TimeManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="Depend\GLEW\lib\Release\Win32\glew32s.lib" />

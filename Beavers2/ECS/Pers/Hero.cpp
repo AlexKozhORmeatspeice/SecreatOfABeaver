@@ -87,8 +87,6 @@ void Hero::SetOtherNotChoosed(Hero* exceptHero)
 
 Hero::~Hero()
 {
-	delete name;
-
 	auto it = std::find(heroes.begin(), heroes.end(), this);
 	
 	if (it != heroes.end())

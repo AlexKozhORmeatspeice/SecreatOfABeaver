@@ -6,6 +6,8 @@ void UIButton::init()
 	gotClick = false;
 	doCalls = false;
 
+	timeBetweenClicks = 0.3f;
+	lastClickTime = Time::GetCurrentTime();
 	//////////////////from UIIcon/////////////////////
 	vb = new VertexBuffer(postitions, 4 * 4 * sizeof(float));
 	ib = new IndexBuffer(indices, 6);
@@ -60,11 +62,11 @@ void UIButton::update()
 
 	if (gotClick && !doCalls)
 	{
-		lastClickTime = time(0);
+		lastClickTime = Time::GetCurrentTime();
 		StartCalls();
 	}
 
-	if (time(0) - lastClickTime > timeBetweenClicks)
+	if (Time::GetCurrentTime() - lastClickTime > timeBetweenClicks)
 	{
 		doCalls = false;
 		gotClick = false;

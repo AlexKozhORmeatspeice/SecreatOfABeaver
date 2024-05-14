@@ -150,6 +150,7 @@
     <ClCompile Include="ECS\Managers\Coursor.cpp" />
     <ClCompile Include="ECS\Managers\Raycast.cpp" />
     <ClCompile Include="ECS\Managers\StepSystemManager.cpp" />
+    <ClCompile Include="ECS\Managers\TimeManager.cpp" />
     <ClCompile Include="ECS\MovementSystem\HeroMov.cpp" />
     <ClCompile Include="ECS\MovementSystem\MovementComponent.cpp" />
     <ClCompile Include="ECS\MovementSystem\EnemyMov.cpp" />
@@ -197,6 +198,7 @@
     <ClInclude Include="Depend\GLFW\include\GLFW\glfw3native.h" />
     <ClInclude Include="ECS\BoxCollider.h" />
     <ClInclude Include="ECS\Managers\Raycast.h" />
+    <ClInclude Include="ECS\Managers\TimeManager.h" />
     <ClInclude Include="ECS\UI\TextComponents\FontSheet.h" />
     <ClInclude Include="ECS\UI\TextComponents\SystemMessage.h" />
     <ClInclude Include="ECS\UI\UI.h" />

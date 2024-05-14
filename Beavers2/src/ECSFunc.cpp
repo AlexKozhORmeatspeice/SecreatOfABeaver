@@ -16,8 +16,10 @@ void ECSInit()
 	Entity& stepSys(Manager::addEntity());
 	Entity& floor(Manager::addEntity());
 	Entity& message(Manager::addEntity());
-
+	Entity& timeManager(Manager::addEntity());
 	//////////////////////////////////////////////
+	timeManager.AddComponent<Time>();
+
 	StepSysManager* stepSM = stepSys.AddComponent<StepSysManager>();
 
 	raycast.AddComponent<Raycast>();

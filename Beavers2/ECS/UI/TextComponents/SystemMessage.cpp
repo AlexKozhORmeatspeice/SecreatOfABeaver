@@ -87,9 +87,9 @@ void UIText::lastDraw()
 
 UIText::~UIText()
 {
-	delete va;
 	delete vb;
 	delete ib;
+	delete va;
 	delete shader;
 	delete texture;
 }

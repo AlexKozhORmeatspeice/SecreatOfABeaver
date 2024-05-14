@@ -139,7 +139,7 @@ Inventory::~Inventory()
 
 	if (m_inventories == 0)
 	{
-		delete background->entity;
+		background->entity->destroy();
 		//dropItemButton->entity->destroy();
 	}
 

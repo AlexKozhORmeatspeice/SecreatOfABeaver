@@ -2,8 +2,8 @@
 #include "ECS.h"
 #include "UIIcon.h"
 #include "UICollider.h"
-#include "ctime"
 #include "functional"
+#include "TimeManager.h"
 
 class UIButton : public UIIcon
 {
@@ -11,8 +11,8 @@ private:
 	std::vector<std::function<void()>> calls;
 	UICollider* UIColl;
 	
-	unsigned int timeBetweenClicks = 1; //in seconds
-	unsigned int lastClickTime;
+	float timeBetweenClicks; //in seconds
+	float lastClickTime;
 
 	bool isLocked; //meanes it stay darker if pressed
 	bool gotClick;
