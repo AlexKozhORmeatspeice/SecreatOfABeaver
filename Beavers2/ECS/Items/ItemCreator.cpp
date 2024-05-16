@@ -5,10 +5,10 @@
 
 float ItemCreator::standartSizeIcon = 30.0f;
 
-Item* ItemCreator::CreateKnife()
+Item* ItemCreator::CreateKnife(glm::vec3 pos)
 {
 	Entity* knife(&Manager::addEntity());
-	knife->AddComponent<Transform>(glm::vec3(0.0f), glm::vec3(standartSizeIcon));
+	knife->AddComponent<Transform>(pos, glm::vec3(standartSizeIcon));
 	knife->AddComponent<CircleCollider>(80.0f, false, false);
 	knife->AddComponent<SpriteComponent>("res/Textures/knife.png");
 

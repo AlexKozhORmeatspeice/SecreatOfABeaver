@@ -1,12 +1,22 @@
 #pragma once
 #include "ECS.h"
 #include "Weapon.h"
+#include "TimeManager.h"
 
 class HeroUse : public Component
 {
 private:
 	Item* item;
+
+	static float timeBetweenUse;
+	float lastTimeUse;
 public:
+	HeroUse()
+	{
+		item = nullptr;
+		lastTimeUse = Time::GetCurrentTime();
+	}
+
 	void update() override;
 
 	void SetItem(Item* item);

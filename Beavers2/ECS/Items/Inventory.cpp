@@ -21,7 +21,7 @@ void Inventory::init()
 	CreateUI();
 
 	//base weapon
-	AddItem(ItemCreator::CreateKnife());
+	AddItem(ItemCreator::CreateKnife(glm::vec3(0.0f)));
 }
 void Inventory::update()
 {

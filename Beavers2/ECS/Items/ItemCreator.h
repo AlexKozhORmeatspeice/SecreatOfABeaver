@@ -7,5 +7,5 @@ class ItemCreator
 private:
 	static float standartSizeIcon;
 public:
-	static Item* CreateKnife();
+	static Item* CreateKnife(glm::vec3 pos);
 };
