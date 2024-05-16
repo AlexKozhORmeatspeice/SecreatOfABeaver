@@ -139,8 +139,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ECS\AttackSystem\HeroUse.cpp" />
     <ClCompile Include="ECS\Items\All_Items\DamageWeapon.cpp" />
     <ClCompile Include="ECS\Items\All_Items\Weapon.cpp" />
+    <ClCompile Include="ECS\Items\ItemCreator.cpp" />
     <ClCompile Include="ECS\Managers\CamComponent.cpp" />
     <ClCompile Include="ECS\Colliders\BoxCollider.cpp" />
     <ClCompile Include="ECS\Colliders\CircleCollider.cpp" />
@@ -149,6 +151,7 @@
     <ClCompile Include="ECS\ECS.cpp" />
     <ClCompile Include="ECS\Managers\Coursor.cpp" />
     <ClCompile Include="ECS\Managers\Raycast.cpp" />
+    <ClCompile Include="ECS\Managers\SceneManager.cpp" />
     <ClCompile Include="ECS\Managers\StepSystemManager.cpp" />
     <ClCompile Include="ECS\Managers\TimeManager.cpp" />
     <ClCompile Include="ECS\MovementSystem\HeroMov.cpp" />
@@ -196,8 +199,12 @@
     <ClInclude Include="Depend\GLEW\include\GL\wglew.h" />
     <ClInclude Include="Depend\GLFW\include\GLFW\glfw3.h" />
     <ClInclude Include="Depend\GLFW\include\GLFW\glfw3native.h" />
+    <ClInclude Include="ECS\AttackSystem\EnemyUse.h" />
+    <ClInclude Include="ECS\AttackSystem\HeroUse.h" />
     <ClInclude Include="ECS\BoxCollider.h" />
+    <ClInclude Include="ECS\Items\ItemCreator.h" />
     <ClInclude Include="ECS\Managers\Raycast.h" />
+    <ClInclude Include="ECS\Managers\SceneManager.h" />
     <ClInclude Include="ECS\Managers\TimeManager.h" />
     <ClInclude Include="ECS\UI\TextComponents\FontSheet.h" />
     <ClInclude Include="ECS\UI\TextComponents\SystemMessage.h" />
@@ -511,7 +518,7 @@
     <None Include="ECS\Items\All_Items\Item.cpp" />
     <None Include="res\Shaders\Basic.shader" />
     <None Include="res\Shaders\Circle.shader" />
-    <None Include="res\Shaders\HPBar.shader" />
+    <None Include="res\Shaders\BarSlider.shader" />
     <None Include="res\Shaders\Inventory.shader" />
     <None Include="res\Shaders\Text.shader" />
     <None Include="res\Shaders\WithoutTexBasic.shader" />
@@ -659,6 +666,7 @@
     <Image Include="res\Textures\bobr.png" />
     <Image Include="res\Textures\button.png" />
     <Image Include="res\Textures\FloorTexture.png" />
+    <Image Include="res\Textures\UI\button.png" />
     <Image Include="res\Textures\UI\HPBar.png" />
     <Image Include="res\Textures\knife.png" />
     <Image Include="res\Textures\UI\Inventory.png" />

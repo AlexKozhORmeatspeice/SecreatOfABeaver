@@ -2,7 +2,8 @@
 
 void UIButton::init()
 {
-	isLocked = false;
+	enabled = false;
+	isPressed = false;
 	gotClick = false;
 	doCalls = false;
 
@@ -25,6 +26,7 @@ void UIButton::init()
 	shader_basic->SetUniform1i("u_Texture", 0);
 
 	color = glm::vec4(1.0f);
+	startColor = color;
 	shader_basic->SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
 
 	shader_basic->Unbind();
@@ -33,7 +35,6 @@ void UIButton::init()
 	va->Unbind();
 	texture->Unbind();
 	///////////////////////
-	startColor = color;
 	
 	entity->AddComponent<UICollider>();
 	UIColl = entity->GetComponent<UICollider>();
@@ -47,17 +48,36 @@ void UIButton::init()
 
 void UIButton::update()
 {
+	if (!enabled)
+		return;
+
 	UIColl->width = width;
 	UIColl->height = height;
 	UIColl->coords = coords;
 
+	if (!isLocked)
+	{
+		LogicNotLockedButton();
+	}
+	else
+	{
+		LogicLockedButton();
+	}
+	
+}
+
+void UIButton::LogicLockedButton()
+{
 	bool mouthOn = UIColl->GetIsCollidMouth();
 	int mouseLeftState = GLFWGetKeyMouseState(GLFW_MOUSE_BUTTON_LEFT);
 
-	
 	if (!gotClick)
 	{
 		gotClick = (mouthOn && mouseLeftState == GLFW_PRESS);
+		if (gotClick)
+		{
+			isPressed = !isPressed;
+		}
 	}
 
 	if (gotClick && !doCalls)
@@ -71,9 +91,37 @@ void UIButton::update()
 		doCalls = false;
 		gotClick = false;
 	}
-	if (!isLocked && gotClick)
-	{
 
+	if (isPressed)
+	{
+		color = startColor - glm::vec4(0.3f);
+	}
+	else
+	{
+		color = startColor;
+	}
+}
+void UIButton::LogicNotLockedButton()
+{
+	bool mouthOn = UIColl->GetIsCollidMouth();
+	int mouseLeftState = GLFWGetKeyMouseState(GLFW_MOUSE_BUTTON_LEFT);
+
+	if (!gotClick)
+	{
+		gotClick = (mouthOn && mouseLeftState == GLFW_PRESS);
+	}
+	isPressed = gotClick;
+
+	if (gotClick && !doCalls)
+	{
+		lastClickTime = Time::GetCurrentTime();
+		StartCalls();
+	}
+
+	if (Time::GetCurrentTime() - lastClickTime > timeBetweenClicks)
+	{
+		doCalls = false;
+		gotClick = false;
 	}
 
 	if (gotClick)
@@ -85,6 +133,7 @@ void UIButton::update()
 		color = startColor;
 	}
 }
+
 
 void UIButton::AddCall(std::function<void()> elem)
 {
@@ -109,3 +158,4 @@ UIButton::~UIButton()
 {
 	UIColl->entity->destroy();
 }
+

@@ -2,26 +2,33 @@
 #include "ECS.h"
 #include "Item.h"
 #include "UI.h"
+#include "Weapon.h"
 
 
 class Inventory : public Component
 {
 private:
 	static UIIcon* background;
-	static UIButton* dropItemButton;
 	static int m_inventories;
+
+	UIButton* dropItemButton;
+	UIText*   dropItemText;
+
+	UIButton* takeItemButton;
+	UIText*   takeItemText;
 
 	UIIcon* heroIcon;
 	UIText* heroNameTxt;
 
 	float maxWeight = 30.0f;
 	float nowWeight;
+	
 	std::vector<Item*> items;
 	std::vector<UIButton*> buttons;
 	
-	const float spacing      = 0.3f;   //in gl coords
-	const float buttonWidth  = 0.2f;   //in gl coords
-	const float buttonHeight = 0.2f;   //in gl coords
+	const float spacing      = 0.2f;   //in gl coords
+	const float buttonWidth  = 0.15f;   //in gl coords
+	const float buttonHeight = 0.15f;   //in gl coords
 	
 	glm::vec2 itemStartCoords;
 public:
@@ -33,4 +40,13 @@ public:
 	void RemoveItem(Item* item);
 
 	~Inventory();
+
+private:
+	void CreateUI();
+
+	void EnableUI();
+	void DisableUI();
+
+	void DrawOtherItemsUnactive(Item* item);
+	void TakeFirstNearItem();
 };

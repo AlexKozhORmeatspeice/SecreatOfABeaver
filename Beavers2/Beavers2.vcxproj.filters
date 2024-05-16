@@ -50,6 +50,9 @@
     <ClCompile Include="res\Renderer\Renderer.cpp" />
     <ClCompile Include="src\System.cpp" />
     <ClCompile Include="ECS\Managers\TimeManager.cpp" />
+    <ClCompile Include="ECS\Managers\SceneManager.cpp" />
+    <ClCompile Include="ECS\AttackSystem\HeroUse.cpp" />
+    <ClCompile Include="ECS\Items\ItemCreator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Depend\GLEW\include\GL\eglew.h" />
@@ -351,6 +354,10 @@
     <ClInclude Include="src\System.h" />
     <ClInclude Include="ECS\UI\UI.h" />
     <ClInclude Include="ECS\Managers\TimeManager.h" />
+    <ClInclude Include="ECS\Managers\SceneManager.h" />
+    <ClInclude Include="ECS\AttackSystem\EnemyUse.h" />
+    <ClInclude Include="ECS\AttackSystem\HeroUse.h" />
+    <ClInclude Include="ECS\Items\ItemCreator.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="Depend\GLEW\lib\Release\Win32\glew32s.lib" />
@@ -374,6 +381,7 @@
     <Image Include="res\Textures\Wood.jpg" />
     <Image Include="res\Textures\Zubki.png" />
     <Image Include="res\Textures\UI\Inventory.png" />
+    <Image Include="res\Textures\UI\button.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Depend\GLEW\bin\Release\Win32\glew32.dll" />
@@ -396,7 +404,7 @@
     <None Include="ECS\Items\All_Items\Item.cpp" />
     <None Include="res\Shaders\Basic.shader" />
     <None Include="res\Shaders\Circle.shader" />
-    <None Include="res\Shaders\HPBar.shader" />
+    <None Include="res\Shaders\BarSlider.shader" />
     <None Include="res\Shaders\Text.shader" />
     <None Include="res\Shaders\WithoutTexBasic.shader" />
     <None Include="res\vendor\glm\detail\func_common.inl" />

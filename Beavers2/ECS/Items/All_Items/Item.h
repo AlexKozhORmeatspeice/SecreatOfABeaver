@@ -6,17 +6,22 @@ class Item : public Component
 {
 protected:
 	Hero* onHero;
-	bool isChoosed;
 	float weight;
+
+	float rangeUse;
+	unsigned int useCost;
 public:
 	bool isInInventory;
+
+	virtual void UseItem() {}
+	virtual bool CanUse() { return true; }
+
 	Item(float nowWeight)
 	{
 		weight = nowWeight;
 
 		onHero = nullptr;
 		isInInventory = false;
-		isChoosed = false;
 	}
 
 	void SetHero(Hero* newHero)
@@ -29,6 +34,14 @@ public:
 		return weight;
 	}
 
+	float GetRange()
+	{
+		return rangeUse;
+	}
+	unsigned int GetUseCost()
+	{
+		return useCost;
+	}
 	
 	~Item() {}
 };

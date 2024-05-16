@@ -37,5 +37,9 @@ public:
 	void init() override;
 	void lastDraw() override;
 	
+	virtual void SetColor(glm::vec4 newColor)
+	{
+		color = newColor;
+	}
 	~UIIcon();
 };

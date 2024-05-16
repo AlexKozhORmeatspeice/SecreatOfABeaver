@@ -33,3 +33,7 @@
 #include "Inventory.h"
 
 #include "TimeManager.h"
+#include "HeroUse.h"
+#include "EnemyUse.h"
+
+#include "ItemCreator.h"

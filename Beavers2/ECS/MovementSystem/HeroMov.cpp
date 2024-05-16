@@ -40,19 +40,17 @@ void HeroMov::update()
 	{
 		Move();
 	}
-
-	int mouseLeftState = GLFWGetKeyMouseState(GLFW_MOUSE_BUTTON_LEFT);
-
-	////////////////////////////////////////
+	
 	if (!heroComp->isChoosed)
 		return;
 
+	int mouseLeftState = GLFWGetKeyMouseState(GLFW_MOUSE_BUTTON_LEFT);
 	bool inMoveRadius = CanMove(Coursor::GetMousePos(), pos->GetPos(), moveCost);
 	bool gotClickNotOnObject = (
 								mouseLeftState == GLFW_PRESS && 
 								!Coursor::GetCollisionStatus<BoxCollider>()
 							   );
-	
+
 	//if get right mouse or click to move out of move distance set not choosed
 	if (gotClickNotOnObject && !inMoveRadius && !Coursor::isOnUI)
 	{
@@ -63,20 +61,27 @@ void HeroMov::update()
 	//if got left mouse click is right start move
 	if (!isMoving && !canMove && gotClickNotOnObject && inMoveRadius && !Coursor::isOnUI)
 	{
-		heroComp->isChoosed = false;
-		canMove = true;
 		SetTarget();
+		bool canGoThroughCollision = CanMove(targetPoint, pos->GetPos(), moveCost);
 
-		UseStaminaToMove(targetPoint, pos->GetPos(), moveCost);
+		if (canGoThroughCollision)
+		{
+			canMove = true;
+			heroComp->isChoosed = false;
+			UseStaminaToMove(targetPoint, pos->GetPos(), moveCost);
+		}
+		else
+		{
+			heroComp->isChoosed = false;
+		}
+		
 	}
+
 }
 
 void HeroMov::Move()
 {
-	bool isCollide = entity->GetComponent<BoxCollider>()->GetCollidObj<Hero>();
-
-	if ((isCollide && glm::distance(targetPoint, pos->GetPos()) <= stamina->GetCellSize() * 2.5f ) ||
-		glm::distance(targetPoint, pos->GetPos()) <= stamina->GetCellSize() * 2.0f)
+	if (glm::distance(targetPoint, pos->GetPos()) <= stamina->GetCellSize() * 2.0f)
 	{
 		canMove = false;
 		isMoving = false;

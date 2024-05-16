@@ -39,6 +39,8 @@ UIIcon::UIIcon(glm::vec2 newCoords, const char* pathTexture, const char* pathSha
 
 void UIIcon::init()
 {
+	enabled = false;
+
 	vb = new VertexBuffer(postitions, 4 * 4 * sizeof(float));
 	ib = new IndexBuffer(indices, 6);
 	va = new VertexArray;

@@ -8,26 +8,17 @@ protected:
 	unsigned int maxAmmo;
 	unsigned int nowAmmo;
 
-	float rangeAttack;
 	unsigned int damage;
-	unsigned int useCost;
-
-	bool isChoosed;
 public:
 	Weapon(unsigned int nowDamage, unsigned int nowUseCost, float nowWeight, float nowRangeAttack) : Item(nowWeight)
 	{
 		damage = nowDamage;
 		useCost = nowUseCost;
-		rangeAttack = nowRangeAttack;
+		rangeUse = nowRangeAttack;
 	}
 
-	void update() override;
-	virtual void UseWeapon() {}
 
-	void inline ChangeChoosedStatus()
-	{
-		isChoosed = !isChoosed;
-	}
-
+	virtual void UseItem() override {}
+	virtual bool CanUse() override { return true; }
 	~Weapon() {}
 };

@@ -10,7 +10,7 @@ public:
 		: Weapon(nowDamage, nowUseCost, nowWeight, nowRangeAttack)
 	{}
 
-	void UseWeapon() override;
-
+	void UseItem() override;
+	bool CanUse() override;
 	~DamageWeapon() {}
 };

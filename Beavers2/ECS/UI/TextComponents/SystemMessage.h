@@ -34,5 +34,7 @@ public:
 	void lastDraw() override;
 	void init() override;
 
+	void ChangeColor(glm::vec4 color);
+
 	~UIText();
 };

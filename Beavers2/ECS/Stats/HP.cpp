@@ -14,13 +14,12 @@ void HP::init()
 {
 	pos = entity->GetComponent<Transform>();
 
-	shader = new Shader("res/Shaders/HPBar.shader");
+	shader = new Shader("res/Shaders/BarSlider.shader");
 	shader->Bind();
 
 	const std::string mode = "CLAMP";
 	texture = new Texture("res/Textures/UI/HPBar.png", mode);
 	texture->Bind();
-	shader->SetUniform1i("u_Texture", 0);
 
 	m_MVP = glm::mat4(1.0f);
 
@@ -36,6 +35,7 @@ void HP::init()
 	va->AddBuffer(*vb, layout);
 
 	shader->SetUniform1i("u_Texture", 0);
+	shader->SetUniform4f("u_FirstColor", 1.0, 1.0, 0.0, 1.0);
 
 	vb->Unbind();
 	ib->Unbind();
@@ -71,8 +71,8 @@ void HP::draw()
 	shader->Bind();
 
 	shader->SetUniformMat4f("u_MVP", m_MVP);
-	shader->SetUniform1f("nowHP", nowHP);
-	shader->SetUniform1f("maxHP", maxHP);
+	shader->SetUniform1f("now", nowHP);
+	shader->SetUniform1f("max", maxHP);
 
 	texture->Bind();
 	Renderer::Draw(*va, *ib, *shader);

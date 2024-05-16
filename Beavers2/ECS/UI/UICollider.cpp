@@ -17,7 +17,8 @@ void UICollider::init()
 }
 void UICollider::update()
 {
-	if (!entity->GetComponent<UIButton>()->IsEnabled())
+	if (!entity->GetComponent<UIButton>()->IsEnabled() ||
+		(gotCollisionAny && !isCollidWithMouse))
 		return;
 
 	glm::vec2 mP = Coursor::GetNormalizedMousePos(); //mouse pos
@@ -29,12 +30,8 @@ void UICollider::update()
 						 mP.y >= bR.y &&
 						 mP.x <= bR.x   );
 
+	gotCollisionAny = isCollidWithMouse;
 	Coursor::isOnUI = isCollidWithMouse;
-}
-
-void UICollider::lastUpdate()
-{
-	gotCollisionAny = false;
 }
 
 bool UICollider::GetIsCollidMouth()

@@ -84,7 +84,12 @@ void UIText::lastDraw()
 	texture->Unbind();
 }
 
-
+void UIText::ChangeColor(glm::vec4 color)
+{
+	shader->Bind();
+	shader->SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
+	shader->Unbind();
+}
 UIText::~UIText()
 {
 	delete vb;

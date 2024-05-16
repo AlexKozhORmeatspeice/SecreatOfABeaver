@@ -83,6 +83,24 @@ public:
 		return c;
 	}
 
+	template <typename T, typename T2>
+	T2* AddComponentAsObject(Component* comp)
+	{
+		comp->entity = this;
+
+		std::unique_ptr<Component> uPtr{ comp };
+
+		components.emplace_back(std::move(uPtr));
+
+		componentArray[GetComponentTypeID<T>()] = comp;
+		componentBitSet[GetComponentTypeID<T>()] = true;
+
+		comp->init();
+
+		return static_cast<T2*>(comp);
+	}
+
+
 	template <typename T> 
 	bool HasComponent() const
 	{

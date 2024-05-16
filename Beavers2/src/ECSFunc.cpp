@@ -45,7 +45,7 @@ void ECSInit()
 	
 
 
-
+	
 	floor.AddComponent<Transform>(glm::vec3(0.0f, 0.0f, 0.0f));
 	floor.AddComponent<Tile>(1200.0f, 1200.0f, "res/Shaders/Basic.shader", "res/Textures/FloorTexture.png");
 }
@@ -72,6 +72,7 @@ Entity* HeroZubarPrefab(glm::vec3 pos)
 
 	hero->AddComponent<Transform>(pos,
 		glm::vec3(50.0f, 50.0f, 1.0f));
+	hero->AddComponent<HeroUse>();
 	hero->AddComponent<Stamina>(100);
 	hero->AddComponent<HP>();
 	hero->AddComponent<SpriteComponent>("res/Textures/Zubki.png",
@@ -81,6 +82,7 @@ Entity* HeroZubarPrefab(glm::vec3 pos)
 	hero->AddComponent<Hero>(); 
 	hero->AddComponent<Inventory>();
 	hero->AddComponent<HeroMov>(10);
+
 	
 
 	return hero;
@@ -92,6 +94,7 @@ Entity* BasicEnemyPrefab(glm::vec3 pos)
 
 	enemy->AddComponent<Transform>(pos,
 								   glm::vec3(50.0f, 50.0f, 1.0f));
+	enemy->AddComponent<EnemyUse>();
 	enemy->AddComponent<Stamina>(100);
 	enemy->AddComponent<HP>();
 	enemy->AddComponent<SpriteComponent>("res/Textures/bobr.png",
@@ -100,6 +103,7 @@ Entity* BasicEnemyPrefab(glm::vec3 pos)
 	enemy->AddComponent<BoxCollider>(50, 50, true, true);
 	enemy->AddComponent<Enemy>(); 
 	enemy->AddComponent<EnemyMov>(400.0f, 10);
+	
 
 	return enemy;
 }

@@ -31,5 +31,5 @@ void main()
 	if(length(texColor.rgb) < 0.02)
 		discard;
 
-	color = texColor;
+	color = texColor * u_Color;
 };

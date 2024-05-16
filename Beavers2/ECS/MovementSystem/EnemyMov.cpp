@@ -95,9 +95,8 @@ void EnemyMov::Move()
 
 		viewDir = heroPos->GetPos() - pos->GetPos();
 	}
+
 	viewDir /= glm::length(viewDir);
-
-
 	pos->SetPos(pos->GetPos() + viewDir * speed);
 }
 

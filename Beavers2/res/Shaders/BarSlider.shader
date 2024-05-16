@@ -20,21 +20,23 @@ layout(location = 0) out vec4 color;
 
 in vec2 v_TexCoords;
 
-uniform float nowHP;
-uniform float maxHP;
-
 uniform sampler2D u_Texture;
+
+uniform float now;
+uniform float max;
+
+uniform vec4 u_FirstColor;
+
 
 void main()
 {
 	vec4 texColor = texture(u_Texture, v_TexCoords);
 
-	float fade = (nowHP / maxHP);
+	float fade = (now / max);
 	float thick = 0.1;
 	float tonColor = smoothstep(fade - thick, fade + thick, v_TexCoords.x);
 	
-	vec4 baseColor = vec4(tonColor, 1.0 - tonColor, 0.0, 1.0);
-	color = baseColor;
+	vec4 baseColor = vec4(u_FirstColor.r * tonColor, u_FirstColor.g * (1.0 - tonColor), u_FirstColor.b, 1.0);
 	
 	if(texColor.a == 0.0)
 		discard;
