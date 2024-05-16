@@ -5,6 +5,16 @@
 #include "EnemyCreator.h"
 #include "ItemCreator.h"
 
+//Инсрукция по работе с SceneManager
+// 
+//1. Находишь SceneManager.cpp
+//2. Делаешь новую функцию по примерам в самом низу файла.И пишешь в этой функции код для уровня
+//3. Поле того как создал локацию добавляешь все созданные Entity в vector также по примеру и возвращаешь его
+//4. В init() добавляешь в scenesFuncs свое создание уровня
+//5. Поздравяю ты прекрасен и теперь можешь использовать SceneManager::LoadScene() или SceneManager::LoadNextScene()
+//
+//PS: не создавать здесь объявление Enemy или Hero. Для этого есть EnemyCreator или HeroCreator соотвестенно (находятся в папке ECS\PERS)
+
 class SceneManager : public Component
 {
 private:
