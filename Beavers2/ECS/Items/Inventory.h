@@ -2,14 +2,12 @@
 #include "ECS.h"
 #include "Item.h"
 #include "UI.h"
-#include "Weapon.h"
-
+#include "DamageWeapon.h"
 
 class Inventory : public Component
 {
 private:
-	static UIIcon* background;
-	static int m_inventories;
+	UIIcon* background;
 
 	UIButton* dropItemButton;
 	UIText*   dropItemText;
@@ -20,10 +18,10 @@ private:
 	UIIcon* heroIcon;
 	UIText* heroNameTxt;
 
-	float maxWeight = 30.0f;
+	float maxWeight;
 	float nowWeight;
 	
-	std::vector<Item*> items;
+	std::vector<Item*> all_items;
 	std::vector<UIButton*> buttons;
 	
 	const float spacing      = 0.2f;   //in gl coords

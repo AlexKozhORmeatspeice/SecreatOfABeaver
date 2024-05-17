@@ -58,6 +58,9 @@ std::vector<Entity*>& CreateScene1()
 	/////////////////////Heroes and enemies/////////////////////
 	Entity* zubar = HeroCreator::ZubarPrefab(glm::vec3(200.0f, 0.0f, 0.0f));
 	stepSM->AddHero(*zubar->GetComponent<Hero>()); //!!!
+
+	Entity* zubar2 = HeroCreator::ZubarPrefab(glm::vec3(200.0f, 200.0f, 0.0f));
+	stepSM->AddHero(*zubar2->GetComponent<Hero>()); //!!!
 	
 	Entity* enemy1 = EnemyCreator::BasicEnemyPrefab(glm::vec3(-200.0f, 0.0f, 0.0f));
 	stepSM->AddEnemy(*enemy1->GetComponent<Enemy>()); //!!!

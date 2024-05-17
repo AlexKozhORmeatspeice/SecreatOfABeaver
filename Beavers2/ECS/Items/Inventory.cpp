@@ -1,27 +1,26 @@
 #include "Inventory.h"
 #include "SpriteComponent.h"
 #include "Hero.h"
-#include "DamageWeapon.h"
 #include "HeroUse.h"
 #include "CircleCollider.h"
+
 #include "ItemCreator.h"
 
 
-UIIcon* Inventory::background;
-
-int Inventory::m_inventories = 0;
-
 void Inventory::init()
 {
+	all_items.clear();
+	buttons.clear();
+
+	maxWeight = 30.0f;
     itemStartCoords = glm::vec2(-0.35f, -0.8f);
 
-	m_inventories++;
 	nowWeight = 0.0f;
 
 	CreateUI();
 
 	//base weapon
-	AddItem(ItemCreator::CreateKnife(glm::vec3(0.0f)));
+	AddItem(&ItemCreator::CreateKnife(glm::vec3(0.0f)));
 }
 void Inventory::update()
 {
@@ -78,7 +77,7 @@ void Inventory::AddItem(Item* item)
 		Hero* hero = entity->GetComponent<Hero>();
 		item->SetHero(hero);
 
-		items.push_back(item);
+		all_items.push_back(item);
 		buttons.push_back(ui_button);
 
 		nowWeight += item->GetWeight();
@@ -89,14 +88,14 @@ void Inventory::RemoveItem(Item* item)
 	if (item == nullptr)
 		return;
 
-	auto it = std::find(items.begin(), items.end(), item);
-	if (it == items.end())
+	auto it = std::find(all_items.begin(), all_items.end(), item);
+	if (it == all_items.end())
 		return;
 	SpriteComponent* sprite = item->entity->GetComponent<SpriteComponent>();
 	sprite->Enable();
 
-	size_t index = std::distance(items.begin(), it);
-	items.erase(it);
+	size_t index = std::distance(all_items.begin(), it);
+	all_items.erase(it);
 
 	buttons[index]->entity->destroy();
 	buttons.erase(buttons.begin() + index); //im not sure that it would work, but maybe?
@@ -128,11 +127,8 @@ void Inventory::TakeFirstNearItem()
 
 void Inventory::CreateUI()
 {
-	if (background == nullptr)
-	{
-		Entity* black(&Manager::addEntity());
-		background = black->AddComponent<UIIcon>(glm::vec2(0.0f, -0.6f), "res/Textures/UI/Inventory.png", 1.0f, 0.4f);
-	}
+	Entity* black(&Manager::addEntity());
+	background = black->AddComponent<UIIcon>(glm::vec2(0.0f, -0.6f), "res/Textures/UI/Inventory.png", 1.0f, 0.4f);
 
 	Entity* dropItem(&Manager::addEntity());
 	dropItemButton = dropItem->AddComponent<UIButton>(glm::vec2(0.83f, -0.8f), "res/Textures/UI/button.png", 0.14f, 0.1f);
@@ -221,9 +217,9 @@ void Inventory::DisableUI()
 
 void Inventory::DrawOtherItemsUnactive(Item* item)
 {
-	for (int i = 0; i < items.size(); i++)
+	for (int i = 0; i < all_items.size(); i++)
 	{
-		if (items[i] == item)
+		if (all_items[i] == item)
 			continue;
 
 		buttons[i]->SetColor(glm::vec4(1.0f));
@@ -233,8 +229,6 @@ void Inventory::DrawOtherItemsUnactive(Item* item)
 
 Inventory::~Inventory()
 {
-	m_inventories--;
-
 	heroIcon->entity->destroy();
 	heroNameTxt->entity->destroy();
 
@@ -243,9 +237,15 @@ Inventory::~Inventory()
 
 	takeItemButton->entity->destroy();
 	takeItemText->entity->destroy();
+	
+	background->entity->destroy();
 
-	if (m_inventories == 0)
+
+	while (all_items.size() > 0)
 	{
-		background->entity->destroy();
+		RemoveItem(all_items[0]);
 	}
+
+	buttons.clear();
+	all_items.clear();
 }

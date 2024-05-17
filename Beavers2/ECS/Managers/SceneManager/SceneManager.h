@@ -19,7 +19,7 @@ class SceneManager : public Component
 {
 private:
 	static int nowScene;
-	static std::vector<std::vector<Entity*>& (*)()> scenesFuncs; //not the best, but...I was lazy to do something smarter (look for functions in cpp
+	static std::vector<std::vector<Entity*>& (*)()> scenesFuncs; //not the best, but...I was lazy to do something smarter (look for functions in cpp)
 	static std::vector<Entity*> currentEntities;
 public:
 
