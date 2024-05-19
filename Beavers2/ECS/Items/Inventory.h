@@ -30,6 +30,8 @@ private:
 	
 	glm::vec2 itemStartCoords;
 public:
+	Inventory();
+
 	void init() override;
 	void update() override;
 	void lastDraw() override;

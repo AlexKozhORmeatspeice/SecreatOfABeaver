@@ -6,16 +6,18 @@
 
 #include "ItemCreator.h"
 
+Inventory::Inventory()
+{
+	maxWeight = 30.0f;
+	nowWeight = 0.0f;
+}
 
 void Inventory::init()
 {
 	all_items.clear();
 	buttons.clear();
 
-	maxWeight = 30.0f;
     itemStartCoords = glm::vec2(-0.35f, -0.8f);
-
-	nowWeight = 0.0f;
 
 	CreateUI();
 
@@ -40,7 +42,8 @@ void Inventory::lastDraw()
 
 void Inventory::AddItem(Item* item)
 {
-	if ((nowWeight + item->GetWeight()) <= maxWeight)
+	bool canAdd = nowWeight + item->GetWeight() <= maxWeight;
+	if (canAdd)
 	{
 		Entity& button(Manager::addEntity());
 		SpriteComponent* spriteItem = item->entity->GetComponent<SpriteComponent>();

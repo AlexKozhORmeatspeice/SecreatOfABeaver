@@ -1,7 +1,5 @@
 #include "HeroUse.h"
 
-float HeroUse::timeBetweenUse = 0.2f;
-
 void HeroUse::update()
 {
 	if (item == nullptr)
@@ -21,7 +19,7 @@ void HeroUse::update()
 	bool gotLeftClick = mouseLeftState == GLFW_PRESS;
 	bool canUse = item->CanUse();
 
-	if (enoughtDist && enoughStamina && canUse && gotLeftClick && (Time::GetCurrentTime() - lastTimeUse > timeBetweenUse))
+	if (enoughtDist && enoughStamina && canUse && gotLeftClick && (Time::GetCurrentTime() - lastTimeUse > item->GetTimeBetween()))
 	{
 		lastTimeUse = Time::GetCurrentTime();
 

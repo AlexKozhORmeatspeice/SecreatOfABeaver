@@ -11,7 +11,7 @@ Entity* EnemyCreator::BasicEnemyPrefab(glm::vec3 pos)
 
 	enemy->AddComponent<Transform>(pos,
 		glm::vec3(50.0f, 50.0f, 1.0f));
-	enemy->AddComponent<EnemyUse>();
+	//enemy->AddComponent<EnemyAttack>();
 	enemy->AddComponent<Stamina>(100);
 	enemy->AddComponent<HP>();
 	enemy->AddComponent<SpriteComponent>("res/Textures/bobr.png",

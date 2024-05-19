@@ -10,11 +10,17 @@ protected:
 
 	unsigned int damage;
 public:
-	Weapon(unsigned int nowDamage, unsigned int nowUseCost, float nowWeight, float nowRangeAttack) : Item(nowWeight)
+	Weapon(unsigned int nowDamage, unsigned int nowUseCost, float nowWeight, float nowRangeAttack, float nowTimeBetweenUse)
 	{
-		damage = nowDamage;
-		useCost = nowUseCost;
+		weight = nowWeight;
 		rangeUse = nowRangeAttack;
+		useCost = nowUseCost;
+		timeBetweenUse = nowTimeBetweenUse;
+
+		maxAmmo = 0;
+		nowAmmo = 0;
+
+		damage = nowDamage;
 	}
 
 

@@ -12,7 +12,7 @@ DamageWeapon& ItemCreator::CreateKnife(glm::vec3 pos)
 	knife->AddComponent<CircleCollider>(80.0f, false, false);
 	knife->AddComponent<SpriteComponent>("res/Textures/knife.png");
 
-	DamageWeapon* dmW = new DamageWeapon(30, 10, 10.0f, 150.0f);
+	DamageWeapon* dmW = new DamageWeapon(30, 10, 10.0f, 150.0f, 0.3f);
 	Item* item = static_cast<Item*>(dmW); //use it as an item!!! IT'S A FABRIC METHOD
 
 	knife->AddComponentAsObject<Item, DamageWeapon>(item);

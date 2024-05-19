@@ -8,7 +8,6 @@ class HeroUse : public Component
 private:
 	Item* item;
 
-	static float timeBetweenUse;
 	float lastTimeUse;
 public:
 	HeroUse()

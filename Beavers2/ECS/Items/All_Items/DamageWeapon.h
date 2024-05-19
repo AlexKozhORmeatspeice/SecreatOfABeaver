@@ -6,8 +6,8 @@
 class DamageWeapon : public Weapon
 {
 public:
-	DamageWeapon(unsigned int nowDamage, unsigned int nowUseCost, float nowWeight, float nowRangeAttack) 
-		: Weapon(nowDamage, nowUseCost, nowWeight, nowRangeAttack)
+	DamageWeapon(unsigned int nowDamage, unsigned int nowUseCost, float nowWeight, float nowRangeAttack, float nowTimeBetweenUse)
+		: Weapon(nowDamage, nowUseCost, nowWeight, nowRangeAttack, nowTimeBetweenUse)
 	{}
 
 	void UseItem() override;

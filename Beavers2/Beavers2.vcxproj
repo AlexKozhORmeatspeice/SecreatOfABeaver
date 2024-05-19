@@ -201,7 +201,8 @@
     <ClInclude Include="Depend\GLEW\include\GL\wglew.h" />
     <ClInclude Include="Depend\GLFW\include\GLFW\glfw3.h" />
     <ClInclude Include="Depend\GLFW\include\GLFW\glfw3native.h" />
-    <ClInclude Include="ECS\AttackSystem\EnemyUse.h" />
+    <ClInclude Include="ECS\AttackSystem\EnemyAttack.cpp" />
+    <ClInclude Include="ECS\AttackSystem\EnemyAttack.h" />
     <ClInclude Include="ECS\AttackSystem\HeroUse.h" />
     <ClInclude Include="ECS\BoxCollider.h" />
     <ClInclude Include="ECS\Items\ItemCreator.h" />

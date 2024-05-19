@@ -1,10 +1,10 @@
 #include "SceneManager.h"
-std::vector<Entity*>& CreateScene1();
-std::vector<Entity*>& CreateScene2();
+void CreateScene1(std::vector<Entity*>&);
+void CreateScene2(std::vector<Entity*>&);
 
 int SceneManager::nowScene;
 std::vector<Entity*> SceneManager::currentEntities;
-std::vector<std::vector<Entity*>& (*)()> SceneManager::scenesFuncs;
+std::vector<void (*)(std::vector<Entity*>&)> SceneManager::scenesFuncs;
 
 void SceneManager::init()
 {
@@ -19,7 +19,7 @@ void SceneManager::LoadScene(int n)
 	nowScene = n;
 
 	ClearScene();
-	currentEntities = scenesFuncs[nowScene](); //spawn scenes and give entities
+	scenesFuncs[nowScene](currentEntities); //spawn scenes and give entities
 }
 
 
@@ -46,7 +46,7 @@ void SceneManager::ClearScene()
 }
 
 ////////////////////////////////////////////////////////////////////////////////////scenes////////////////////////////////////////////////////////////////////////////////////
-std::vector<Entity*>& CreateScene1()
+void CreateScene1(std::vector<Entity*>& vec)
 {
 	CamComponent::SetPos(glm::vec3(0.0f));
 	Entity* floor(&Manager::addEntity());
@@ -73,18 +73,13 @@ std::vector<Entity*>& CreateScene1()
 
 
 	///////////////////////////////////////////////////////////////////
-	std::vector<Entity*> entities;
-	entities.push_back(floor);
-	entities.push_back(stepSys);
-	entities.push_back(zubar);
-	entities.push_back(enemy1);
-
-	return entities;
+	vec.push_back(floor);
+	vec.push_back(stepSys);
+	vec.push_back(zubar);
+	vec.push_back(enemy1);
 }
 
-std::vector<Entity*>& CreateScene2()
+void CreateScene2(std::vector<Entity*>& vec)
 {
-	std::vector<Entity*> entities;
 
-	return entities;
 }
