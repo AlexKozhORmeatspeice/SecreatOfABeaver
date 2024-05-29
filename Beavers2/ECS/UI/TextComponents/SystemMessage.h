@@ -36,5 +36,9 @@ public:
 
 	void ChangeColor(glm::vec4 color);
 
+	void ChangeText(std::string msg)
+	{
+		message = msg;
+	}
 	~UIText();
 };

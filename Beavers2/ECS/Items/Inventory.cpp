@@ -217,6 +217,13 @@ void Inventory::DisableUI()
 	}
 }
 
+void Inventory::DrawAllItemsUnactive()
+{
+	for (int i = 0; i < all_items.size(); i++)
+	{
+		buttons[i]->SetColor(glm::vec4(1.0f));
+	}
+}
 
 void Inventory::DrawOtherItemsUnactive(Item* item)
 {

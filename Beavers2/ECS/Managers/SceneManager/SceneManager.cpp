@@ -58,26 +58,37 @@ void CreateScene1(std::vector<Entity*>& vec)
 	StepSysManager* stepSM = stepSys->AddComponent<StepSysManager>();
 
 	/////////////////////Heroes and enemies/////////////////////
-	Entity* zubar = HeroCreator::ZubarPrefab(glm::vec3(200.0f, 0.0f, 0.0f));
+	Entity* zubar = HeroCreator::ZubarPrefab(glm::vec3(0.0f, 0.0f, 0.0f));
 	stepSM->AddHero(*zubar->GetComponent<Hero>()); //!!!
 
-	Entity* zubar2 = HeroCreator::ZubarPrefab(glm::vec3(200.0f, 200.0f, 0.0f));
-	stepSM->AddHero(*zubar2->GetComponent<Hero>()); //!!!
-	
-	Entity* enemy1 = EnemyCreator::BasicBeaver(glm::vec3(-200.0f, 0.0f, 0.0f));
+	Entity* harchok = HeroCreator::HarchokPrefab(glm::vec3(0.0f, 200.0f, 0.0f));
+	stepSM->AddHero(*harchok->GetComponent<Hero>()); //!!!
+
+
+	Entity* motor = HeroCreator::MotorPrefam(glm::vec3(100.0f, 0.0f, 0.0f));
+	stepSM->AddHero(*motor->GetComponent<Hero>()); //!!!
+
+	Entity* nogotochki = HeroCreator::NogotPrefab(glm::vec3(100.0f, 200.0f, 0.0f));
+	stepSM->AddHero(*nogotochki->GetComponent<Hero>()); //!!!
+
+
+	Entity* enemy1 = EnemyCreator::BeaverThrower(glm::vec3(-200.0f, 150.0f, 0.0f));
 	stepSM->AddEnemy(*enemy1->GetComponent<Enemy>()); //!!!
 	//////////////////////////////////////////////////////////////
 
 
 	/////////////////////Environment/////////////////////
 	floor->AddComponent<Transform>(glm::vec3(0.0f));
-	//floor->AddComponent<Tile>(1200.0f, 1200.0f, "res/Shaders/Basic.shader", "res/Textures/FloorTexture.png");
+	floor->AddComponent<Tile>(1200.0f, 1200.0f, "res/Shaders/Basic.shader", "res/Textures/FloorTexture.png");
 
 
 	///////////////////////////////////////////////////////////////////
 	vec.push_back(floor);
 	vec.push_back(stepSys);
 	vec.push_back(zubar);
+	vec.push_back(harchok);
+	vec.push_back(motor);
+	vec.push_back(nogotochki);
 	vec.push_back(enemy1);
 }
 
@@ -101,8 +112,16 @@ void CreateScene2(std::vector<Entity*>& vec)
 	Entity* zubar = HeroCreator::ZubarPrefab(glm::vec3(55.0f, 0.0f, 0.0f));
 	stepSM->AddHero(*zubar->GetComponent<Hero>()); //!!!
 
-	Entity* zubar2 = HeroCreator::ZubarPrefab(glm::vec3(55.0f, 100.0f, 0.0f));
-	stepSM->AddHero(*zubar2->GetComponent<Hero>()); //!!!
+	Entity* harchok = HeroCreator::HarchokPrefab(glm::vec3(55.0f, 100.0f, 0.0f));
+	stepSM->AddHero(*harchok->GetComponent<Hero>()); //!!!
+
+
+	Entity* motor = HeroCreator::MotorPrefam(glm::vec3(55.0f, 200.0f, 0.0f));
+	stepSM->AddHero(*motor->GetComponent<Hero>()); //!!!
+
+	Entity* nogotochki = HeroCreator::NogotPrefab(glm::vec3(55.0f, 300.0f, 0.0f));
+	stepSM->AddHero(*nogotochki->GetComponent<Hero>()); //!!!
+
 
 	Entity* enemy1 = EnemyCreator::BeaverThrower(glm::vec3(-200.0f, 150.0f, 0.0f));
 	stepSM->AddEnemy(*enemy1->GetComponent<Enemy>()); //!!!
@@ -111,7 +130,9 @@ void CreateScene2(std::vector<Entity*>& vec)
 	vec.push_back(hallway);
 	vec.push_back(stepSys);
 	vec.push_back(zubar);
-	vec.push_back(zubar2);
+	vec.push_back(harchok);
+	vec.push_back(motor);
+	vec.push_back(nogotochki);
 	vec.push_back(enemy1);
 
 }

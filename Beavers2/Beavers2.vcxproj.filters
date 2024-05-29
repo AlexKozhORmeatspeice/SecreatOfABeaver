@@ -55,6 +55,8 @@
     <ClCompile Include="ECS\Items\ItemCreator.cpp" />
     <ClCompile Include="ECS\Pers\Hero\HeroCreator.cpp" />
     <ClCompile Include="ECS\Pers\Enemy\EnemyCreator.cpp" />
+    <ClCompile Include="ECS\AttackSystem\Skills\Skill.cpp" />
+    <ClCompile Include="ECS\AttackSystem\Skills\BiteSkill.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Depend\GLEW\include\GL\eglew.h" />
@@ -363,6 +365,8 @@
     <ClInclude Include="ECS\Pers\Enemy\EnemyCreator.h" />
     <ClInclude Include="ECS\AttackSystem\EnemyAttack.cpp" />
     <ClInclude Include="ECS\AttackSystem\EnemyAttack.h" />
+    <ClInclude Include="ECS\AttackSystem\Skills\Skill.h" />
+    <ClInclude Include="ECS\AttackSystem\Skills\BiteSkill.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="Depend\GLEW\lib\Release\Win32\glew32s.lib" />
@@ -385,8 +389,8 @@
     <Image Include="res\Textures\Beavers\bobr.png" />
     <Image Include="res\Textures\Beavers\bobr_proletariy.png" />
     <Image Include="res\Textures\Beavers\bobr_soldat.png" />
-    <Image Include="res\Textures\Char\altushka_ebat.png" />
-    <Image Include="res\Textures\Char\maksimKatz.png" />
+    <Image Include="res\Textures\Char\Nogot.png" />
+    <Image Include="res\Textures\Char\Harchok.png" />
     <Image Include="res\Textures\Char\Zubki.png" />
     <Image Include="res\Textures\Env\FloorTexture.png" />
     <Image Include="res\Textures\Env\hatch.png" />
@@ -395,6 +399,14 @@
     <Image Include="res\Textures\Weapon\finka_nkvd.png" />
     <Image Include="res\Textures\Weapon\pistolet_govnoeda.png" />
     <Image Include="res\Textures\Weapon\obrez_samarskiy.png" />
+    <Image Include="res\Textures\UI\Icons\Oglushit.png" />
+    <Image Include="res\Textures\UI\Icons\Krovotechenie.png" />
+    <Image Include="res\Textures\UI\Icons\Kusat.png" />
+    <Image Include="res\Textures\UI\Icons\Iad.png" />
+    <Image Include="res\Textures\UI\Icons\Phiramons.png" />
+    <Image Include="res\Textures\UI\Icons\HatFu.png" />
+    <Image Include="res\Textures\UI\Icons\TolstiaMeh.png" />
+    <Image Include="res\Textures\Char\Motor.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Depend\GLEW\bin\Release\Win32\glew32.dll" />

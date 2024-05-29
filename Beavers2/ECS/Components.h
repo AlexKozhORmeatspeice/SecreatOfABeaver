@@ -36,3 +36,4 @@
 #include "SceneManager.h"
 #include "HeroUse.h"
 #include "EnemyAttack.h"
+#include "BiteSkill.h"

@@ -41,6 +41,8 @@ public:
 
 	~Inventory();
 
+
+	void DrawAllItemsUnactive();
 private:
 	void CreateUI();
 

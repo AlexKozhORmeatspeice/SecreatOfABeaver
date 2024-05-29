@@ -82,7 +82,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)Depend\GLFW\include;$(ProjectDir)Depend\GLEW\include;$(ProjectDir)res\Shaders;$(ProjectDir)res\GL;$(ProjectDir)res\Renderer;$(ProjectDir)src;$(ProjectDir)res\Textures;$(ProjectDir)res\vendor\stb_image;$(ProjectDir)res\vendor;$(ProjectDir)res\vendor\imgui;$(ProjectDir)ECS;$(ProjectDir)ECS\MovementSystem;$(ProjectDir)ECS\Managers;$(ProjectDir)ECS\Colliders;$(ProjectDir)ECS\Pers;$(ProjectDir)ECS\DrawF;$(ProjectDir)ECS\Stats;$(ProjectDir)ECS\AttackSystem;$(ProjectDir)ECS\UI;$(ProjectDir)ECS\Items;$(ProjectDir)ECS\Items\All_Items;$(ProjectDir)res\Textures\CodeFiles;$(ProjectDir)Depend\FREETYPE\include;$(ProjectDir)res\Textures\UI;$(ProjectDir)ECS\UI\TextComponents;$(ProjectDir)ECS\Managers\SceneManager;$(ProjectDir)ECS\Pers\Hero;$(ProjectDir)ECS\Pers\Enemy</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Depend\GLFW\include;$(ProjectDir)Depend\GLEW\include;$(ProjectDir)res\Shaders;$(ProjectDir)res\GL;$(ProjectDir)res\Renderer;$(ProjectDir)src;$(ProjectDir)res\Textures;$(ProjectDir)res\vendor\stb_image;$(ProjectDir)res\vendor;$(ProjectDir)res\vendor\imgui;$(ProjectDir)ECS;$(ProjectDir)ECS\MovementSystem;$(ProjectDir)ECS\Managers;$(ProjectDir)ECS\Colliders;$(ProjectDir)ECS\Pers;$(ProjectDir)ECS\DrawF;$(ProjectDir)ECS\Stats;$(ProjectDir)ECS\AttackSystem;$(ProjectDir)ECS\UI;$(ProjectDir)ECS\Items;$(ProjectDir)ECS\Items\All_Items;$(ProjectDir)res\Textures\CodeFiles;$(ProjectDir)Depend\FREETYPE\include;$(ProjectDir)res\Textures\UI;$(ProjectDir)ECS\UI\TextComponents;$(ProjectDir)ECS\Managers\SceneManager;$(ProjectDir)ECS\Pers\Hero;$(ProjectDir)ECS\Pers\Enemy;$(ProjectDir)ECS\AttackSystem\Skills</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -140,6 +140,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ECS\AttackSystem\HeroUse.cpp" />
+    <ClCompile Include="ECS\AttackSystem\Skills\BiteSkill.cpp" />
+    <ClCompile Include="ECS\AttackSystem\Skills\Skill.cpp" />
     <ClCompile Include="ECS\Items\All_Items\DamageWeapon.cpp" />
     <ClCompile Include="ECS\Items\All_Items\Weapon.cpp" />
     <ClCompile Include="ECS\Items\ItemCreator.cpp" />
@@ -204,6 +206,8 @@
     <ClInclude Include="ECS\AttackSystem\EnemyAttack.cpp" />
     <ClInclude Include="ECS\AttackSystem\EnemyAttack.h" />
     <ClInclude Include="ECS\AttackSystem\HeroUse.h" />
+    <ClInclude Include="ECS\AttackSystem\Skills\BiteSkill.h" />
+    <ClInclude Include="ECS\AttackSystem\Skills\Skill.h" />
     <ClInclude Include="ECS\BoxCollider.h" />
     <ClInclude Include="ECS\Items\ItemCreator.h" />
     <ClInclude Include="ECS\Managers\Raycast.h" />
@@ -672,8 +676,9 @@
     <Image Include="res\Textures\Beavers\bobr_proletariy.png" />
     <Image Include="res\Textures\Beavers\bobr_soldat.png" />
     <Image Include="res\Textures\button.png" />
-    <Image Include="res\Textures\Char\altushka_ebat.png" />
-    <Image Include="res\Textures\Char\maksimKatz.png" />
+    <Image Include="res\Textures\Char\Nogot.png" />
+    <Image Include="res\Textures\Char\Motor.png" />
+    <Image Include="res\Textures\Char\Harchok.png" />
     <Image Include="res\Textures\Char\Zubki.png" />
     <Image Include="res\Textures\Env\FloorTexture.png" />
     <Image Include="res\Textures\Env\hatch.png" />
@@ -681,7 +686,14 @@
     <Image Include="res\Textures\Items\hatch_hey.png" />
     <Image Include="res\Textures\UI\button.png" />
     <Image Include="res\Textures\UI\HPBar.png" />
+    <Image Include="res\Textures\UI\Icons\TolstiaMeh.png" />
     <Image Include="res\Textures\UI\Inventory.png" />
+    <Image Include="res\Textures\UI\Icons\Krovotechenie.png" />
+    <Image Include="res\Textures\UI\Icons\Kusat.png" />
+    <Image Include="res\Textures\UI\Icons\Iad.png" />
+    <Image Include="res\Textures\UI\Icons\Phiramons.png" />
+    <Image Include="res\Textures\UI\Icons\HatFu.png" />
+    <Image Include="res\Textures\UI\Icons\Oglushit.png" />
     <Image Include="res\Textures\Weapon\finka_nkvd.png" />
     <Image Include="res\Textures\Weapon\obrez_samarskiy.png" />
     <Image Include="res\Textures\Weapon\pistolet_govnoeda.png" />

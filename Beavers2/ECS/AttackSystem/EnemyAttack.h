@@ -58,6 +58,9 @@ public:
 
 	void update() override
 	{
+		if (!enemy->canTakeAction)
+			return;
+
 		enoughStamina = (stamina->GetNowStamina() >= v_attackCost);
 		if (!enemy->IsSeeHero() || !enoughStamina)
 		{
