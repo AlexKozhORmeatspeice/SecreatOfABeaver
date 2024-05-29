@@ -13,11 +13,11 @@ Entity* HeroCreator::ZubarPrefab(glm::vec3 pos)
 	hero->AddComponent<HeroUse>();
 	hero->AddComponent<Stamina>(100);
 	hero->AddComponent<HP>();
-	hero->AddComponent<SpriteComponent>("res/Textures/Zubki.png",
+	hero->AddComponent<SpriteComponent>("res/Textures/Char/Zubki.png",
 		"res/Shaders/Basic.shader",
 		basicColor);
 	hero->AddComponent<BoxCollider>(50, 50, true, true);
-	hero->AddComponent<Hero>();
+	hero->AddComponent<Hero>("zubar");
 	hero->AddComponent<Inventory>();
 	hero->AddComponent<HeroMov>(10);
 

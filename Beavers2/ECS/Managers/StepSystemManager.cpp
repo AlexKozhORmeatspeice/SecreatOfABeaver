@@ -43,6 +43,12 @@ void StepSysManager::StartFightLogic()
 				heroAct = false;
 			}
 
+			for (auto& enemy : enemies)
+			{
+				Stamina* stam = enemy->entity->GetComponent<Stamina>();
+				stam->Recover();
+			}
+
 			enemies[0]->canTakeAction = true;
 		}
 	}
@@ -64,6 +70,8 @@ void StepSysManager::StartFightLogic()
 		{
 			enemies.erase(enemies.begin());
 			enemies.push_back(enemy);
+
+			
 			enemiesActCount++;
 		}
 	}

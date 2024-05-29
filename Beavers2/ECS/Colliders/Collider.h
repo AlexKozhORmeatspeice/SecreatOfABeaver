@@ -26,6 +26,7 @@ public:
 
 	template <typename T> bool IsColllidWith(Entity* collider);
 	template <typename T> Collider* GetCollidObj();
+	template <typename T> std::vector<Collider*> GetCollidObjs();
 
 	bool GetIsTrigger();
 	float GetCheckDist();
@@ -80,4 +81,19 @@ Collider* Collider::GetCollidObj()
 	}
 
 	return nullptr;
+}
+
+template <typename T>
+std::vector<Collider*> Collider::GetCollidObjs()
+{
+	std::vector<Collider*> objs;
+	for (auto& coll : collisionObjs)
+	{
+		if (coll->entity->HasComponent<T>())
+		{
+			objs.push_back(coll);
+		}
+	}
+
+	return objs;
 }

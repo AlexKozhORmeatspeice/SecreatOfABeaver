@@ -19,7 +19,7 @@ private:
 
 public:
 	Hero();
-	Hero(const char& heroName);
+	Hero(const char* heroName);
 
 	bool isChoosed;
 

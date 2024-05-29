@@ -8,9 +8,9 @@ Hero::Hero()
 	name = "default";
 }
 
-Hero::Hero(const char& heroName)
+Hero::Hero(const char* heroName)
 {
-	name = &heroName;
+	name = heroName;
 }
 
 void Hero::init()

@@ -357,12 +357,12 @@
     <ClInclude Include="ECS\UI\UI.h" />
     <ClInclude Include="ECS\Managers\TimeManager.h" />
     <ClInclude Include="ECS\Managers\SceneManager\SceneManager.h" />
-    <ClInclude Include="ECS\AttackSystem\EnemyAttack.h" />
     <ClInclude Include="ECS\AttackSystem\HeroUse.h" />
     <ClInclude Include="ECS\Items\ItemCreator.h" />
     <ClInclude Include="ECS\Pers\Hero\HeroCreator.h" />
     <ClInclude Include="ECS\Pers\Enemy\EnemyCreator.h" />
     <ClInclude Include="ECS\AttackSystem\EnemyAttack.cpp" />
+    <ClInclude Include="ECS\AttackSystem\EnemyAttack.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="Depend\GLEW\lib\Release\Win32\glew32s.lib" />
@@ -377,16 +377,24 @@
     <Image Include="res\Fonts\Verdana.png" />
     <Image Include="res\Fonts\Verdana_B_alpha.png" />
     <Image Include="res\Textures\Beaver1.jpg" />
-    <Image Include="res\Textures\bobr.png" />
     <Image Include="res\Textures\button.png" />
-    <Image Include="res\Textures\FloorTexture.png" />
     <Image Include="res\Textures\UI\HPBar.png" />
-    <Image Include="res\Textures\knife.png" />
-    <Image Include="res\Textures\wall.png" />
     <Image Include="res\Textures\Wood.jpg" />
-    <Image Include="res\Textures\Zubki.png" />
     <Image Include="res\Textures\UI\Inventory.png" />
     <Image Include="res\Textures\UI\button.png" />
+    <Image Include="res\Textures\Beavers\bobr.png" />
+    <Image Include="res\Textures\Beavers\bobr_proletariy.png" />
+    <Image Include="res\Textures\Beavers\bobr_soldat.png" />
+    <Image Include="res\Textures\Char\altushka_ebat.png" />
+    <Image Include="res\Textures\Char\maksimKatz.png" />
+    <Image Include="res\Textures\Char\Zubki.png" />
+    <Image Include="res\Textures\Env\FloorTexture.png" />
+    <Image Include="res\Textures\Env\hatch.png" />
+    <Image Include="res\Textures\Env\wall.png" />
+    <Image Include="res\Textures\Items\hatch_hey.png" />
+    <Image Include="res\Textures\Weapon\finka_nkvd.png" />
+    <Image Include="res\Textures\Weapon\pistolet_govnoeda.png" />
+    <Image Include="res\Textures\Weapon\obrez_samarskiy.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Depend\GLEW\bin\Release\Win32\glew32.dll" />
