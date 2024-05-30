@@ -5,11 +5,12 @@
 #include "HeroMov.h"
 #include "Hero.h"
 #include "Enemy.h"
-
+#include "SystemMessage.h"
 #include "Render.h"
 class StepSysManager : public Component
 {
 private:
+	UIText* text;
 	static std::vector<Hero*> heroes;
 	static std::vector<Enemy*> enemies;
 
@@ -34,6 +35,7 @@ public:
 	}
 
 	static void RefreshList();
+	~StepSysManager();
 private:
 	void StartFightLogic();
 

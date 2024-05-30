@@ -135,7 +135,7 @@ public:
 
 	void draw();
 
-	void refresh();
+	static void refresh();
 
 	static Entity& addEntity();
 

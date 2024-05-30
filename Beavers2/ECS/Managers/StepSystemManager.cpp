@@ -15,12 +15,24 @@ void StepSysManager::init()
 	{
 		instance = this;
 	}
+
+	Entity* textE = &Manager::addEntity();
+	text = textE->AddComponent<UIText>("in fight", glm::vec2(-0.2f, 0.7f), 0.05f);
+	text->ChangeColor(glm::vec4(1.0f, 0.0f, 0.0f, 0.6f));
 }
 void StepSysManager::update()
 {
 	if (!inFight)
+	{
+		text->Disable();
 		return;
-
+	}
+	else
+	{
+		text->Enable();
+	}
+		
+	
 	StartFightLogic();
 }
 
@@ -142,4 +154,9 @@ void StepSysManager::SetEnemiesUnableToAct()
 	{
 		enemy->inFight = false;
 	}
+}
+
+StepSysManager::~StepSysManager()
+{
+	text->entity->destroy();
 }

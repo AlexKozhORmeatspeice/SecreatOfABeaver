@@ -57,6 +57,9 @@
     <ClCompile Include="ECS\Pers\Enemy\EnemyCreator.cpp" />
     <ClCompile Include="ECS\AttackSystem\Skills\Skill.cpp" />
     <ClCompile Include="ECS\AttackSystem\Skills\BiteSkill.cpp" />
+    <ClCompile Include="ECS\Managers\SceneManager\LoadNextSceneObj.cpp" />
+    <ClCompile Include="ECS\Managers\SaveSystem\SavebleObj.cpp" />
+    <ClCompile Include="ECS\Managers\SaveSystem\SaveManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Depend\GLEW\include\GL\eglew.h" />
@@ -367,6 +370,11 @@
     <ClInclude Include="ECS\AttackSystem\EnemyAttack.h" />
     <ClInclude Include="ECS\AttackSystem\Skills\Skill.h" />
     <ClInclude Include="ECS\AttackSystem\Skills\BiteSkill.h" />
+    <ClInclude Include="ECS\Managers\SceneManager\LoadNextSceneObj.h" />
+    <ClInclude Include="ECS\Items\All_Items\Key.h" />
+    <ClInclude Include="ECS\Managers\SaveSystem\SavebleObj.h" />
+    <ClInclude Include="ECS\Managers\SaveSystem\SaveManager.h" />
+    <ClInclude Include="ECS\Managers\Funcs.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="Depend\GLEW\lib\Release\Win32\glew32s.lib" />
@@ -395,7 +403,7 @@
     <Image Include="res\Textures\Env\FloorTexture.png" />
     <Image Include="res\Textures\Env\hatch.png" />
     <Image Include="res\Textures\Env\wall.png" />
-    <Image Include="res\Textures\Items\hatch_hey.png" />
+    <Image Include="res\Textures\Items\hatch_key.png" />
     <Image Include="res\Textures\Weapon\finka_nkvd.png" />
     <Image Include="res\Textures\Weapon\pistolet_govnoeda.png" />
     <Image Include="res\Textures\Weapon\obrez_samarskiy.png" />
@@ -570,5 +578,6 @@
     <Text Include="Depend\GLEW\doc\khronos.txt" />
     <Text Include="Depend\GLEW\doc\mesa.txt" />
     <Text Include="res\vendor\glm\CMakeLists.txt" />
+    <Text Include="Data.txt" />
   </ItemGroup>
 </Project>

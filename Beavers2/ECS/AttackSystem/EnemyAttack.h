@@ -82,11 +82,10 @@ public:
 private:
 	void Attack()
 	{
-		if (enoughStamina)
+		if (enoughStamina && nowTarget != nullptr)
 		{
 			lastTimeAttack = Time::GetCurrentTime();
 			stamina->UseStamina(v_attackCost);
-
 			HP* heroHP = nowTarget->entity->GetComponent<HP>();
 			heroHP->GetDamage(v_damage);
 		}

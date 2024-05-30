@@ -3,8 +3,11 @@
 #include "Item.h"
 #include "UI.h"
 #include "DamageWeapon.h"
-
-class Inventory : public Component
+#include "SavebleObj.h"
+#include "SaveManager.h"
+#include "Funcs.h"
+		
+class Inventory : public Component, SavebleObj
 {
 private:
 	UIIcon* background;
@@ -29,6 +32,7 @@ private:
 	const float buttonHeight = 0.15f;   //in gl coords
 	
 	glm::vec2 itemStartCoords;
+	bool isGotKey;
 public:
 	Inventory();
 
@@ -43,6 +47,13 @@ public:
 
 
 	void DrawAllItemsUnactive();
+	bool GotKey()
+	{
+		return isGotKey;
+	}
+
+	void SaveData() override;
+	void LoadData() override;
 private:
 	void CreateUI();
 
