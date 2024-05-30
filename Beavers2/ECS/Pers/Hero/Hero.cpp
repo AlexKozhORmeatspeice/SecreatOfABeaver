@@ -34,6 +34,14 @@ void Hero::update()
 		inFight = false;
 
 		entity->destroy();
+
+		auto it = std::find(heroes.begin(), heroes.end(), this);
+		if (it != heroes.end())
+			heroes.erase(it);
+
+		Inventory* inv = entity->GetComponent<Inventory>();
+		inv->DropAllItems();
+
 		StepSysManager::RefreshList();
 		return;
 	}

@@ -31,13 +31,15 @@ void StepSysManager::update()
 	{
 		text->Enable();
 	}
-		
 	
 	StartFightLogic();
 }
 
 void StepSysManager::StartFightLogic()
 {
+	if (heroes.size() == 0)
+		SceneManager::ReloadScene();
+
 	if (enemies.size() == 0)
 		EndFight();
 
@@ -60,7 +62,7 @@ void StepSysManager::StartFightLogic()
 				Stamina* stam = enemy->entity->GetComponent<Stamina>();
 				stam->Recover();
 			}
-
+			RefreshList();
 			enemies[0]->canTakeAction = true;
 		}
 	}
@@ -158,5 +160,8 @@ void StepSysManager::SetEnemiesUnableToAct()
 
 StepSysManager::~StepSysManager()
 {
+	instance = nullptr;
 	text->entity->destroy();
+	enemies.clear();
+	heroes.clear();
 }

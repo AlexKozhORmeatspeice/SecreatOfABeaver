@@ -7,14 +7,26 @@ void Entity::update()
 	{
 		c->update();
 	}
-	for (auto& c : components) c->lastUpdate();
+	for (auto& c : components)
+	{
+		c->lastUpdate();
+	}
 }
 
 void Entity::draw()
 {
-	for (auto& c : components) c->firstDraw();
-	for (auto& c : components) c->draw();
-	for (auto& c : components) c->lastDraw();
+	for (auto& c : components)
+	{
+		c->firstDraw();
+	}
+	for (auto& c : components)
+	{
+		c->draw();
+	}
+	for (auto& c : components) 
+	{
+		c->lastDraw();
+	}
 }
 
 void Entity::destroy() 

@@ -51,7 +51,13 @@ public:
 	{
 		return isGotKey;
 	}
-
+	void DropAllItems()
+	{
+		while (all_items.size() != 0)
+		{
+			RemoveItem(all_items[0]);
+		}
+	}
 	void SaveData() override;
 	void LoadData() override;
 private:

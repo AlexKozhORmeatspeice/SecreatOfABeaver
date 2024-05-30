@@ -49,6 +49,10 @@ public:
 			return nullptr;
 		}
 	}
+	void SetNoTarget()
+	{
+		heroPos = nullptr;
+	}
 
 	bool inline IsSeeHero()
 	{

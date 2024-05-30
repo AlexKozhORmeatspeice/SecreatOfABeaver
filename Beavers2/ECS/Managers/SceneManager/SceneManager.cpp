@@ -2,8 +2,9 @@
 void CreateScene1(std::vector<Entity*>&);
 void CreateScene2(std::vector<Entity*>&);
 void CreateScene3(std::vector<Entity*>&);
+void CreateScene4(std::vector<Entity*>&);
 
-int SceneManager::nowScene;
+int SceneManager::nowScene;	
 std::vector<Entity*> SceneManager::currentEntities;
 std::vector<void (*)(std::vector<Entity*>&)> SceneManager::scenesFuncs;
 
@@ -14,14 +15,17 @@ void SceneManager::init()
 	scenesFuncs.push_back(CreateScene1);
 	scenesFuncs.push_back(CreateScene2);
 	scenesFuncs.push_back(CreateScene3);
+	scenesFuncs.push_back(CreateScene4);
 }
 
 void SceneManager::LoadScene(int n)
 {
 	nowScene = n;
-
+	SaveManager::SaveData();
 	ClearScene();
+	Manager::refresh();
 	scenesFuncs[nowScene](currentEntities); //spawn scenes and give entities
+	SaveManager::LoadData();
 }
 
 
@@ -61,7 +65,6 @@ void CreateScene1(std::vector<Entity*>& vec)
 	Entity* wall4(&Manager::addEntity());
 	Entity* wall5(&Manager::addEntity());
 	Entity* message(&Manager::addEntity());
-
 
 
 	StepSysManager* stepSM = stepSys->AddComponent<StepSysManager>();
@@ -170,13 +173,15 @@ void CreateScene1(std::vector<Entity*>& vec)
 	vec.push_back(motor);
 	vec.push_back(nogotochki);
 	vec.push_back(enemy1);
-
+	vec.push_back(knife1.entity);
+	vec.push_back(knife2.entity);
+	vec.push_back(knife3.entity);
+	vec.push_back(knife4.entity);
 	vec.push_back(knife1.entity);
 	vec.push_back(knife2.entity);
 	vec.push_back(knife3.entity);
 	vec.push_back(knife4.entity);
 }
-
 void CreateScene2(std::vector<Entity*>& vec)
 {
 	CamComponent::SetPos(glm::vec3(0.0f));
@@ -202,7 +207,6 @@ void CreateScene2(std::vector<Entity*>& vec)
 	Entity* wall13(&Manager::addEntity());
 	Entity* wall14(&Manager::addEntity());
 	Entity* wall15(&Manager::addEntity());
-
 
 	StepSysManager* stepSM = stepSys->AddComponent<StepSysManager>();
 
@@ -298,7 +302,6 @@ void CreateScene2(std::vector<Entity*>& vec)
 		wall15->AddComponent<BoxCollider>(720.f, 10.0f, true, false);
 	}
 	////////////////////////////////////////////////////////////////
-
 	/////////////////////items/////////////////////
 	Item pistol1 = ItemCreator::CreatePistol(glm::vec3(-350.0f, 1500.0f, 0.0f));
 	Item pistol2 = ItemCreator::CreatePistol(glm::vec3(3200.f, 900.0f, 0.0f));
@@ -308,17 +311,17 @@ void CreateScene2(std::vector<Entity*>& vec)
 	
 
 	/////////////////////Heroes and enemies/////////////////////
-	Entity* zubar = HeroCreator::ZubarPrefab(glm::vec3(55.0f, 0.0f, 0.0f));
+	Entity* zubar = HeroCreator::ZubarPrefab(glm::vec3(-50.0f, 100.0f, 0.0f));
 	stepSM->AddHero(*zubar->GetComponent<Hero>()); //!!!
 
-	Entity* harchok = HeroCreator::HarchokPrefab(glm::vec3(55.0f, 100.0f, 0.0f));
+	Entity* harchok = HeroCreator::HarchokPrefab(glm::vec3(50.0f, 100.0f, 0.0f));
 	stepSM->AddHero(*harchok->GetComponent<Hero>()); //!!!
 
 
-	Entity* motor = HeroCreator::MotorPrefam(glm::vec3(55.0f, 200.0f, 0.0f));
+	Entity* motor = HeroCreator::MotorPrefam(glm::vec3(-50.0f, 200.0f, 0.0f));
 	stepSM->AddHero(*motor->GetComponent<Hero>()); //!!!
 
-	Entity* nogotochki = HeroCreator::NogotPrefab(glm::vec3(55.0f, 300.0f, 0.0f));
+	Entity* nogotochki = HeroCreator::NogotPrefab(glm::vec3(50.0f, 200.0f, 0.0f));
 	stepSM->AddHero(*nogotochki->GetComponent<Hero>()); //!!!
 
 
@@ -357,11 +360,14 @@ void CreateScene2(std::vector<Entity*>& vec)
 	vec.push_back(wall13);
 	vec.push_back(wall14);
 	vec.push_back(wall15);
+
 	vec.push_back(stepSys);
+
 	vec.push_back(zubar);
 	vec.push_back(harchok);
 	vec.push_back(motor);
 	vec.push_back(nogotochki);
+
 	vec.push_back(enemy1);
 	vec.push_back(enemy2);
 	vec.push_back(enemy3);
@@ -545,4 +551,14 @@ void CreateScene3(std::vector<Entity*>& vec)
 	vec.push_back(pistol1.entity);
 	vec.push_back(pistol2.entity);
 
+}
+
+void CreateScene4(std::vector<Entity*>& vec)
+{
+	Entity* finalScreen(&Manager::addEntity());
+	UIText* txt = finalScreen->AddComponent<UIText>("the end", glm::vec2(-0.2f, 0.0f), 0.06f);
+	txt->ChangeColor(glm::vec4(1.0f));
+	txt->Enable();
+
+	vec.push_back(finalScreen);
 }
