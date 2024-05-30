@@ -269,16 +269,16 @@ void CreateScene2(std::vector<Entity*>& vec)
 	stepSM->AddEnemy(*enemy1->GetComponent<Enemy>()); //!!!
 
 	Entity* enemy2 = EnemyCreator::BasicBeaver(glm::vec3(1450.0f+1100.f, 200.f+1600.0f, 0.0f));
-	stepSM->AddEnemy(*enemy1->GetComponent<Enemy>()); //!!!
+	stepSM->AddEnemy(*enemy2->GetComponent<Enemy>()); //!!!
 
 	Entity* enemy3 = EnemyCreator::BeaverThrower(glm::vec3(1450.0f + 1200.f, 1600.0f, 0.0f));
-	stepSM->AddEnemy(*enemy1->GetComponent<Enemy>()); //!!!
+	stepSM->AddEnemy(*enemy3->GetComponent<Enemy>()); //!!!
 
 	Entity* eminem1 = EnemyCreator::BeaverThrower(glm::vec3(1450.0f + 2300.f, 600.f - 900.0f, 0.0f));
-	stepSM->AddEnemy(*enemy1->GetComponent<Enemy>()); //!!!
+	stepSM->AddEnemy(*eminem1->GetComponent<Enemy>()); //!!!
 
 	Entity* eminem2 = EnemyCreator::BasicBeaver(glm::vec3(1450.0f + 2000.f, 600.f - 1200.0f, 0.0f));
-	stepSM->AddEnemy(*enemy1->GetComponent<Enemy>()); //!!!
+	stepSM->AddEnemy(*eminem2->GetComponent<Enemy>()); //!!!
 	//////////////////////////////////////////////////////////////
 
 	vec.push_back(wall0);
@@ -303,51 +303,141 @@ void CreateScene2(std::vector<Entity*>& vec)
 	vec.push_back(motor);
 	vec.push_back(nogotochki);
 	vec.push_back(enemy1);
+	vec.push_back(enemy2);
+	vec.push_back(enemy3);
+	vec.push_back(eminem1);
+	vec.push_back(eminem2);
 
 }
 void CreateScene3(std::vector<Entity*>& vec)
 {
 	CamComponent::SetPos(glm::vec3(0.0f));
-	Entity* floor_main1(&Manager::addEntity());
-	Entity* floor_main2(&Manager::addEntity());
+	Entity* floor1(&Manager::addEntity());
+	Entity* floor2(&Manager::addEntity());
+	Entity* floor3(&Manager::addEntity());
+	Entity* floor4(&Manager::addEntity());
+	Entity* floor5(&Manager::addEntity());
 	Entity* hallway1(&Manager::addEntity());
 	Entity* hallway2(&Manager::addEntity());
+
+	Entity* col1(&Manager::addEntity());
+	Entity* col2(&Manager::addEntity());
+	Entity* col3(&Manager::addEntity());
+	Entity* col4(&Manager::addEntity());
+	Entity* col5(&Manager::addEntity());
+	Entity* col6(&Manager::addEntity());
+	Entity* col7(&Manager::addEntity());
+
+	Entity* wall1(&Manager::addEntity());
+	Entity* wall2(&Manager::addEntity());
+	Entity* wall3(&Manager::addEntity());
+	Entity* wall4(&Manager::addEntity());
+
 	Entity* stepSys(&Manager::addEntity());
 	StepSysManager* stepSM = stepSys->AddComponent<StepSysManager>();
 
-	floor_main1->AddComponent<Transform>(glm::vec3(0.0f, 300.0f, 0.0f));
-	floor_main1->AddComponent<Tile>(300.0f, 200.0f, "res/Shaders/Basic.shader", "res/Textures/FloorTexture.png");
-	floor_main2->AddComponent<Transform>(glm::vec3(1500.0f, 0.0f, 0.0f));
-	floor_main2->AddComponent<Tile>(360.0f, 240.0f, "res/Shaders/Basic.shader", "res/Textures/FloorTexture.png");
+	/////////////////////ENV/////////////////////////////////
+	//floor
+	{
+		floor1->AddComponent<Transform>(glm::vec3(0.0f, 40.0f * 8, 0.0f));
+		floor1->AddComponent<Tile>(40.0f*5, 40.0f * 8, "res/Shaders/Basic.shader", "res/Textures/Env/FloorTexture.png");
 
-	hallway1->AddComponent<Transform>(glm::vec3(0.0f, -160.0f, 0.0f));
-	hallway1->AddComponent<Tile>(40.0f, 120.0f, "res/Shaders/Basic.shader", "res/Textures/FloorTexture.png");
-	hallway2->AddComponent<Transform>(glm::vec3(360.0f, 0.0f, 0.0f));
-	hallway2->AddComponent<Tile>(40.0f, 80.0f, "res/Shaders/Basic.shader", "res/Textures/FloorTexture.png");
+		floor2->AddComponent<Transform>(glm::vec3(40.0f*(-5), 40.0f*31, 0.0f));
+		floor2->AddComponent<Tile>(40.0f*10, 40.0f*15, "res/Shaders/Basic.shader", "res/Textures/Env/FloorTexture.png");
+
+		floor3->AddComponent<Transform>(glm::vec3(40.0f*10, 40.0f*(31+10), 0.0f));
+		floor3->AddComponent<Tile>(40.0f*10, 40.0f*5, "res/Shaders/Basic.shader", "res/Textures/Env/FloorTexture.png");
+
+		floor4->AddComponent<Transform>(glm::vec3(40.0f*(10+18), 40.0f * (31+15+10+6), 0.0f));
+		floor4->AddComponent<Tile>(40.0f*(18), 40.0f*(6), "res/Shaders/Basic.shader", "res/Textures/Env/FloorTexture.png");
+
+		floor5->AddComponent<Transform>(glm::vec3(40.0f*(10 + 18+18), 40.0f*(16+15), 0.0f));
+		floor5->AddComponent<Tile>(40.0f*(15), 40.0f*(15), "res/Shaders/Basic.shader", "res/Textures/Env/FloorTexture.png");
+
+	}
+	hallway1->AddComponent<Transform>(glm::vec3(40.0f*(10+4), 40.0f*(31+15+5), 0.0f));
+	hallway1->AddComponent<Tile>(40.0f*(4), 40.0f*(5), "res/Shaders/Basic.shader", "res/Textures/Env/FloorTexture.png");
+
+	hallway2->AddComponent<Transform>(glm::vec3(40.0f*(10+18+14), 40.0f*(31 + 15 + 1), 0.0f));
+	hallway2->AddComponent<Tile>(40.0f*(4), 40.0f*(9), "res/Shaders/Basic.shader", "res/Textures/Env/FloorTexture.png");
+	//walls&coliders
+	{
+		col1->AddComponent<Transform>(glm::vec3(40.0f * (10 + 18 + 18 + 20)/2, 40.f*(8), 0.f));
+		col1->AddComponent<BoxCollider>(40.0f*(28), 40.0f*(8), true, false);
+
+		col2->AddComponent<Transform>(glm::vec3(40.0f * (18), 40.f * (16.f + 7.f+3), 0.f));
+		col2->AddComponent<BoxCollider>(40.0f*(13), 40.0f*(10), true, false);
+
+		col3->AddComponent<Transform>(glm::vec3(40.0f * (10+15.5f), 40.0f * (31 + 10), 0.0f));
+		col3->AddComponent<BoxCollider>(40.0f*(5.5f), 40.0f*(5), true, false);
+
+		col4->AddComponent<Transform>(glm::vec3(40.0f * (10 + 18), 40.0f * (31 + 20), 0.0f));
+		col4->AddComponent<BoxCollider>(40.0f*(10), 40.0f*(5), true, false);
+
+		col5->AddComponent<Transform>(glm::vec3(40.0f * (10 + 43.5f), 40.0f * (31 + 15 + 11), 0.0f));
+		col5->AddComponent<BoxCollider>(40.0f*(7.5f), 40.0f*(11), true, false);
+
+		col6->AddComponent<Transform>(glm::vec3(40.0f*(-10), 40.0f * 8, 0.0f));
+		col6->AddComponent<BoxCollider>(40.0f * 5, 40.0f * 8, true, false);
+
+		col7->AddComponent<Transform>(glm::vec3(40.0f * (-2.5f), 40.0f * 57, 0.0f));
+		col7->AddComponent<BoxCollider>(40.0f*(12.5), 40.0f*(11), true, false);
+
+		///////////////////WALLS/////////////////////////////
+
+		wall1->AddComponent<Transform>(glm::vec3(40.0f * (10 + 18 + 18+15)+10.f, 40.0f * (16 + 15), 0.0f));
+		wall1->AddComponent<BoxCollider>(10.0f, 40.0f * (15), true, false);
+
+		wall2->AddComponent<Transform>(glm::vec3(40.0f * (10 + 18), 40.0f * (31 + 15 + 10 + 12) +10.f, 0.0f));
+		wall2->AddComponent<BoxCollider>(40.0f * (18), 10.f, true, false);
+
+		wall3->AddComponent<Transform>(glm::vec3(0.0f, - 10.f, 0.0f));
+		wall3->AddComponent<BoxCollider>(40.0f * 5, 10.f, true, false);
+
+		wall4->AddComponent<Transform>(glm::vec3(40.0f * (-5-10) - 10.f, 40.0f * 31, 0.0f));
+		wall4->AddComponent<BoxCollider>(10, 40.0f * 15, true, false);
+
+	}
+	///////////////////////////////////////////////////////////
+	
+
 	/////////////////////Heroes and enemies/////////////////////
-	Entity* zubar = HeroCreator::ZubarPrefab(glm::vec3(0.0f, 0.0f, 0.0f));
+	Entity* zubar = HeroCreator::ZubarPrefab(glm::vec3(55.0f, 0.0f, 0.0f));
 	stepSM->AddHero(*zubar->GetComponent<Hero>()); //!!!
 
-	Entity* zubar2 = HeroCreator::ZubarPrefab(glm::vec3(0.0f, 55.0f, 0.0f));
-	stepSM->AddHero(*zubar2->GetComponent<Hero>()); //!!!
+	Entity* harchok = HeroCreator::HarchokPrefab(glm::vec3(55.0f, 100.0f, 0.0f));
+	stepSM->AddHero(*harchok->GetComponent<Hero>()); //!!!
 
-	Entity* enemy1 = EnemyCreator::BasicBeaver(glm::vec3(400.0f, 680.0f, 0.0f));
+
+	Entity* motor = HeroCreator::MotorPrefam(glm::vec3(55.0f, 200.0f, 0.0f));
+	stepSM->AddHero(*motor->GetComponent<Hero>()); //!!!
+
+	Entity* nogotochki = HeroCreator::NogotPrefab(glm::vec3(55.0f, 300.0f, 0.0f));
+	stepSM->AddHero(*nogotochki->GetComponent<Hero>()); //!!!
+
+
+	Entity* enemy1 = EnemyCreator::BeaverThrower(glm::vec3(40.0f*(-2), 40.0f * (31 + 5), 0.0f));
 	stepSM->AddEnemy(*enemy1->GetComponent<Enemy>()); //!!!
 
-	Entity* enemy2 = EnemyCreator::BasicBeaver(glm::vec3(1200.0f, 70.0f, 0.0f));
+	Entity* enemy2 = EnemyCreator::BasicBeaver(glm::vec3(40.0f * (-3), 40.0f * (31 + 3), 0.0f));
 	stepSM->AddEnemy(*enemy2->GetComponent<Enemy>()); //!!!
 
-	Entity* enemy3 = EnemyCreator::BasicBeaver(glm::vec3(1280.0f, 70.0f, 0.0f));
+	Entity* enemy3 = EnemyCreator::BeaverThrower(glm::vec3(40.0f * (-1), 40.0f * (31 + 2), 0.0f));
 	stepSM->AddEnemy(*enemy3->GetComponent<Enemy>()); //!!!
 	//////////////////////////////////////////////////////////////
 
-	vec.push_back(floor_main1);
-	vec.push_back(floor_main2);
+	vec.push_back(floor1);
+	vec.push_back(floor2);
 	vec.push_back(hallway1);
 	vec.push_back(stepSys);
 	vec.push_back(zubar);
-	vec.push_back(zubar2);
+	vec.push_back(zubar);
+	vec.push_back(harchok);
+	vec.push_back(motor);
+	vec.push_back(nogotochki);
+
 	vec.push_back(enemy1);
 	vec.push_back(enemy2);
 	vec.push_back(enemy3);
+
 }

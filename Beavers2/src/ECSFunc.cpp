@@ -29,7 +29,7 @@ void ECSInit()
 	cam.AddComponent<CamComponent>();
 	///////////////////////////////////////////////////
 
-	SceneManager::LoadScene(1);
+	SceneManager::LoadScene(2);
 }
 
 void ECSStop(std::unique_ptr<Manager> manager)
