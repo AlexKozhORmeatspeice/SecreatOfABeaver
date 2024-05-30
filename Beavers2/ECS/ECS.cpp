@@ -3,7 +3,10 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Entity::update()
 {
-	for (auto& c : components) c->update();
+	for (auto& c : components)
+	{
+		c->update();
+	}
 	for (auto& c : components) c->lastUpdate();
 }
 
@@ -29,7 +32,14 @@ Entity::~Entity()
 std::vector<std::unique_ptr<Entity>> Manager::entities;
 void Manager::update()
 {
-	for (const auto& e : entities) e->update();
+	int vecSize = entities.size();
+	for (const auto& e : entities)
+	{
+		if (entities.size() != vecSize)
+			return;
+
+		e->update();
+	}
 }
 
 void Manager::draw()

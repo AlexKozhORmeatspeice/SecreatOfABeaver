@@ -18,6 +18,7 @@ CircleCollider::CircleCollider(float radius, bool nowIsTrigger, bool moveable)
 
 void CircleCollider::init()
 {
+	isEnabled = true;
 	pos = entity->GetComponent<Transform>();
 
 	vb = new VertexBuffer(vertices, 4 * 4 * sizeof(float));

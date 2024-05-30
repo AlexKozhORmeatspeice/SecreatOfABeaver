@@ -38,7 +38,7 @@ Entity* HeroCreator::MotorPrefam(glm::vec3 pos)
 		"res/Shaders/Basic.shader",
 		basicColor);
 	hero->AddComponent<BoxCollider>(50, 50, true, true);
-	hero->AddComponent<Hero>("Motor");
+	hero->AddComponent<Hero>("motor");
 	hero->AddComponent<Inventory>();
 	hero->AddComponent<HeroMov>(10);
 
@@ -58,7 +58,7 @@ Entity* HeroCreator::NogotPrefab(glm::vec3 pos)
 		"res/Shaders/Basic.shader",
 		basicColor);
 	hero->AddComponent<BoxCollider>(50, 50, true, true);
-	hero->AddComponent<Hero>("Motor");
+	hero->AddComponent<Hero>("nogot");
 	hero->AddComponent<Inventory>();
 	hero->AddComponent<HeroMov>(10);
 
@@ -78,7 +78,7 @@ Entity* HeroCreator::HarchokPrefab(glm::vec3 pos)
 		"res/Shaders/Basic.shader",
 		basicColor);
 	hero->AddComponent<BoxCollider>(50, 50, true, true);
-	hero->AddComponent<Hero>("Motor");
+	hero->AddComponent<Hero>("harchok");
 	hero->AddComponent<Inventory>();
 	hero->AddComponent<HeroMov>(10);
 

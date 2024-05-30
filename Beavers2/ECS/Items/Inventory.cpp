@@ -21,9 +21,6 @@ void Inventory::init()
     itemStartCoords = glm::vec2(-0.35f, -0.8f);
 
 	CreateUI();
-
-	//base weapon
-	AddItem(&ItemCreator::CreateKnife(glm::vec3(0.0f)));
 }
 void Inventory::update()
 {
@@ -48,14 +45,21 @@ void Inventory::AddItem(Item* item)
 	{
 		isGotKey = true;
 	}
+	for (auto& itemInInv : all_items)
+	{
+		if (itemInInv->GotItemName() == item->GotItemName())
+			return;
+	}
 
 	bool canAdd = nowWeight + item->GetWeight() <= maxWeight;
 	if (canAdd)
 	{
 		Entity& button(Manager::addEntity());
 		SpriteComponent* spriteItem = item->entity->GetComponent<SpriteComponent>();
+		CircleCollider* coll = item->entity->GetComponent<CircleCollider>();
 
 		UIButton* ui_button =  button.AddComponent<UIButton>(glm::vec2(0.0f), spriteItem->GetTexture(), buttonWidth, buttonHeight);
+
 
 		HeroUse* heroUse = entity->GetComponent<HeroUse>();
 
@@ -82,6 +86,7 @@ void Inventory::AddItem(Item* item)
 		//calls of button
 
 		spriteItem->Disable();
+		coll->Disable();
 		item->isInInventory = true;
 
 		Hero* hero = entity->GetComponent<Hero>();
@@ -102,6 +107,7 @@ void Inventory::RemoveItem(Item* item)
 	if (it == all_items.end())
 		return;
 	SpriteComponent* sprite = item->entity->GetComponent<SpriteComponent>();
+	CircleCollider* coll = item->entity->GetComponent<CircleCollider>();
 	sprite->Enable();
 
 	size_t index = std::distance(all_items.begin(), it);
@@ -115,10 +121,12 @@ void Inventory::RemoveItem(Item* item)
 	entity->GetComponent<HeroUse>()->NoItem(); //disable choosed weapon
 
 	SpriteComponent* spriteItem = item->entity->GetComponent<SpriteComponent>();
+	
 	Transform* pos = item->entity->GetComponent<Transform>();
 
 	pos->SetPos(entity->GetComponent<Transform>()->GetPos());
 	spriteItem->Enable();
+	coll->Enable();
 	item->isInInventory = false;
 }
 
@@ -243,6 +251,65 @@ void Inventory::DrawOtherItemsUnactive(Item* item)
 	}
 }
 
+void Inventory::SaveData()
+{
+	std::ofstream out;
+	out.open(SaveManager::nameOfFile, std::ios_base::app);
+	std::string changes = "";
+
+	if (out.is_open())
+	{
+		std::string heroName = entity->GetComponent<Hero>()->GetName();
+
+		for (auto& item : all_items)
+		{
+			changes += "item: " + heroName + " " + std::to_string(item->GotItemName()) + "\n";
+		}
+	}
+
+	out << changes;
+
+	out.close();
+}
+
+void Inventory::LoadData()
+{
+	std::string line;
+	std::ifstream in(SaveManager::nameOfFile);		
+
+
+	if (in.is_open())
+	{
+		std::string heroName = entity->GetComponent<Hero>()->GetName();
+		while (std::getline(in, line))
+		{
+			if (line.find("item:") != std::string::npos)
+			{
+				std::vector<std::string> params = Func::SplitLine(line);
+				if (params[1] == heroName)
+				{		
+					ItemName n_item = (ItemName)std::stoi(params[2]);
+					switch (n_item)
+					{
+					case ItemName::n_Pistol:
+						AddItem(&ItemCreator::CreatePistol(glm::vec3(0.0f)));
+						break;
+					case ItemName::n_Knife:
+						AddItem(&ItemCreator::CreateKnife(glm::vec3(0.0f)));
+						break;
+					case ItemName::n_Shotgun:
+						AddItem(&ItemCreator::CreateShotgun(glm::vec3(0.0f)));
+						break;
+					default:
+						break;
+					}
+				}
+			}
+		}
+	}
+
+	in.close();
+}
 
 Inventory::~Inventory()
 {

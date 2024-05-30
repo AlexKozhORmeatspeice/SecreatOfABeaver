@@ -17,6 +17,8 @@ protected:
 
 	bool getCol;
 	bool getColWithTrigger;
+
+	bool isEnabled;
 public:
 	std::vector<glm::vec3> flatVectors;
 	Collider();
@@ -40,7 +42,18 @@ public:
 	{
 		return getColWithTrigger;
 	}
-
+	void Enable()
+	{
+		isEnabled = true;
+	}
+	void Disable()
+	{
+		isEnabled = false;
+	}
+	bool IsEnabled()
+	{
+		return isEnabled;
+	}
 	~Collider();
 protected:
 	virtual bool CheckCollision()   = 0;

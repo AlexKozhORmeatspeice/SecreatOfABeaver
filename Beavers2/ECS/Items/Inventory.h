@@ -3,8 +3,11 @@
 #include "Item.h"
 #include "UI.h"
 #include "DamageWeapon.h"
-
-class Inventory : public Component
+#include "SavebleObj.h"
+#include "SaveManager.h"
+#include "Funcs.h"
+		
+class Inventory : public Component, SavebleObj
 {
 private:
 	UIIcon* background;
@@ -48,6 +51,9 @@ public:
 	{
 		return isGotKey;
 	}
+
+	void SaveData() override;
+	void LoadData() override;
 private:
 	void CreateUI();
 

@@ -214,6 +214,7 @@
     <ClInclude Include="ECS\BoxCollider.h" />
     <ClInclude Include="ECS\Items\All_Items\Key.h" />
     <ClInclude Include="ECS\Items\ItemCreator.h" />
+    <ClInclude Include="ECS\Managers\Funcs.h" />
     <ClInclude Include="ECS\Managers\Raycast.h" />
     <ClInclude Include="ECS\Managers\SaveSystem\SavebleObj.h" />
     <ClInclude Include="ECS\Managers\SaveSystem\SaveManager.h" />
@@ -707,6 +708,7 @@
     <Image Include="res\Textures\Wood.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Data.txt" />
     <Text Include="Depend\GLEW\doc\glew.txt" />
     <Text Include="Depend\GLEW\doc\khronos.txt" />
     <Text Include="Depend\GLEW\doc\mesa.txt" />

@@ -374,6 +374,7 @@
     <ClInclude Include="ECS\Items\All_Items\Key.h" />
     <ClInclude Include="ECS\Managers\SaveSystem\SavebleObj.h" />
     <ClInclude Include="ECS\Managers\SaveSystem\SaveManager.h" />
+    <ClInclude Include="ECS\Managers\Funcs.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="Depend\GLEW\lib\Release\Win32\glew32s.lib" />
@@ -577,5 +578,6 @@
     <Text Include="Depend\GLEW\doc\khronos.txt" />
     <Text Include="Depend\GLEW\doc\mesa.txt" />
     <Text Include="res\vendor\glm\CMakeLists.txt" />
+    <Text Include="Data.txt" />
   </ItemGroup>
 </Project>

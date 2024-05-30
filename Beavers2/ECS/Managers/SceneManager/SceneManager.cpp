@@ -2,6 +2,7 @@
 void CreateScene1(std::vector<Entity*>&);
 void CreateScene2(std::vector<Entity*>&);
 void CreateScene3(std::vector<Entity*>&);
+void CreateScene4(std::vector<Entity*>&);
 
 int SceneManager::nowScene;
 std::vector<Entity*> SceneManager::currentEntities;
@@ -14,14 +15,18 @@ void SceneManager::init()
 	scenesFuncs.push_back(CreateScene1);
 	scenesFuncs.push_back(CreateScene2);
 	scenesFuncs.push_back(CreateScene3);
+	scenesFuncs.push_back(CreateScene4);
 }
 
 void SceneManager::LoadScene(int n)
 {
 	nowScene = n;
 
+	SaveManager::SaveData();
 	ClearScene();
+	Manager::refresh();
 	scenesFuncs[nowScene](currentEntities); //spawn scenes and give entities
+	SaveManager::LoadData();
 }
 
 
@@ -34,7 +39,6 @@ void SceneManager::LoadNextScene()
 
 void SceneManager::ReloadScene()
 {
-	ClearScene();
 	LoadScene(nowScene);
 }
 
@@ -62,6 +66,8 @@ void CreateScene1(std::vector<Entity*>& vec)
 	Entity* wall5(&Manager::addEntity());
 	Entity* message(&Manager::addEntity());
 
+
+
 	StepSysManager* stepSM = stepSys->AddComponent<StepSysManager>();
 
 	/////////////////////Heroes and enemies/////////////////////
@@ -87,10 +93,13 @@ void CreateScene1(std::vector<Entity*>& vec)
 	/////////////////////items/////////////////////
 	Item pistol = ItemCreator::CreatePistol(glm::vec3(0.0f, 1800.0f, 0.0f));
 
+	Item knife1 = ItemCreator::CreateKnife(glm::vec3(-50.0f, 300.0f, 0.0f));
+	Item knife2 = ItemCreator::CreateKnife(glm::vec3(50.0f, 300.0f, 0.0f));
+	Item knife3 = ItemCreator::CreateKnife(glm::vec3(-50.0f, 400.0f, 0.0f));
+	Item knife4 = ItemCreator::CreateKnife(glm::vec3(50.0f, 400.0f, 0.0f));
 
 	//////////////////////////////////////////////
 	
-
 
 
 	/////////////////////Environment/////////////////////
@@ -166,6 +175,11 @@ void CreateScene1(std::vector<Entity*>& vec)
 	vec.push_back(motor);
 	vec.push_back(nogotochki);
 	vec.push_back(enemy1);
+
+	vec.push_back(knife1.entity);
+	vec.push_back(knife2.entity);
+	vec.push_back(knife3.entity);
+	vec.push_back(knife4.entity);
 }
 
 void CreateScene2(std::vector<Entity*>& vec)
@@ -193,8 +207,6 @@ void CreateScene2(std::vector<Entity*>& vec)
 	Entity* wall13(&Manager::addEntity());
 	Entity* wall14(&Manager::addEntity());
 	Entity* wall15(&Manager::addEntity());
-
-
 	StepSysManager* stepSM = stepSys->AddComponent<StepSysManager>();
 
 
@@ -295,16 +307,16 @@ void CreateScene2(std::vector<Entity*>& vec)
 	stepSM->AddEnemy(*enemy1->GetComponent<Enemy>()); //!!!
 
 	Entity* enemy2 = EnemyCreator::BasicBeaver(glm::vec3(1450.0f+1100.f, 200.f+1600.0f, 0.0f));
-	stepSM->AddEnemy(*enemy1->GetComponent<Enemy>()); //!!!
+	stepSM->AddEnemy(*enemy2->GetComponent<Enemy>()); //!!!
 
 	Entity* enemy3 = EnemyCreator::BeaverThrower(glm::vec3(1450.0f + 1200.f, 1600.0f, 0.0f));
-	stepSM->AddEnemy(*enemy1->GetComponent<Enemy>()); //!!!
+	stepSM->AddEnemy(*enemy3->GetComponent<Enemy>()); //!!!
 
 	Entity* eminem1 = EnemyCreator::BeaverThrower(glm::vec3(1450.0f + 2300.f, 600.f - 900.0f, 0.0f));
-	stepSM->AddEnemy(*enemy1->GetComponent<Enemy>()); //!!!
+	stepSM->AddEnemy(*eminem1->GetComponent<Enemy>()); //!!!
 
 	Entity* eminem2 = EnemyCreator::BasicBeaver(glm::vec3(1450.0f + 2000.f, 600.f - 1200.0f, 0.0f));
-	stepSM->AddEnemy(*enemy1->GetComponent<Enemy>()); //!!!
+	stepSM->AddEnemy(*eminem2->GetComponent<Enemy>()); //!!!
 	//////////////////////////////////////////////////////////////
 	vec.push_back(stepSys);
 
@@ -388,4 +400,14 @@ void CreateScene3(std::vector<Entity*>& vec)
 	vec.push_back(enemy1);
 	vec.push_back(enemy2);
 	vec.push_back(enemy3);
+}
+
+void CreateScene4(std::vector<Entity*>& vec)
+{
+	Entity* finalScreen(&Manager::addEntity());
+	UIText* txt = finalScreen->AddComponent<UIText>("the end", glm::vec2(-0.2f, 0.0f), 0.06f);
+	txt->ChangeColor(glm::vec4(1.0f));
+	txt->Enable();
+
+	vec.push_back(finalScreen);
 }

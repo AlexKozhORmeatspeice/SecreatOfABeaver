@@ -57,9 +57,8 @@ bool Coursor::GetCollisionStatusWith(Entity* collider)
 template <typename T>
 bool Coursor::GetCollisionStatus()
 {
-	Collider* boxCollider = checkBox->GetComponent<BoxCollider>()->GetCollidObj<T>();
-
-	return boxCollider != nullptr;
+	bool isCollide = checkBox->GetComponent<BoxCollider>()->IsCollideWithTrigger();
+	return isCollide;
 }
 
 template <typename T>

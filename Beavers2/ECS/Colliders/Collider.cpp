@@ -5,6 +5,8 @@ Collider::Collider()
 {
 	collisionObjs.clear();
 	AllColliders.push_back(this);
+
+	isEnabled = true;
 }
 
 void Collider::update()
@@ -14,6 +16,8 @@ void Collider::update()
 
 void Collider::lastUpdate()
 {
+	if (!isEnabled)
+		return;
 	getCol = CheckCollision();
 
 	if (getCol && isTrigger && (collisionObjs.size() != 0))

@@ -13,6 +13,11 @@ void SaveManager::LoadData()
 }
 void SaveManager::SaveData()
 {
+	std::ofstream out;
+	out.open(SaveManager::nameOfFile, std::ofstream::out);
+	out << "";
+	out.close();
+
 	for (auto obj : objs)
 	{
 		obj->SaveData();

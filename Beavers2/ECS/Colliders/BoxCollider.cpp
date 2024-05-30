@@ -26,6 +26,7 @@ BoxCollider::BoxCollider(float nowWidth, float nowHeigt, bool nowIsTrigger, bool
 
 void BoxCollider::init()
 {
+	isEnabled = true;
 	pos = entity->GetComponent<Transform>();
 	getColWithTrigger = false;
 
@@ -88,6 +89,9 @@ bool BoxCollider::CheckCollision() //it's an SAT algorithm or something like tha
 
 	for (auto& collider : AllColliders)
 	{
+		if (!collider->IsEnabled())
+			continue;
+
 		Tile* tile1 = collider->entity->GetComponent<Tile>();
 		Tile* tile2 = entity->GetComponent<Tile>();
 		

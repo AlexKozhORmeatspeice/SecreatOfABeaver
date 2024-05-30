@@ -19,7 +19,7 @@ DamageWeapon& ItemCreator::CreateKnife(glm::vec3 pos)
 
 	DamageWeapon* dmW = new DamageWeapon(50, 50, 10.0f, meleeAttackRange, 0.3f); // dm, cost use, weight, range, time between
 	Item* item = static_cast<Item*>(dmW); //use it as an item!!! IT'S A FABRIC METHOD
-	item->SetItemName(ItemName::n_Pistol);
+	item->SetItemName(ItemName::n_Knife);
 
 	knife->AddComponentAsObject<Item, DamageWeapon>(item);
 

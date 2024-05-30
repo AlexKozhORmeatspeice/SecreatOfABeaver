@@ -76,5 +76,11 @@ public:
 	{
 		itemName = name;
 	}
+
+	ItemName GotItemName()
+	{
+		return itemName;
+	}
+
 	~Item() {}
 };

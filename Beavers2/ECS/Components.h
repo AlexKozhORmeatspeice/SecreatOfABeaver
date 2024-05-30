@@ -42,3 +42,4 @@
 
 #include "SaveManager.h"
 #include "SavebleObj.h"
+#include "Funcs.h"
