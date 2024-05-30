@@ -1,5 +1,6 @@
 #include "BoxCollider.h"
 #include "Raycast.h"
+#include "PlainsGenerator.h"
 
 BoxCollider::BoxCollider()
 {
@@ -87,7 +88,10 @@ bool BoxCollider::CheckCollision() //it's an SAT algorithm or something like tha
 
 	for (auto& collider : AllColliders)
 	{
-		if (collider  == this)
+		Tile* tile1 = collider->entity->GetComponent<Tile>();
+		Tile* tile2 = entity->GetComponent<Tile>();
+		
+		if (collider  == this || (tile1 && tile2))
 			continue;
 		bool gotGap = false;
 

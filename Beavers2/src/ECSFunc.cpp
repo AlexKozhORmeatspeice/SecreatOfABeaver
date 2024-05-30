@@ -25,11 +25,11 @@ void ECSInit()
 	coursor.AddComponent<Coursor>();
 	
 	cam.AddComponent<Transform>(glm::vec3(0.0f));
-	cam.AddComponent<MovementComponent>(8.0f);
+	cam.AddComponent<MovementComponent>(12.0f);
 	cam.AddComponent<CamComponent>();
 	///////////////////////////////////////////////////
 
-	SceneManager::LoadScene(0);
+	SceneManager::LoadScene(1);
 }
 
 void ECSStop(std::unique_ptr<Manager> manager)

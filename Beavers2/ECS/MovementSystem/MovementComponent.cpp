@@ -1,5 +1,6 @@
 #include "MovementComponent.h"
 #include "Render.h"
+#include "TimeManager.h"
 MovementComponent::MovementComponent()
 {
 	speed = 1.0f;
