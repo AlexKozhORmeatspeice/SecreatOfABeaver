@@ -1,10 +1,14 @@
 #pragma once
 #include "ECS.h"
 #include "Hero.h"
-
+enum ItemName
+{
+	n_Knife, n_Pistol, n_Shotgun, n_Key, None
+};
 class Item : public Component
 {
 protected:
+	ItemName itemName;
 	Hero* onHero;
 	float weight;
 
@@ -18,6 +22,14 @@ public:
 	virtual bool CanUse() { return true; }
 	Item()
 	{
+		weight = 0.0f;
+		useCost = 0.0f;
+		timeBetweenUse = 0.0f;
+		rangeUse = 150.0f;
+
+		onHero = nullptr;
+		isInInventory = false;
+
 		onHero = nullptr;
 		isInInventory = false;
 	}
@@ -32,6 +44,8 @@ public:
 
 		onHero = nullptr;
 		isInInventory = false;
+
+		itemName = ItemName::None;
 	}
 
 	void SetHero(Hero* newHero)
@@ -57,6 +71,10 @@ public:
 	{
 		return timeBetweenUse;
 	}
-	
+
+	void SetItemName(ItemName name)
+	{
+		itemName = name;
+	}
 	~Item() {}
 };

@@ -84,9 +84,30 @@ void CreateScene1(std::vector<Entity*>& vec)
 	//////////////////////////////////////////////////////////////
 
 
+	/////////////////////items/////////////////////
+	Item pistol = ItemCreator::CreatePistol(glm::vec3(0.0f, 1800.0f, 0.0f));
+
+
+	//////////////////////////////////////////////
+	
+
+
+
 	/////////////////////Environment/////////////////////
 	UIText* txt = message->AddComponent<UIText>("destroy the beaver", glm::vec2(-.5f, 0.9f), 0.05f);
 	txt->Enable();
+
+
+	//to load next scene items
+	Key key = ItemCreator::CreateKey(glm::vec3(-800.0f, 2000.0f, 0.0f));
+	Entity* hatch = &Manager::addEntity();
+	hatch->AddComponent<Transform>(glm::vec3(-1000.0f, 2000.0f, 0.0f),
+									glm::vec3(100.0f, 100.0f, 1.0f));
+	hatch->AddComponent<SpriteComponent>("res/Textures/Env/hatch.png");
+	hatch->AddComponent<BoxCollider>(100.0f, 100.0f, false, false);
+	hatch->AddComponent<LoadNextScene>();
+	//
+
 
 	floor1->AddComponent<Transform>(glm::vec3(0.0f, 400.0f, 0.0f));
 	floor1->AddComponent<Tile>(160.0f, 400.0f, "res/Shaders/Basic.shader", "res/Textures/Env/FloorTexture.png");
@@ -94,6 +115,7 @@ void CreateScene1(std::vector<Entity*>& vec)
 	floor2->AddComponent<Transform>(glm::vec3(-640.0f, 1600.0f, 0.0f));
 	floor2->AddComponent<Tile>(800.0f, 800.0f, "res/Shaders/Basic.shader", "res/Textures/Env/FloorTexture.png");
 
+	//walls
 	{
 		wall0->AddComponent<Transform>(glm::vec3(0.0f));
 		wall0->AddComponent<Tile>(160.0f, 10.0f, "res/Shaders/Basic.shader", "res/Textures/Env/wall.png");
@@ -123,7 +145,12 @@ void CreateScene1(std::vector<Entity*>& vec)
 	}
 
 	///////////////////////////////////////////////////////////////////
+	vec.push_back(pistol.entity);
+	vec.push_back(key.entity);
+	vec.push_back(hatch);
+
 	vec.push_back(message);
+
 	vec.push_back(wall0);
 	vec.push_back(wall1);
 	vec.push_back(wall2);
@@ -132,6 +159,7 @@ void CreateScene1(std::vector<Entity*>& vec)
 	vec.push_back(wall5);
 	vec.push_back(floor1);
 	vec.push_back(floor2);
+
 	vec.push_back(stepSys);
 	vec.push_back(zubar);
 	vec.push_back(harchok);
@@ -251,19 +279,17 @@ void CreateScene2(std::vector<Entity*>& vec)
 	////////////////////////////////////////////////////////////////
 
 	/////////////////////Heroes and enemies/////////////////////
-	Entity* zubar = HeroCreator::ZubarPrefab(glm::vec3(55.0f, 0.0f, 0.0f));
+	Entity* zubar = HeroCreator::ZubarPrefab(glm::vec3(-50.0f, 100.0f, 0.0f));
 	stepSM->AddHero(*zubar->GetComponent<Hero>()); //!!!
 
-	Entity* harchok = HeroCreator::HarchokPrefab(glm::vec3(55.0f, 100.0f, 0.0f));
+	Entity* harchok = HeroCreator::HarchokPrefab(glm::vec3(50.0f, 100.0f, 0.0f));
 	stepSM->AddHero(*harchok->GetComponent<Hero>()); //!!!
 
-
-	Entity* motor = HeroCreator::MotorPrefam(glm::vec3(55.0f, 200.0f, 0.0f));
+	Entity* motor = HeroCreator::MotorPrefam(glm::vec3(-50.0f, 200.0f, 0.0f));
 	stepSM->AddHero(*motor->GetComponent<Hero>()); //!!!
 
-	Entity* nogotochki = HeroCreator::NogotPrefab(glm::vec3(55.0f, 300.0f, 0.0f));
+	Entity* nogotochki = HeroCreator::NogotPrefab(glm::vec3(50.0f, 200.0f, 0.0f));
 	stepSM->AddHero(*nogotochki->GetComponent<Hero>()); //!!!
-
 
 	Entity* enemy1 = EnemyCreator::BeaverThrower(glm::vec3(1450.0f, 1600.0f, 0.0f));
 	stepSM->AddEnemy(*enemy1->GetComponent<Enemy>()); //!!!
@@ -280,6 +306,13 @@ void CreateScene2(std::vector<Entity*>& vec)
 	Entity* eminem2 = EnemyCreator::BasicBeaver(glm::vec3(1450.0f + 2000.f, 600.f - 1200.0f, 0.0f));
 	stepSM->AddEnemy(*enemy1->GetComponent<Enemy>()); //!!!
 	//////////////////////////////////////////////////////////////
+	vec.push_back(stepSys);
+
+	vec.push_back(hallway1);
+	vec.push_back(hallway2);
+	vec.push_back(floor1);
+	vec.push_back(floor2);
+
 
 	vec.push_back(wall0);
 	vec.push_back(wall1);
@@ -298,12 +331,17 @@ void CreateScene2(std::vector<Entity*>& vec)
 	vec.push_back(wall14);
 	vec.push_back(wall15);
 	vec.push_back(stepSys);
+
 	vec.push_back(zubar);
 	vec.push_back(harchok);
 	vec.push_back(motor);
 	vec.push_back(nogotochki);
-	vec.push_back(enemy1);
 
+	vec.push_back(enemy1);
+	vec.push_back(enemy2);
+	vec.push_back(enemy3);
+	vec.push_back(eminem1);
+	vec.push_back(eminem2);
 }
 void CreateScene3(std::vector<Entity*>& vec)
 {

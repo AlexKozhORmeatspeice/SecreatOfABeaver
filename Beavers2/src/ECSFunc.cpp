@@ -15,7 +15,10 @@ void ECSInit()
 	Entity& raycast(Manager::addEntity());
 	Entity& timeManager(Manager::addEntity());
 	Entity& sceneManager(Manager::addEntity());
+	Entity& saveManager(Manager::addEntity());
 	//////////////////////////////////////////////
+	saveManager.AddComponent<SaveManager>();
+	
 	timeManager.AddComponent<Time>();
 
 	sceneManager.AddComponent<SceneManager>();
@@ -29,7 +32,7 @@ void ECSInit()
 	cam.AddComponent<CamComponent>();
 	///////////////////////////////////////////////////
 
-	SceneManager::LoadScene(1);
+	SceneManager::LoadScene(0);
 }
 
 void ECSStop(std::unique_ptr<Manager> manager)

@@ -8,7 +8,7 @@ protected:
 	static std::vector<Collider*> AllColliders;
 	Transform* pos;
 
-	bool drawingColliders = true; // to test param
+	bool drawingColliders = false; // to test param
 	bool isTrigger; //true - can react with others, false - cant
 	bool isMoveble; //can be moved
 	float checkDist;

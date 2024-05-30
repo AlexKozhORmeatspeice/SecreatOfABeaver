@@ -82,7 +82,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)Depend\GLFW\include;$(ProjectDir)Depend\GLEW\include;$(ProjectDir)res\Shaders;$(ProjectDir)res\GL;$(ProjectDir)res\Renderer;$(ProjectDir)src;$(ProjectDir)res\Textures;$(ProjectDir)res\vendor\stb_image;$(ProjectDir)res\vendor;$(ProjectDir)res\vendor\imgui;$(ProjectDir)ECS;$(ProjectDir)ECS\MovementSystem;$(ProjectDir)ECS\Managers;$(ProjectDir)ECS\Colliders;$(ProjectDir)ECS\Pers;$(ProjectDir)ECS\DrawF;$(ProjectDir)ECS\Stats;$(ProjectDir)ECS\AttackSystem;$(ProjectDir)ECS\UI;$(ProjectDir)ECS\Items;$(ProjectDir)ECS\Items\All_Items;$(ProjectDir)res\Textures\CodeFiles;$(ProjectDir)Depend\FREETYPE\include;$(ProjectDir)res\Textures\UI;$(ProjectDir)ECS\UI\TextComponents;$(ProjectDir)ECS\Managers\SceneManager;$(ProjectDir)ECS\Pers\Hero;$(ProjectDir)ECS\Pers\Enemy;$(ProjectDir)ECS\AttackSystem\Skills</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Depend\GLFW\include;$(ProjectDir)Depend\GLEW\include;$(ProjectDir)res\Shaders;$(ProjectDir)res\GL;$(ProjectDir)res\Renderer;$(ProjectDir)src;$(ProjectDir)res\Textures;$(ProjectDir)res\vendor\stb_image;$(ProjectDir)res\vendor;$(ProjectDir)res\vendor\imgui;$(ProjectDir)ECS;$(ProjectDir)ECS\MovementSystem;$(ProjectDir)ECS\Managers;$(ProjectDir)ECS\Colliders;$(ProjectDir)ECS\Pers;$(ProjectDir)ECS\DrawF;$(ProjectDir)ECS\Stats;$(ProjectDir)ECS\AttackSystem;$(ProjectDir)ECS\UI;$(ProjectDir)ECS\Items;$(ProjectDir)ECS\Items\All_Items;$(ProjectDir)res\Textures\CodeFiles;$(ProjectDir)Depend\FREETYPE\include;$(ProjectDir)res\Textures\UI;$(ProjectDir)ECS\UI\TextComponents;$(ProjectDir)ECS\Managers\SceneManager;$(ProjectDir)ECS\Pers\Hero;$(ProjectDir)ECS\Pers\Enemy;$(ProjectDir)ECS\AttackSystem\Skills;$(ProjectDir)ECS\Managers\SaveSystem</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -153,6 +153,9 @@
     <ClCompile Include="ECS\ECS.cpp" />
     <ClCompile Include="ECS\Managers\Coursor.cpp" />
     <ClCompile Include="ECS\Managers\Raycast.cpp" />
+    <ClCompile Include="ECS\Managers\SaveSystem\SavebleObj.cpp" />
+    <ClCompile Include="ECS\Managers\SaveSystem\SaveManager.cpp" />
+    <ClCompile Include="ECS\Managers\SceneManager\LoadNextSceneObj.cpp" />
     <ClCompile Include="ECS\Managers\SceneManager\SceneManager.cpp" />
     <ClCompile Include="ECS\Managers\StepSystemManager.cpp" />
     <ClCompile Include="ECS\Managers\TimeManager.cpp" />
@@ -209,8 +212,12 @@
     <ClInclude Include="ECS\AttackSystem\Skills\BiteSkill.h" />
     <ClInclude Include="ECS\AttackSystem\Skills\Skill.h" />
     <ClInclude Include="ECS\BoxCollider.h" />
+    <ClInclude Include="ECS\Items\All_Items\Key.h" />
     <ClInclude Include="ECS\Items\ItemCreator.h" />
     <ClInclude Include="ECS\Managers\Raycast.h" />
+    <ClInclude Include="ECS\Managers\SaveSystem\SavebleObj.h" />
+    <ClInclude Include="ECS\Managers\SaveSystem\SaveManager.h" />
+    <ClInclude Include="ECS\Managers\SceneManager\LoadNextSceneObj.h" />
     <ClInclude Include="ECS\Managers\SceneManager\SceneManager.h" />
     <ClInclude Include="ECS\Managers\TimeManager.h" />
     <ClInclude Include="ECS\Pers\Enemy\EnemyCreator.h" />
@@ -683,7 +690,7 @@
     <Image Include="res\Textures\Env\FloorTexture.png" />
     <Image Include="res\Textures\Env\hatch.png" />
     <Image Include="res\Textures\Env\wall.png" />
-    <Image Include="res\Textures\Items\hatch_hey.png" />
+    <Image Include="res\Textures\Items\hatch_key.png" />
     <Image Include="res\Textures\UI\button.png" />
     <Image Include="res\Textures\UI\HPBar.png" />
     <Image Include="res\Textures\UI\Icons\TolstiaMeh.png" />

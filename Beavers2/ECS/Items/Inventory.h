@@ -29,6 +29,7 @@ private:
 	const float buttonHeight = 0.15f;   //in gl coords
 	
 	glm::vec2 itemStartCoords;
+	bool isGotKey;
 public:
 	Inventory();
 
@@ -43,6 +44,10 @@ public:
 
 
 	void DrawAllItemsUnactive();
+	bool GotKey()
+	{
+		return isGotKey;
+	}
 private:
 	void CreateUI();
 

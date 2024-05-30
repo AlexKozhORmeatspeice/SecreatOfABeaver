@@ -14,6 +14,7 @@ Inventory::Inventory()
 
 void Inventory::init()
 {
+	isGotKey = false;
 	all_items.clear();
 	buttons.clear();
 
@@ -42,6 +43,12 @@ void Inventory::lastDraw()
 
 void Inventory::AddItem(Item* item)
 {
+	Key* key = dynamic_cast<Key*>(item);
+	if (key)
+	{
+		isGotKey = true;
+	}
+
 	bool canAdd = nowWeight + item->GetWeight() <= maxWeight;
 	if (canAdd)
 	{

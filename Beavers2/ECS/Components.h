@@ -37,3 +37,8 @@
 #include "HeroUse.h"
 #include "EnemyAttack.h"
 #include "BiteSkill.h"
+#include "Key.h"
+#include "LoadNextSceneObj.h"
+
+#include "SaveManager.h"
+#include "SavebleObj.h"

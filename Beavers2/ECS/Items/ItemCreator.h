@@ -2,6 +2,7 @@
 #include "ECS.h"
 #include "Item.h"
 #include "DamageWeapon.h"
+#include "Key.h"
 
 class ItemCreator
 {
@@ -15,4 +16,6 @@ public:
 	static DamageWeapon& CreateKnife(glm::vec3 pos);
 	static DamageWeapon& CreateShotgun(glm::vec3 pos);
 	static DamageWeapon& CreatePistol(glm::vec3 pos);
+
+	static Key& CreateKey(glm::vec3 pos);
 };
