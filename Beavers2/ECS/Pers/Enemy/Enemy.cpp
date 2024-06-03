@@ -61,19 +61,12 @@ void Enemy::update()
 
 	
 }
-
-Enemy::~Enemy()
-{
-	entity = nullptr;
-	checkCircle->destroy();
-}
-
 void Enemy::CheckHero()
 {
 	checkCirclePos->SetPos(pos->GetPos());
 
 	std::vector< Collider*> heroObjs_coll = checkCircle->GetComponent<CircleCollider>()->GetCollidObjs<Hero>();
-
+	heroPos = nullptr;
 	if (heroObjs_coll.size() != 0)
 	{
 		//find the nearest hero
@@ -89,10 +82,15 @@ void Enemy::CheckHero()
 		}
 	}
 
-
-	seeHero = (heroPos != nullptr &&
-		Raycast::CheckCollision<Hero>(pos->GetPos(), heroPos->GetPos() - pos->GetPos(), entity)
-		);
+	if (heroPos != nullptr)
+	{
+		seeHero = Raycast::CheckCollision<Hero>(pos->GetPos(), heroPos->GetPos() - pos->GetPos(), entity);
+	}
+	else
+	{
+		seeHero = false;
+	}
+	
 
 	if (seeHero && heroPos != nullptr)
 	{
@@ -103,3 +101,10 @@ void Enemy::CheckHero()
 		heroPos = nullptr;
 	}
 }
+
+Enemy::~Enemy()
+{
+	entity = nullptr;
+	checkCircle->destroy();
+}
+

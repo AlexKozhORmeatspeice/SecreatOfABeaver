@@ -381,11 +381,6 @@
     <Library Include="Depend\GLFW\lib-vc2022\glfw3.lib" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Depend\GLEW\doc\github.png" />
-    <Image Include="Depend\GLEW\doc\glew.png" />
-    <Image Include="Depend\GLEW\doc\new.png" />
-    <Image Include="Depend\GLEW\doc\ogl_sm.jpg" />
-    <Image Include="Depend\GLEW\doc\travis.png" />
     <Image Include="res\Fonts\Verdana.png" />
     <Image Include="res\Fonts\Verdana_B_alpha.png" />
     <Image Include="res\Textures\Beaver1.jpg" />
@@ -420,20 +415,6 @@
     <None Include="Depend\GLEW\bin\Release\Win32\glew32.dll" />
     <None Include="Depend\GLEW\bin\Release\Win32\glewinfo.exe" />
     <None Include="Depend\GLEW\bin\Release\Win32\visualinfo.exe" />
-    <None Include="Depend\GLEW\bin\Release\x64\glew32.dll" />
-    <None Include="Depend\GLEW\bin\Release\x64\glewinfo.exe" />
-    <None Include="Depend\GLEW\bin\Release\x64\visualinfo.exe" />
-    <None Include="Depend\GLEW\doc\advanced.html" />
-    <None Include="Depend\GLEW\doc\basic.html" />
-    <None Include="Depend\GLEW\doc\build.html" />
-    <None Include="Depend\GLEW\doc\credits.html" />
-    <None Include="Depend\GLEW\doc\glew.css" />
-    <None Include="Depend\GLEW\doc\glew.html" />
-    <None Include="Depend\GLEW\doc\glxew.html" />
-    <None Include="Depend\GLEW\doc\index.html" />
-    <None Include="Depend\GLEW\doc\install.html" />
-    <None Include="Depend\GLEW\doc\log.html" />
-    <None Include="Depend\GLEW\doc\wglew.html" />
     <None Include="ECS\Items\All_Items\Item.cpp" />
     <None Include="res\Shaders\Basic.shader" />
     <None Include="res\Shaders\Circle.shader" />
@@ -574,9 +555,6 @@
     <None Include="res\Shaders\Inventory.shader" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Depend\GLEW\doc\glew.txt" />
-    <Text Include="Depend\GLEW\doc\khronos.txt" />
-    <Text Include="Depend\GLEW\doc\mesa.txt" />
     <Text Include="res\vendor\glm\CMakeLists.txt" />
     <Text Include="Data.txt" />
   </ItemGroup>

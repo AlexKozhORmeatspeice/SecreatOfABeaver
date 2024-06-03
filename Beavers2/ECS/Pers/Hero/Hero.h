@@ -16,7 +16,6 @@ private:
 	static std::vector<Hero*> heroes;
 	Stamina* stamina;
 	HP* hp;
-
 public:
 	Hero();
 	Hero(const char* heroName);
